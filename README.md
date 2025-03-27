@@ -7,12 +7,33 @@
 - **Josué Emanuel Ramírez Aquino**
 - **Josseline Emerita Galeano Hernández**
 
-# Estructura API Principal del Negocio
+# Estructura API Principal del Negocio (Backend)
 
 ## Entidades
 
-### 1. Producto
-**Ubicación**: `SuperBodega.API/Models/Producto.cs`
+### 1. Categoría
+**Ubicación**: `SuperBodega.API/Models/Admin/Categoria.cs`
+**Propiedades**:
+- Id (int, PK)
+- Nombre (string)
+- Descripcion (string)
+- Estado (bool)
+- FechaDeRegistro (DateTime)
+
+Este es un ejemplo para crear la tabla de Categoria en el SQL Server con Docker (esto debe crearse dentro de la API, no en el programa de SQL Server de manera local):
+```SQL
+create table CATEGORIA(
+IdCategoria int primary key identity,
+Descripcion varchar(100),
+Estado bit,
+FechaDeRegistro datetime default getdate()
+)
+```
+**Relaciones**:
+- Productos (1:N)
+
+### 2. Producto
+**Ubicación**: `SuperBodega.API/Models/Admin/Producto.cs`
 **Propiedades**:
 - Id (int, PK)
 - Codigo (string)
@@ -22,9 +43,9 @@
 - Stock (int)
 - PrecioDeCompra (decimal)
 - PrecioDeVenta (decimal)
-- FechaDeRegistro (DateTime)
 - Estado (bool)
 - Imagen (string, ruta)
+- FechaDeRegistro (DateTime)
 
 Este es un ejemplo para crear la tabla de Producto en el SQL Server con Docker (esto debe crearse dentro de la API, no en el programa de SQL Server de manera local):
 ```SQL
@@ -49,29 +70,8 @@ FechaDeRegistro datetime default getdate()
 - DetallesVenta (1:N)
 - DetallesCompra (1:N)
 
-### 2. Categoría
-**Ubicación**: `SuperBodega.API/Models/Categoria.cs`
-**Propiedades**:
-- Id (int, PK)
-- Nombre (string)
-- Descripcion (string)
-- Estado (bool)
-- FechaDeRegistro (DateTime)
-
-Este es un ejemplo para crear la tabla de Categoria en el SQL Server con Docker (esto debe crearse dentro de la API, no en el programa de SQL Server de manera local):
-```SQL
-create table CATEGORIA(
-IdCategoria int primary key identity,
-Descripcion varchar(100),
-Estado bit,
-FechaRegistro datetime default getdate()
-)
-```
-**Relaciones**:
-- Productos (1:N)
-
 ### 3. Proveedor
-**Ubicación**: `SuperBodega.API/Models/Proveedor.cs`
+**Ubicación**: `SuperBodega.API/Models/Admin/Proveedor.cs`
 **Propiedades**:
 - Id (int, PK)
 - Nombre (string)
@@ -99,7 +99,7 @@ FechaDeRegistro datetime default getdate()
 - Compras (1:N)
 
 ### 4. Cliente
-**Ubicación**: `SuperBodega.API/Models/Cliente.cs`
+**Ubicación**: `SuperBodega.API/Models/Admin/Cliente.cs`
 **Propiedades**:
 - Id (int, PK)
 - Nombre (string)
@@ -127,11 +127,11 @@ FechaDeRegistro datetime default getdate()
 - Ventas (1:N)
 
 ### 5. Compra
-**Ubicación**: `SuperBodega.API/Models/Compra.cs`
+**Ubicación**: `SuperBodega.API/Models/Admin/Compra.cs`
 **Propiedades**:
 - Id (int, PK)
 - NumeroDeFactura (string)
-- ProveedorId (int, FK)
+- IdProveedor (int, FK)
 - FechaDeRegistro (DateTime)
 - Total (decimal)
 
@@ -150,20 +150,16 @@ MontoTotal decimal(10,2)
 - DetallesCompra (1:N)
 
 ### 6. DetalleDeLaCompra
-**Ubicación**: `SuperBodega.API/Models/DetalleDeLaCompra.cs`
+**Ubicación**: `SuperBodega.API/Models/Admin/DetalleDeLaCompra.cs`
 **Propiedades**:
 - Id (int, PK)
-- CompraId (int, FK)
-- ProductoId (int, FK)
+- IdCompra (int, FK)
+- IdProducto (int, FK)
 - PrecioDeCompra (decimal)
 - PrecioDeVenta (decimal)
 - Cantidad (int)
 - MontoTotal (decimal)
 - FechaDeRegistro (DateTime)
-
-**Relaciones**:
-- Compra (N:1)
-- Producto (N:1)
 
 Este es un ejemplo para crear la tabla de DetalleDeLaCompra en el SQL Server con Docker (esto debe crearse dentro de la API, no en el programa de SQL Server de manera local):
 ```SQL
@@ -179,8 +175,12 @@ FechaRegistro datetime default getdate()
 )
 ```
 
+**Relaciones**:
+- Compra (N:1)
+- Producto (N:1)
+
 ### 7. EstadoDeLaVenta
-**Ubicación**: `SuperBodega.API/Models/EstadoDeLaVenta.cs`
+**Ubicación**: `SuperBodega.API/Models/Admin/EstadoDeLaVenta.cs`
 **Propiedades**:
 - Id (int, PK)
 - Nombre (string) - Pendiente, Procesada, Entregada, Cancelada
@@ -196,7 +196,7 @@ Nombre varchar(50)
 - Ventas (1:N)
 
 ### 8. Venta
-**Ubicación**: `SuperBodega.API/Models/Venta.cs`
+**Ubicación**: `SuperBodega.API/Models/Admin/Venta.cs`
 **Propiedades**:
 - Id (int, PK)
 - NumeroDeFactura (string)
@@ -227,11 +227,11 @@ FechaDeRegistro datetime default getdate()
 - DetallesVenta (1:N)
 
 ### 9. DetalleDeLaVenta
-**Ubicación**: `SuperBodega.API/Models/DetalleDeLaVenta.cs`
+**Ubicación**: `SuperBodega.API/Models/Admin/DetalleDeLaVenta.cs`
 **Propiedades**:
 - Id (int, PK)
-- VentaId (int, FK)
-- ProductoId (int, FK)
+- IdVenta (int, FK)
+- IdProducto (int, FK)
 - PrecioDeVenta (decimal)
 - Cantidad (int)
 - Subtotal (decimal)
@@ -256,9 +256,9 @@ FechaDeRegistro datetime default getdate()
 ## Repositorios
 
 ### Interfaces
-**Ubicación**: `SuperBodega.API/Repositories/Interfaces/`
+**Ubicación**: `SuperBodega.API/Repositories/Interfaces/Admin/`
 
-1. **IGenericRepository.cs** (Base genérica para todos los repositorios)
+1. **IGenericOperationsRepository.cs** (Base genérica para todos los repositorios)
    - GetAll(), GetById(), Create(), Update(), Delete()
 
 2. **IProductoRepository.cs**
@@ -275,11 +275,11 @@ FechaDeRegistro datetime default getdate()
    - Métodos específicos: GetWithDetails(), GetByClienteId(), GetByEstadoId()
 
 ### Implementaciones
-**Ubicación**: `SuperBodega.API/Services/`
+**Ubicación**: `SuperBodega.API/Services/Admin/`
 - Implementación correspondiente para cada interfaz
 
 ## Servicios
-**Ubicación**: `SuperBodega.API/Services/`
+**Ubicación**: `SuperBodega.API/Services/Admin/`
 
 1. **ProductoService.cs**
    - CRUD completo
@@ -314,7 +314,7 @@ FechaDeRegistro datetime default getdate()
    - GenerateSalesReportBySupplier()
 
 ## DTO (Data Transfer Objects)
-**Ubicación**: `SuperBodega.API/DTOs/`
+**Ubicación**: `SuperBodega.API/DTOs/Admin/`
 
 Para cada entidad principal:
 - ProductoDTO, CreateProductoDTO, UpdateProductoDTO
@@ -331,7 +331,7 @@ Para reportes:
 - ReporteVentasPorProveedorDTO
 
 ## Controladores
-**Ubicación**: `SuperBodega.API/Controllers/`
+**Ubicación**: `SuperBodega.API/Controllers/Admin/`
 
 1. **ProductosController.cs**
    - GET: api/productos (todos)
@@ -370,3 +370,184 @@ Para reportes:
 
 Agregar cada DbSet correspondiente a las entidades y configurar las relaciones en el método OnModelCreating para que SQL Server mediante Docker
 pueda generar las tablas para su uso en la base de datos.
+
+# Estructura del Frontend con Razor para SuperBodega
+
+## Estructura Base
+
+### Directorios principales:
+```
+/Views
+  /Shared
+  /Dashboard
+  /Productos
+  /Categorias
+  /Proveedores
+  /Clientes
+  /Compras
+  /Ventas
+  /Reportes
+/wwwroot
+  /css
+  /js
+  /img
+  /lib
+```
+
+## Arquitectura del Dashboard
+
+### Layout Principal
+Ubicación: `/Views/Shared/_DashboardLayout.cshtml`
+
+Este archivo contendrá:
+- Estructura HTML base
+- Menú lateral con todos los módulos
+- Header con información de usuario
+- Scripts y CSS comunes
+- Contenedor principal para las vistas
+
+## Módulos Específicos
+
+### 1. Dashboard (Inicio)
+Ubicación: `/Views/Dashboard/AdminDashboard.cshtml`
+
+Elementos (esto esta implementado de manera de ejemplo, si da tiempo se puede implementar en la api final):
+- Resumen de ventas diarias/semanales/mensuales
+- Productos con bajo stock
+- Últimas ventas
+- Gráfico de ventas por período
+
+### 2. Categorías
+Archivos:
+- `/Views/Categorias/Index.cshtml` - Lista con filtros y paginación, incluir las opciones para
+  editar y eliminar la categoria seleccionada.
+- `/Views/Categorias/Create.cshtml` - Formulario de creación
+- `/Views/Categorias/Edit.cshtml` - Formulario de edición
+
+### 3. Productos
+Archivos:
+- `/Views/Productos/Index.cshtml` - Lista con filtros y paginación, incluir las opciones para
+editar y eliminar el producto seleccionado.
+- `/Views/Productos/Create.cshtml` - Formulario de creación
+- `/Views/Productos/Edit.cshtml` - Formulario de edición
+
+Características:
+- Tabla con ordenamiento y búsqueda
+- Carga de imágenes
+- Selección de categoría
+- Gestión de stock (aumento/disminución) esto ultimo lo hara el sistema de compras(aumentar) y ventas(disminuir)
+
+### 4. Proveedores
+Archivos:
+- `/Views/Proveedores/Index.cshtml` - Lista con filtros y paginación, incluir las opciones para
+editar y eliminar el proveedor seleccionado.
+- `/Views/Proveedores/Create.cshtml` - Formulario de creación
+- `/Views/Proveedores/Edit.cshtml` - Formulario de edición
+
+### 5. Clientes
+Archivos:
+- `/Views/Clientes/Index.cshtml` - Lista con filtros y paginación, incluir las opciones para
+editar y eliminar el cliente seleccionado.
+- `/Views/Clientes/Create.cshtml` - Formulario de creación
+- `/Views/Clientes/Edit.cshtml` - Formulario de edición
+
+### 6. Compras
+Archivos:
+- `/Views/Compras/Index.cshtml` - Lista con filtros y paginación, incluir las opciones para
+editar y eliminar la compra seleccionada (tener cuidado con las validaciones del stock del producto
+ya que van relacionadas en caso de editar o eliminar la compra).
+- `/Views/Compras/Create.cshtml` - Formulario de creación
+- `/Views/Compras/Edit.cshtml` - Formulario de edición
+- `/Views/Compras/Details.cshtml` - Detalles de la compra
+- `/Views/Compras/_ProductoSeleccion.cshtml` - Selección de producto (esto ira dentro del formulario de creación, pero en ventana emergente al dar click en el botón de agregar producto)
+- `/Views/Compras/_ProveedorSeleccion.cshtml` - Selección de proveedor (esto ira dentro del formulario de creación, pero en ventana emergente al dar click en el botón de agregar proveedor)
+
+Características:
+- Selección dinámica de productos
+- Selección dinámica de proveedores
+- Cálculo automático de totales (tomando como base la tabla creada en SQL Server)
+
+### 7. Ventas
+Archivos:
+- `/Views/Ventas/Index.cshtml` - Aqui caeran las compras que se realicen desde la api de ecommerce.
+Lista con filtros y paginación, incluir la opción para cambiar el estado de la venta seleccionada. 
+Ya que la venta como tal no se podra modificar ni eliminar. Porque esta vendra desde la api de ecommerce 
+al momento de que un usuario haga una compra.
+- `/Views/Ventas/Details.cshtml` - Detalles de la venta, se obtendran el detalle de las ventas por medio
+de su numero de factura.
+- `/Views/Ventas/_CambioEstado.cshtml` - Cambiar estado de venta, para notificarle el estado de la compra al usuario de
+la api de ecommerce.
+
+Características:
+- Sistema tipo POS para nueva venta
+- Gestión de estados
+
+### 8. Reportes
+Archivos:
+- `/Views/Reportes/Index.cshtml` - Selección de tipo de reporte por medio de un filtro.
+
+Características:
+- Filtros por fecha
+- Gráficos interactivos
+- Exportación a PDF/Excel
+
+## Archivos JavaScript y CSS
+
+### CSS
+- `/wwwroot/css/site.css` - Estilos generales
+- `/wwwroot/css/dashboard.css` - Estilos del dashboard
+- `/wwwroot/css/categorias.css` - Estilos de categorías
+- `/wwwroot/css/productos.css` - Estilos de productos
+- `/wwwroot/css/proveedores.css` - Estilos de proveedores
+- `/wwwroot/css/clientes.css` - Estilos de clientes
+- `/wwwroot/css/compras.css` - Estilos de compras
+- `/wwwroot/css/ventas.css` - Estilos de ventas
+- `/wwwroot/css/reportes.css` - Estilos de reportes
+
+### JavaScript
+- `/wwwroot/js/site.js` - Funciones generales
+- `/wwwroot/js/dashboard.js` - Funciones del dashboard
+- `/wwwroot/js/categorias.js` - Gestión de categorías
+- `/wwwroot/js/productos.js` - Gestión de productos
+- `/wwwroot/js/proveedores.js` - Gestión de proveedores
+- `/wwwroot/js/clientes.js` - Gestión de clientes
+- `/wwwroot/js/compras.js` - Sistema de compras
+- `/wwwroot/js/ventas.js` - Sistema de ventas
+- `/wwwroot/js/reportes.js` - Generación de gráficos
+
+## Pasos de Implementación
+1. Desarrollar los módulos CRUD en este orden:
+### Joseeline
+   - Categorías (dependencia de Productos)
+   - Utilizar las variables de entorno en el archivo `appsettings.json` y `docker-compose.yml` en donde se define la conexion
+     de la base de datos:
+     - DATABASE_NAME_FOUR (para el nombre de base de datos personal) 
+     - DATABASE_PASSWORD_FOUR (para la contraseña de la base de datos personal)
+### Josue
+   - Productos
+   - Utilizar las variables de entorno en el archivo `appsettings.json` y `docker-compose.yml` en donde se define la conexion
+     de la base de datos:
+      - DATABASE_NAME_FIVE (para el nombre de base de datos personal)
+      - DATABASE_PASSWORD_FIVE (para la contraseña de la base de datos personal)
+### Mynor
+   - Proveedores
+   - Utilizar las variables de entorno en el archivo `appsettings.json` y `docker-compose.yml` en donde se define la conexion
+     de la base de datos:
+      - DATABASE_NAME_THREE (para el nombre de base de datos personal)
+      - DATABASE_PASSWORD_THREE (para la contraseña de la base de datos personal)
+### Angelica
+   - Clientes
+   - Utilizar las variables de entorno en el archivo `appsettings.json` y `docker-compose.yml` en donde se define la conexion
+     de la base de datos:
+      - DATABASE_NAME_TWO (para el nombre de base de datos personal)
+      - DATABASE_PASSWORD_TWO (para la contraseña de la base de datos personal)
+### Luis
+   - Compras
+   - Ventas
+   - Utilizar las variables de entorno en el archivo `appsettings.json` y `docker-compose.yml` en donde se define la conexion
+     de la base de datos:
+      - DATABASE_NAME_ONE (para el nombre de base de datos personal)
+      - DATABASE_PASSWORD_ONE (para la contraseña de la base de datos personal)
+2. Implementar los reportes al final
+3. Asegurar que todos los formularios tengan validación cliente y servidor
+4. Integrar los endpoints de la API en cada vista
