@@ -1,0 +1,360 @@
+@{
+    ViewData["Title"] = "Panel de Administración";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <li class="submenu">
+        <a href="#productosSubmenu"><i class="bi bi-box me-2"></i>Productos</a>
+        <ul class="list-unstyled submenu-items" id="productosSubmenu">
+            <li>
+                <a href="#"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#proveedoresSubmenu"><i class="bi bi-truck me-2"></i>Proveedores</a>
+        <ul class="list-unstyled submenu-items" id="proveedoresSubmenu">
+            <li>
+                <a href="#"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#clientesSubmenu"><i class="bi bi-people me-2"></i>Clientes</a>
+        <ul class="list-unstyled submenu-items" id="clientesSubmenu">
+            <li>
+                <a href="#"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#comprasSubmenu"><i class="bi bi-cart-plus me-2"></i>Compras</a>
+        <ul class="list-unstyled submenu-items" id="comprasSubmenu">
+            <li>
+                <a href="#"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#ventasSubmenu"><i class="bi bi-cash-coin me-2"></i>Ventas</a>
+        <ul class="list-unstyled submenu-items" id="ventasSubmenu">
+            <li>
+                <a href="#"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-clipboard-check me-2"></i>Cambiar Estado</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#reportesSubmenu"><i class="bi bi-bar-chart me-2"></i>Reportes</a>
+        <ul class="list-unstyled submenu-items" id="reportesSubmenu">
+            <li>
+                <a href="#"><i class="bi bi-calendar-range me-2"></i>Ventas por Período</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-box-seam me-2"></i>Ventas por Producto</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-person me-2"></i>Ventas por Cliente</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-truck me-2"></i>Ventas por Proveedor</a>
+            </li>
+        </ul>
+    </li>
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Panel de Administración</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card primary">
+                    <div class="icon">
+                        <i class="bi bi-box"></i>
+                    </div>
+                    <div class="stat-value">345</div>
+                    <div class="stat-title">Productos</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card success">
+                    <div class="icon">
+                        <i class="bi bi-cash-coin"></i>
+                    </div>
+                    <div class="stat-value">$54.5K</div>
+                    <div class="stat-title">Ventas del Mes</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card warning">
+                    <div class="icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div class="stat-value">128</div>
+                    <div class="stat-title">Clientes</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card danger">
+                    <div class="icon">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <div class="stat-value">32</div>
+                    <div class="stat-title">Proveedores</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Ventas Recientes</h5>
+                    <a href="#" class="btn btn-sm btn-primary">Ver Todas</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>V-2023-001</td>
+                                    <td>Juan Pérez</td>
+                                    <td>23/10/2023</td>
+                                    <td>$1,250.00</td>
+                                    <td><span class="badge bg-success">Entregado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>V-2023-002</td>
+                                    <td>María López</td>
+                                    <td>22/10/2023</td>
+                                    <td>$876.50</td>
+                                    <td><span class="badge bg-warning">Despachado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>V-2023-003</td>
+                                    <td>Carlos García</td>
+                                    <td>21/10/2023</td>
+                                    <td>$543.25</td>
+                                    <td><span class="badge bg-info">Procesando</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>V-2023-004</td>
+                                    <td>Ana Martínez</td>
+                                    <td>20/10/2023</td>
+                                    <td>$231.75</td>
+                                    <td><span class="badge bg-success">Entregado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Productos Más Vendidos</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Smartphone Galaxy S21</span>
+                            <span class="text-primary">86%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" style="width: 86%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Laptop Dell XPS 15</span>
+                            <span class="text-success">72%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>TV Samsung 55"</span>
+                            <span class="text-warning">64%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" style="width: 64%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Audífonos Sony WH-1000XM4</span>
+                            <span class="text-danger">53%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger" style="width: 53%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Tablet iPad Air</span>
+                            <span class="text-info">49%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" style="width: 49%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Productos con Bajo Stock</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Categoría</th>
+                                    <th>Stock Actual</th>
+                                    <th>Stock Mínimo</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Smartphone Galaxy S21</td>
+                                    <td>Electrónicos</td>
+                                    <td>3</td>
+                                    <td>5</td>
+                                    <td><span class="badge bg-danger">Crítico</span></td>
+                                </tr>
+                                <tr>
+                                    <td>TV Samsung 55"</td>
+                                    <td>Electrónicos</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td><span class="badge bg-warning">Bajo</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Audífonos Sony</td>
+                                    <td>Accesorios</td>
+                                    <td>6</td>
+                                    <td>10</td>
+                                    <td><span class="badge bg-warning">Bajo</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Últimas Actividades</h5>
+                </div>
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-item-marker">
+                                <div class="timeline-item-marker-indicator bg-primary"><i class="bi bi-box"></i></div>
+                            </div>
+                            <div class="timeline-item-content">
+                                <p class="mb-0 fw-bold">Producto actualizado</p>
+                                <p class="mb-0">Smartphone Galaxy S21 - Stock: 10</p>
+                                <p class="text-muted mb-0 small">Hoy 10:45 AM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-item-marker">
+                                <div class="timeline-item-marker-indicator bg-success"><i class="bi bi-cash-coin"></i></div>
+                            </div>
+                            <div class="timeline-item-content">
+                                <p class="mb-0 fw-bold">Nueva venta</p>
+                                <p class="mb-0">Cliente: Juan Pérez - $1,250.00</p>
+                                <p class="text-muted mb-0 small">Hoy 9:30 AM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-item-marker">
+                                <div class="timeline-item-marker-indicator bg-warning"><i class="bi bi-truck"></i></div>
+                            </div>
+                            <div class="timeline-item-content">
+                                <p class="mb-0 fw-bold">Nuevo proveedor añadido</p>
+                                <p class="mb-0">ElectroMax S.A.</p>
+                                <p class="text-muted mb-0 small">Ayer 3:15 PM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-item-marker">
+                                <div class="timeline-item-marker-indicator bg-info"><i class="bi bi-people"></i></div>
+                            </div>
+                            <div class="timeline-item-content">
+                                <p class="mb-0 fw-bold">Nuevo cliente registrado</p>
+                                <p class="mb-0">María López</p>
+                                <p class="text-muted mb-0 small">Ayer 11:20 AM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

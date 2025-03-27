@@ -1,0 +1,333 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #ffffff;
+    color: #495057;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #2575fc;
+    color: white;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+#sidebar ul li a {
+    padding: 12px 20px;
+    font-size: 1rem;
+    display: block;
+    color: #495057;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+#sidebar ul li a:hover {
+    background: #f8f9fa;
+    color: #2575fc;
+    border-left: 3px solid #2575fc;
+}
+
+#sidebar ul li.active > a {
+    color: #2575fc;
+    background: #f8f9fa;
+    border-left: 3px solid #2575fc;
+    font-weight: 600;
+}
+
+#content {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #495057;
+}
+
+#sidebarCollapse {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+    border: none;
+}
+
+.content-body {
+    padding: 20px;
+}
+
+/* User info section */
+.user-info {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2575fc;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.user-details h6 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.user-details .badge {
+    font-weight: 500;
+    font-size: 0.7rem;
+}
+
+/* Card styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #f1f1f1;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Dashboard stat cards */
+.stat-card {
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card.primary {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+}
+
+.stat-card.success {
+    background: linear-gradient(135deg, #2fcc71 0%, #26a65b 100%);
+}
+
+.stat-card.warning {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+}
+
+.stat-card.danger {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.stat-card .icon {
+    font-size: 3rem;
+    opacity: 0.2;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.stat-card .stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-card .stat-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* Submenu styles */
+#sidebar li.submenu > a:after {
+    content: '\F282';
+    font-family: 'bootstrap-icons';
+    float: right;
+    transition: transform 0.3s;
+}
+
+#sidebar li.submenu.open > a:after {
+    transform: rotate(90deg);
+}
+
+#sidebar ul.submenu-items {
+    padding-left: 20px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    background-color: #f8f9fa;
+}
+
+#sidebar ul.submenu-items.open {
+    max-height: 500px;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    .navbar .container-fluid {
+        padding-left: 0;
+    }
+}
+
+/* Timeline styling */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline .timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline .timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline .timeline-item:before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #e9ecef;
+}
+
+.timeline .timeline-item .timeline-item-marker {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-radius: 100%;
+    border: 1px solid #e9ecef;
+}
+
+.timeline .timeline-item .timeline-item-marker-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 100%;
+}
+
+.timeline .timeline-item .timeline-item-marker-indicator i {
+    font-size: 0.75rem;
+}
+
+.timeline .timeline-item .timeline-item-content {
+    padding-top: 0.25rem;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+/* estilo del sidebar */
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Estilos para el menú lateral */
+.sidebar-header h3 {
+    color: white;
+    margin-bottom: 0;
+}
+
+.submenu-items {
+    padding-left: 40px;
+}
+
+/* Ajustes específicos para la usabilidad del sidebar */
+#sidebar ul li a {
+    color: #495057;
+    font-weight: 500; 
+}
+
+#sidebar ul.submenu-items li a {
+    padding: 8px 20px; 
+}
+
+/* Asegurar que el botón de colapso funcione correctamente */
+#content.active {
+    width: 100%;
+    margin-left: 0;
+}

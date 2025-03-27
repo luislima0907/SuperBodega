@@ -1,0 +1,340 @@
+@{
+    ViewData["Title"] = "Panel de Cliente";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <li>
+        <a href="#"><i class="bi bi-grid me-2"></i>Catálogo</a>
+    </li>
+    <li class="submenu">
+        <a href="#catalogoSubmenu"><i class="bi bi-box me-2"></i>Productos</a>
+        <ul class="list-unstyled submenu-items" id="catalogoSubmenu">
+            <li>
+                <a href="#"><i class="bi bi-list me-2"></i>Todos los Productos</a>
+            </li>
+            <li>
+                <a href="#"><i class="bi bi-filter me-2"></i>Filtrar por Categoría</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><i class="bi bi-cart me-2"></i>Carrito de Compras</a>
+    </li>
+    <li>
+        <a href="#"><i class="bi bi-bag-check me-2"></i>Realizar Compra</a>
+    </li>
+    <li>
+        <a href="#"><i class="bi bi-clock-history me-2"></i>Mis Pedidos</a>
+    </li>
+    <li>
+        <a href="#"><i class="bi bi-bell me-2"></i>Notificaciones</a>
+    </li>
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Panel de Cliente</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card primary">
+                    <div class="icon">
+                        <i class="bi bi-bag-check"></i>
+                    </div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-title">Pedidos Realizados</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card success">
+                    <div class="icon">
+                        <i class="bi bi-cart-check"></i>
+                    </div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-title">Pedidos Entregados</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card warning">
+                    <div class="icon">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <div class="stat-value">1</div>
+                    <div class="stat-title">Pedidos en Tránsito</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="stat-card danger">
+                    <div class="icon">
+                        <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="stat-value">2</div>
+                    <div class="stat-title">Artículos en Carrito</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Mis Pedidos Recientes</h5>
+                    <a href="#" class="btn btn-sm btn-primary">Ver Todos</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#Pedido</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>P-1045</td>
+                                    <td>23/10/2023</td>
+                                    <td>$1,250.00</td>
+                                    <td><span class="badge bg-success">Entregado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>P-1033</td>
+                                    <td>18/10/2023</td>
+                                    <td>$876.50</td>
+                                    <td><span class="badge bg-warning">En tránsito</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>P-1021</td>
+                                    <td>10/10/2023</td>
+                                    <td>$543.25</td>
+                                    <td><span class="badge bg-success">Entregado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>P-1015</td>
+                                    <td>05/10/2023</td>
+                                    <td>$231.75</td>
+                                    <td><span class="badge bg-success">Entregado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Notificaciones</h5>
+                </div>
+                <div class="card-body">
+                    <div class="notifications-list">
+                        <div class="notification-item">
+                            <div class="notification-icon bg-primary">
+                                <i class="bi bi-truck"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p class="mb-0 fw-bold">Pedido en camino</p>
+                                <p class="mb-0">Tu pedido #P-1033 está en camino.</p>
+                                <p class="text-muted mb-0 small">Hace 2 horas</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="notification-item">
+                            <div class="notification-icon bg-success">
+                                <i class="bi bi-tag"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p class="mb-0 fw-bold">¡Oferta especial!</p>
+                                <p class="mb-0">30% de descuento en electrónicos.</p>
+                                <p class="text-muted mb-0 small">Ayer</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="notification-item">
+                            <div class="notification-icon bg-info">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p class="mb-0 fw-bold">Pedido entregado</p>
+                                <p class="mb-0">Tu pedido #P-1021 ha sido entregado.</p>
+                                <p class="text-muted mb-0 small">Hace 5 días</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Mi Carrito</h5>
+                </div>
+                <div class="card-body">
+                    <div class="cart-items">
+                        <div class="cart-item d-flex mb-3">
+                            <img src="https://via.placeholder.com/50" alt="Producto" class="me-3">
+                            <div class="cart-item-details flex-grow-1">
+                                <h6 class="mb-0">Smartphone Galaxy S21</h6>
+                                <p class="text-muted mb-0">1 x $899.99</p>
+                            </div>
+                        </div>
+                        <div class="cart-item d-flex mb-3">
+                            <img src="https://via.placeholder.com/50" alt="Producto" class="me-3">
+                            <div class="cart-item-details flex-grow-1">
+                                <h6 class="mb-0">Audífonos Sony WH-1000XM4</h6>
+                                <p class="text-muted mb-0">1 x $349.99</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-0">Total:</h6>
+                            <h6 class="mb-0">$1,249.98</h6>
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <a href="#" class="btn btn-primary">
+                                <i class="bi bi-cart-check me-2"></i>Proceder al pago
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Productos Recomendados</h5>
+                    <a href="#" class="btn btn-sm btn-primary">Ver Catálogo</a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-4">
+                            <div class="card product-card h-100">
+                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
+                                <div class="card-body">
+                                    <h5 class="card-title">Smartphone Galaxy S21</h5>
+                                    <p class="card-text text-muted">Samsung</p>
+                                    <p class="card-text fw-bold">$899.99</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card product-card h-100">
+                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
+                                <div class="card-body">
+                                    <h5 class="card-title">Laptop Dell XPS 15</h5>
+                                    <p class="card-text text-muted">Dell</p>
+                                    <p class="card-text fw-bold">$1,899.99</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card product-card h-100">
+                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
+                                <div class="card-body">
+                                    <h5 class="card-title">Audífonos Sony WH-1000XM4</h5>
+                                    <p class="card-text text-muted">Sony</p>
+                                    <p class="card-text fw-bold">$349.99</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card product-card h-100">
+                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
+                                <div class="card-body">
+                                    <h5 class="card-title">TV Samsung 55"</h5>
+                                    <p class="card-text text-muted">Samsung</p>
+                                    <p class="card-text fw-bold">$749.99</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .notification-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+    
+    .notification-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+    
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-card img {
+        padding: 10px;
+        object-fit: contain;
+        height: 150px;
+    }
+</style>

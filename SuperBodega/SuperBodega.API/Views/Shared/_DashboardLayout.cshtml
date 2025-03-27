@@ -1,0 +1,59 @@
+@{
+    var userName = "Usuario";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SuperBodega</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="bi bi-shop me-2"></i>SuperBodega</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                @RenderSection("SidebarMenu", required: true)
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    
+                    <div class="ms-auto">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">
+                                    <i class="bi bi-house-door me-2"></i>Volver al Inicio
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid content-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿Rol de Usuario Administrador
+
+API Principal negocio:
+1. Productos
+a. CRUD
+2. Proveedores
+a. CRUD
+3. Clientes
+a. CRUD
+4. Compras de productos
+a. CRUD
+5. Ventas
+a. CRUD
+b. Cambios de estado
+6. Reportes
+a. Ventas por periodo de tiempo
+b. Ventas por producto
+c. Ventas por cliente
+d. Ventas por proveedor
+
+Rol de Usuario Cliente
+
+API E-Commerce:
+1. Mostrar catálogo de productos
+a. Listar con paginación
+b. Filtrar por categorías
+2. Agregar al carrito de compras
+a. Asociar producto y datos del cliente al carrito
+3. Realizar compra
+a. Información necesaria del cliente y producto
+4. Notificaciones
+a. Utilizar una cola para generar notificaciones por email indicando que sucedió con
+su pedido (puede utilizar servicios como https://resend.com o activar el envío
+desde Gmail) tales como :
+i. Pedido recibido
+ii. Pedido despachado
+iii. Pedido entregado
+
