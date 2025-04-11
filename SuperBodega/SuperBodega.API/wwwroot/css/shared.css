@@ -1,0 +1,273 @@
+﻿/* Shared enhanced styles for dashboard components */
+
+/* Card enhancements */
+.card {
+    border: none;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.25rem;
+}
+
+.card-title {
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #343a40;
+}
+
+/* Form control enhancements */
+.form-control, .form-select {
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-color: #ced4da;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+    transition: all 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+/* Table enhancements */
+.table {
+    vertical-align: middle;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.04);
+}
+
+/* Button enhancements */
+.btn {
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(10, 88, 202, 0.2);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #4e555b 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+}
+
+
+.btn-warning {
+/background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);/
+border: none;
+}
+
+.btn-warning:hover {
+/background: linear-gradient(135deg, #5a6268 0%, #4e555b 100%);/
+transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%);
+    border: none;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #b02a37 0%, #842029 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+}
+
+/* Action buttons within tables */
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+}
+
+.btn-group .btn-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Badge enhancements */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+    border-radius: 0.5rem;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #198754 0%, #157347 100%) !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%) !important;
+}
+
+/* Page header improvements */
+.d-sm-flex.align-items-center {
+    padding: 1rem 0 1.5rem;
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.text-muted {
+    color: #6c757d !important;
+    font-size: 0.85rem;
+}
+
+/* Form text info */
+.form-text {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+}
+
+/* Required field indicator */
+.required-field::after {
+    content: " *";
+    color: #dc3545;
+}
+
+/* Image thumbnails */
+.img-thumbnail {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Improved form check switches */
+.form-switch .form-check-input {
+    height: 1.5rem;
+    width: 3rem;
+}
+
+/* Custom styling for the description textarea */
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Pagination styling */
+.pagination {
+    margin-top: 1.5rem;
+}
+
+.page-item .page-link {
+    border-radius: 0.35rem;
+    margin: 0 0.15rem;
+    border: none;
+    background-color: #f8f9fa;
+    color: #0d6efd;
+    transition: all 0.2s ease;
+}
+
+.page-item.active .page-link {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.page-item .page-link:hover {
+    background-color: #e9ecef;
+    transform: translateY(-1px);
+}
+
+/* Card statistics styling */
+.stat-card {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card.primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.stat-card.success {
+    background: linear-gradient(135deg, #198754 0%, #157347 100%);
+}
+
+.stat-card.warning {
+    background: linear-gradient(135deg, #ffc107 0%, #ffca2c 100%);
+}
+
+.stat-card.danger {
+    background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%);
+}
+
+.stat-card .icon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    opacity: 0.2;
+    font-size: 3rem;
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Search box styling */
+.input-group {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Animations for notifications */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.toast {
+    animation: fadeIn 0.3s ease-out;
+}

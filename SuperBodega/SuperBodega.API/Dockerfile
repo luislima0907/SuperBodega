@@ -26,10 +26,7 @@ COPY --from=build /app/publish .
 COPY ["SuperBodega.API/Views", "/app/Views/"]
 COPY ["SuperBodega.API/wwwroot", "/app/wwwroot/"]
 
-# Script de entrada
-COPY SuperBodega.API/docker-entrypoint.sh /app/
-RUN chmod +x /app/docker-entrypoint.sh
-
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+
+ENTRYPOINT [ "dotnet", "SuperBodega.API.dll" ]

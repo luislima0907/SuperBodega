@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using SuperBodega.API.Models;
+using SuperBodega.API.Models.Admin;
 
 namespace SuperBodega.API.Data
 {
@@ -10,6 +11,7 @@ namespace SuperBodega.API.Data
         // Bandera estática para asegurar que la creación de la base de datos se haga una sola vez por aplicación
         private static bool _databaseInitialized = false;
         private static readonly object _lockObject = new object();
+        public DbSet<Categoria> Categorias { get; set; }
 
         public SuperBodegaContext(DbContextOptions<SuperBodegaContext> options) : base(options)
         {

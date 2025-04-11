@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Nueva Categoría";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <partial name="_SidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Nueva Categoría</h1>
+        <a href="/Categorias/Index" id="btnVolver" class="btn btn-secondary">
+            <i class="bi bi-arrow-left me-1"></i>Volver al Listado
+        </a>
+    </div>
+    
+    <div id="alertContainer" class="mb-4" style="display: none;"></div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold">Información de la Categoría</h6>
+                </div>
+                <div class="card-body">
+                    <form id="createCategoriaForm">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="nombre" name="nombre">
+                            <div class="invalid-feedback">El nombre es obligatorio.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="estado" class="form-label">Estado</label>
+                            <div class="form-check form-switch">
+                                <input type="checkbox" class="form-check-input" id="estado" name="estado">
+                                <label class="form-check-label" for="estado">Activo</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaDeRegistro" class="form-label">Fecha de Registro</label>
+                            <input type="datetime-local" class="form-control" id="fechaDeRegistro" name="fechaDeRegistro">
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Index", "CategoriaView")" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-ban me-1"></i>Cancelar
+                            </a>
+                            <button type="button" id="btnLimpiar" class="btn btn-warning me-2">
+                                <i class="fas fa-eraser me-1"></i> Limpiar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i>Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold">Información Adicional</h6>
+                </div>
+                <div class="card-body">
+                    <p>Las categorías permiten organizar los productos para facilitar su búsqueda y clasificación.</p>
+                    <hr>
+                    <h6 class="font-weight-bold">Consideraciones:</h6>
+                    <ul>
+                        <li>El nombre debe ser único y descriptivo.</li>
+                        <li>Una categoría activa aparecerá en las búsquedas y filtros.</li>
+                        <li>La fecha de registro se asignará automáticamente.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/categorias.js"></script>
+}

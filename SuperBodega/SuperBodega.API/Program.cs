@@ -7,6 +7,8 @@ using System.Net.Mime;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.FileProviders;
+using SuperBodega.API.Models.Admin;
+using SuperBodega.API.Services.Admin;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +39,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
     options.ViewLocationFormats.Add("/Views/{1}/{0}" + RazorViewEngine.ViewExtension);
     options.ViewLocationFormats.Add("/Views/Shared/{0}" + RazorViewEngine.ViewExtension);
     options.ViewLocationFormats.Add("/Views/Dashboard/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/CategoriaView/{0}" + RazorViewEngine.ViewExtension);
 });
 
 // Configuración de archivos estáticos
@@ -73,6 +76,11 @@ builder.Services.AddDbContext<SuperBodegaContext>(options =>
 
 // Registrar el servicio de inicialización de la base de datos
 builder.Services.AddScoped<DatabaseInitializerService>();
+// configuración de servicios
+builder.Services.AddScoped<CategoriaService>();
+
+// implementación del repositorio genérico
+builder.Services.AddScoped<IGenericOperationsRepository<Categoria>, CategoriaRepository>();
 
 // Agregar CORS
 builder.Services.AddCors(options =>
@@ -89,6 +97,8 @@ builder.Services.AddHealthChecks();
 
 // Agregar controladores
 builder.Services.AddControllers();
+
+builder.Services.AddControllersWithViews();
 
 // los middleware
 var app = builder.Build();
