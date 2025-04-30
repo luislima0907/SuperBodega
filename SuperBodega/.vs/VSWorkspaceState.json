@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\SuperBodega.API",
+    "\\SuperBodega.API\\Models\\Ecommerce",
+    "\\SuperBodega.API\\Models\\Ecommerce\\Admin",
+    "\\SuperBodega.API\\Repositories",
+    "\\SuperBodega.API\\Services",
+    "\\SuperBodega.API\\Views",
+    "\\SuperBodega.API\\Views\\ProductoView",
+    "\\SuperBodega.API\\wwwroot",
+    "\\SuperBodega.API\\wwwroot\\js"
+  ],
+  "SelectedNode": "\\SuperBodega.API\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

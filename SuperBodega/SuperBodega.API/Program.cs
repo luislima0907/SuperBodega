@@ -8,7 +8,9 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.FileProviders;
 using SuperBodega.API.Models.Admin;
+using SuperBodega.API.Repositories.Implementations.Admin;
 using SuperBodega.API.Services.Admin;
+using SuperBodega.API.Repositories.Interfaces.Admin;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,17 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
     options.ViewLocationFormats.Add("/Views/Shared/{0}" + RazorViewEngine.ViewExtension);
     options.ViewLocationFormats.Add("/Views/Dashboard/{0}" + RazorViewEngine.ViewExtension);
     options.ViewLocationFormats.Add("/Views/CategoriaView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/ProductoView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/ProveedorView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/ClienteView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/CompraView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/ProductoCatalogoView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/CarritoView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/VentaView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/RealizarCompraView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/MisPedidosView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/NotificacionView/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/ReporteView/{0}" + RazorViewEngine.ViewExtension);
 });
 
 // Configuración de archivos estáticos
@@ -74,6 +87,8 @@ builder.Services.AddDbContext<SuperBodegaContext>(options =>
     });
 });
 
+
+
 // Registrar el servicio de inicialización de la base de datos
 builder.Services.AddScoped<DatabaseInitializerService>();
 // configuración de servicios
@@ -81,6 +96,18 @@ builder.Services.AddScoped<CategoriaService>();
 
 // implementación del repositorio genérico
 builder.Services.AddScoped<IGenericOperationsRepository<Categoria>, CategoriaRepository>();
+
+// Registrar repositorios
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+
+
+// Registrar servicios
+builder.Services.AddScoped<ProductoService>();
+
+
+// HttpClient para Resend
+builder.Services.AddHttpClient();
+
 
 // Agregar CORS
 builder.Services.AddCors(options =>

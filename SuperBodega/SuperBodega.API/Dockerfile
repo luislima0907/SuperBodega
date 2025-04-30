@@ -26,6 +26,11 @@ COPY --from=build /app/publish .
 COPY ["SuperBodega.API/Views", "/app/Views/"]
 COPY ["SuperBodega.API/wwwroot", "/app/wwwroot/"]
 
+#Crear la carpeta para las imágenes si no existe
+RUN mkdir -p /app/wwwroot/images/productos
+#Dar permisos de escritura a la carpeta
+RUN chmod -R 777 /app/wwwroot/images
+
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 

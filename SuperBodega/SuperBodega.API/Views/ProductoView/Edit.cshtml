@@ -1,0 +1,170 @@
+﻿@model SuperBodega.API.DTOs.Admin.UpdateProductoDTO
+@{
+    ViewData["Title"] = "Editar Producto";
+    Layout = "_DashboardLayout";
+    var categorias = ViewBag.Categorias as List<SelectListItem> ?? new List<SelectListItem>();
+    var producto = ViewBag.Producto as SuperBodega.API.DTOs.Admin.ProductoDTO;
+}
+
+@section SidebarMenu {
+    <partial name="_SidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Editar Producto: @producto?.Nombre</h4>
+                <a href="@Url.Action("Index", "ProductoView")" class="btn btn-outline-primary me-2">
+                    <i class="fas fa-arrow-left me-1"></i> Volver al Listado
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (ViewBag.CategoriaInactiva == true)
+            {
+            <div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>¡Atención!</strong> La categoría actual está inactiva. Se recomienda seleccionar una categoría activa.
+            </div>
+            }
+
+            <form asp-action="Edit" method="post" enctype="multipart/form-data" id="formEditarProducto">
+                <input type="hidden" name="Id" value="@ViewBag.ProductoId" />
+                <input type="hidden" id="categoriaOriginalId" value="@ViewBag.CategoriaOriginalId" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="Codigo" class="form-label">Código</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="height: auto;"><i class="bi bi-upc-scan"></i></span>
+                                <input asp-for="Codigo" class="form-control" />
+                                <button type="button" class="btn btn-secondary" id="btnRegenerarCodigo" style="display: flex; align-items: center;" title="Generar nuevo código">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">Puede mantener el código actual o generar uno nuevo con el botón</small>
+                            <span asp-validation-for="Codigo" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-box"></i></span>
+                                <input asp-for="Nombre" class="form-control" placeholder="Nombre del producto" />
+                            </div>
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CategoriaId" class="form-label">Categoría</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-tags"></i></span>
+                                <select asp-for="CategoriaId" class="form-select" id="CategoriaId">
+                                    <option value="">-- Seleccionar Categoría --</option>
+                                    @foreach (var categoria in categorias)
+                                    {
+                                        string optionClass = categoria.Group.Name == "Categorías Activas" ? "" : "text-danger";
+                                        string selected = categoria.Value == ViewBag.CategoriaOriginalId.ToString() ? "selected" : "";
+
+                                    <option value="@categoria.Value" class="@optionClass" selected="@(categoria.Value == ViewBag.CategoriaOriginalId.ToString())">
+                                        @categoria.Text
+                                    </option>
+                                    }
+                                </select>
+                            </div>
+                            <small class="text-muted">Las categorías inactivas aparecen en rojo.</small>
+                            <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stock Actual</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-boxes"></i></span>
+                                <input id="Stock" class="form-control" type="number" value="@producto?.Stock" disabled readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="PrecioDeCompra" class="form-label">Precio de Compra</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-cart"></i></span>
+                                <input asp-for="PrecioDeCompra" class="form-control" type="number" step="0.01" min="0" />
+                            </div>
+                            <span asp-validation-for="PrecioDeCompra" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PrecioDeVenta" class="form-label">Precio de Venta</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                                <input asp-for="PrecioDeVenta" class="form-control" type="number" step="0.01" min="0" />
+                            </div>
+                            <span asp-validation-for="PrecioDeVenta" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input asp-for="Estado" class="form-check-input" type="checkbox" />
+                                <label asp-for="Estado" class="form-check-label">Activo</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Imagen del Producto</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="height: auto;"><i class="bi bi-image"></i></span>
+                                <input type="file" class="form-control" id="imagen" name="Imagen" accept="image/*" />
+                            </div>
+                            @if (!string.IsNullOrEmpty(producto?.ImagenUrl))
+                            {
+                            <div class="mt-2">
+                                <img src="@producto.ImagenUrl" class="img-thumbnail" style="max-height: 150px;" alt="@producto.Nombre" data-fecha-registro="@producto.FechaDeRegistro.ToString("o")" />
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" id="mantenerImagen" name="MantenerImagen" checked>
+                                    <label class="form-check-label" for="mantenerImagen">
+                                        Mantener imagen actual
+                                    </label>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descripcion" class="form-label">Descripción</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-file-text"></i></span>
+                        <textarea asp-for="Descripcion" class="form-control" rows="3" placeholder="Describa las características del producto"></textarea>
+                    </div>
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="fechaDeRegistro" class="form-label">Fecha de Registro</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                        <input type="hidden" id="fechaDeRegistro" name="fechaDeRegistro" value="@producto?.FechaDeRegistro.ToString(" o")">
+                        <input type="text" class="form-control" id="fechaDeRegistroVisible" readonly>
+                    </div>
+                    <small class="text-muted">La fecha de registro no se puede modificar.</small>
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("Index", "ProductoView")" class="btn btn-secondary me-2">
+                        <i class="fas fa-ban me-1"></i>Cancelar
+                    </a>
+                    <button type="button" id="btnRestaurarProducto" class="btn btn-warning me-2">
+                        <i class="fas fa-rotate-left me-1"></i>Restaurar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sync-alt me-1"></i>Actualizar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/productos.js"></script>
+}

@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperBodega.API", "SuperBodega.API\SuperBodega.API.csproj", "{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}"
 EndProject
 Global
@@ -27,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3921AC2F-06AB-48C7-A8B8-D68A0CC53CD4}
 	EndGlobalSection
 EndGlobal
