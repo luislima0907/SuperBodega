@@ -44,7 +44,8 @@ services:
       - type: bind
         source: ./SuperBodega/SuperBodega.API/Views
         target: /app/Views
-        read_only: true
+        read_only: false
+      - producto-images:/app/wwwroot/images/productos
     depends_on:
       sqlserver:
         condition: service_started
@@ -59,6 +60,7 @@ services:
       start_period: 40s
 
 volumes:
+  producto-images:
   sqlserver_data:
 
 networks:
