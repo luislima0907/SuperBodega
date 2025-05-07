@@ -99,10 +99,11 @@ builder.Services.AddScoped<IGenericOperationsRepository<Categoria>, CategoriaRep
 
 // Registrar repositorios
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
-
+builder.Services.AddScoped<IProveedorRepository, ProveedorRepository>();
 
 // Registrar servicios
 builder.Services.AddScoped<ProductoService>();
+builder.Services.AddScoped<ProveedorService>(); 
 
 
 // HttpClient para Resend
