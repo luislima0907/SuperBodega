@@ -34,17 +34,17 @@
         </li>
     </ul>
 </li>
-    <li class="submenu">
-        <a href="#clientesSubmenu"><i class="bi bi-people me-2"></i>Clientes</a>
-        <ul class="list-unstyled submenu-items" id="clientesSubmenu">
-            <li>
-                <a href="#"><i class="bi bi-list me-2"></i>Listar</a>
-            </li>
-            <li>
-                <a href="#"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
-            </li>
-        </ul>
-    </li>
+<li class="submenu">
+    <a href="#clientesSubmenu"><i class="bi bi-people me-2"></i>Clientes</a>
+    <ul class="list-unstyled submenu-items" id="clientesSubmenu">
+        <li>
+            <a asp-controller="ClienteView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+        </li>
+        <li>
+            <a asp-controller="ClienteView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+        </li>
+    </ul>
+</li>
     <li class="submenu">
         <a href="#comprasSubmenu"><i class="bi bi-cart-plus me-2"></i>Compras</a>
         <ul class="list-unstyled submenu-items" id="comprasSubmenu">
