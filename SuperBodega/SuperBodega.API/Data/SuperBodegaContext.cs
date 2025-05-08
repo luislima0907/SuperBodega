@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
-using SuperBodega.API.Models;
 using SuperBodega.API.Models.Admin;
 
 namespace SuperBodega.API.Data
@@ -13,6 +12,7 @@ namespace SuperBodega.API.Data
         private static readonly object _lockObject = new object();
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Proveedor> Proveedores { get; set; }
         public SuperBodegaContext(DbContextOptions<SuperBodegaContext> options) : base(options)
         {
             // Solo intentar crear la base de datos si aún no está inicializada
