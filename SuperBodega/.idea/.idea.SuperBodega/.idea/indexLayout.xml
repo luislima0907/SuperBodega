@@ -2,9 +2,10 @@
 <project version="4">
   <component name="UserContentModel">
     <attachedFolders>
-      <Path>../../../../PROYECTO_PROGRAMACION_3</Path>
+      <Path>../../../SuperBodegaCompra</Path>
       <Path>../../SuperBodega</Path>
       <Path>../../../SuperBodegaModificada</Path>
+      <Path>../../../../PROYECTO_PROGRAMACION_3</Path>
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />

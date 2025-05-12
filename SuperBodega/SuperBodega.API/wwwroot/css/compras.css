@@ -1,0 +1,13 @@
+﻿#tabla-productos th {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+#tabla-productos td {
+    vertical-align: middle;
+}
+
+.text-wrap {
+    white-space: normal !important;
+    word-break: break-word;
+}

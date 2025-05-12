@@ -91,8 +91,6 @@ builder.Services.AddDbContext<SuperBodegaContext>(options =>
 
 // Registrar el servicio de inicialización de la base de datos
 builder.Services.AddScoped<DatabaseInitializerService>();
-// configuración de servicios
-builder.Services.AddScoped<CategoriaService>();
 
 // implementación del repositorio genérico
 builder.Services.AddScoped<IGenericOperationsRepository<Categoria>, CategoriaRepository>();
@@ -101,16 +99,17 @@ builder.Services.AddScoped<IGenericOperationsRepository<Categoria>, CategoriaRep
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 builder.Services.AddScoped<IProveedorRepository, ProveedorRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<ICompraRepository, CompraRepository>();
 
 // Registrar servicios
 builder.Services.AddScoped<ProductoService>();
 builder.Services.AddScoped<ProveedorService>(); 
 builder.Services.AddScoped<ClienteService>();
-
+builder.Services.AddScoped<CompraService>();
+builder.Services.AddScoped<CategoriaService>();
 
 // HttpClient para Resend
 builder.Services.AddHttpClient();
-
 
 // Agregar CORS
 builder.Services.AddCors(options =>

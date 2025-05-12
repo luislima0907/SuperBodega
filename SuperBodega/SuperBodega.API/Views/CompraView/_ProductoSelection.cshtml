@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="modal fade" id="productoModal" tabindex="-1" aria-labelledby="productoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="max-width: 90%;">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="productoModalLabel">Seleccionar Producto</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="text" id="buscar-producto" class="form-control" placeholder="Buscar producto...">
+                        <button class="btn btn-primary" type="button" id="btn-buscar-producto">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="btn btn-secondary" type="button" id="btn-limpiar-busqueda-producto">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tabla-productos" class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Stock</th>
+                                <th>Precio Compra</th>
+                                <th>Precio Venta</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productos-body">
+                            <!-- Los productos se cargarán dinámicamente aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-ban me-1"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detalleProductoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Agregar Producto a la Compra</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formDetalleProducto">
+                    <input type="hidden" id="producto-id" />
+                    <input type="hidden" id="producto-codigo" />
+                    <input type="hidden" id="producto-nombre" />
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="producto-info">Producto</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-box"></i></span>
+                            <input type="text" id="producto-info" class="form-control" placeholder="Producto" readonly />
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="precio-compra">Precio de Compra</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Q</span>
+                            <input type="number" id="precio-compra" class="form-control" step="0.01" min="0.01" placeholder="Precio de compra" required />
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="precio-venta">Precio de Venta</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Q</span>
+                            <input type="number" id="precio-venta" class="form-control" step="0.01" min="0.01" placeholder="Precio de venta" required />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-outline-secondary" id="decreaseCantidad">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" id="cantidad" class="form-control text-center" min="1" placeholder="Cantidad" required>
+                            <button type="button" class="btn btn-outline-secondary" id="increaseCantidad">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="subtotal">Subtotal</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Q</span>
+                            <input type="text" id="subtotal" class="form-control" placeholder="Subtotal" readonly />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-ban me-1"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" id="btn-agregar-detalle">
+                    <i class="fas fa-plus me-2"></i> Agregar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

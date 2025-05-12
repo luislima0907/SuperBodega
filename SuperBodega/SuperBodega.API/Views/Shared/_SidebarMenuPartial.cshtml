@@ -45,17 +45,17 @@
         </li>
     </ul>
 </li>
-    <li class="submenu">
-        <a href="#comprasSubmenu"><i class="bi bi-cart-plus me-2"></i>Compras</a>
-        <ul class="list-unstyled submenu-items" id="comprasSubmenu">
-            <li>
-                <a href="#"><i class="bi bi-list me-2"></i>Listar</a>
-            </li>
-            <li>
-                <a href="#"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
-            </li>
-        </ul>
-    </li>
+<li class="submenu">
+    <a href="#comprasSubmenu"><i class="bi bi-cart-plus me-2"></i>Compras</a>
+    <ul class="list-unstyled submenu-items" id="comprasSubmenu">
+        <li>
+            <a asp-controller="CompraView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+        </li>
+        <li>
+            <a asp-controller="CompraView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+        </li>
+    </ul>
+</li>
     <li class="submenu">
         <a href="#ventasSubmenu"><i class="bi bi-cash-coin me-2"></i>Ventas</a>
         <ul class="list-unstyled submenu-items" id="ventasSubmenu">

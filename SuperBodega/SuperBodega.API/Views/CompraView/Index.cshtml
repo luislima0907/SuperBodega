@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SuperBodega.API.DTOs.Admin.CompraDTO>
+@{
+    ViewData["Title"] = "Compras";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <partial name="_SidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Gestión de Compras</h1>
+        <a href="/Compras/Create" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-1"></i>Nueva Compra
+        </a>
+    </div>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold">Listado de Compras</h6>
+            <div class="input-group w-25">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                <button class="btn btn-primary" type="button" id="searchButton">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-secondary" type="button" id="clearSearchButton">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="comprasTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No. Factura</th>
+                            <th>Proveedor</th>
+                            <th>Fecha De Registro</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comprasTableBody">
+                        <!-- Aquí se cargarán las compras dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Añadir controles de paginación -->
+            <nav aria-label="Paginación de compras" class="mt-3">
+                <ul class="pagination justify-content-center" id="comprasPagination">
+                    <!-- La paginación se generará dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/compras.js"></script>
+}

@@ -14,6 +14,69 @@ namespace SuperBodega.API.Data
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Compra> Compras { get; set; }
+        public DbSet<DetalleDeLaCompra> DetallesDeLaCompra { get; set; }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            
+            // Configuración de la entidad Compra
+            modelBuilder.Entity<Compra>(entity =>
+            {
+                entity.ToTable("Compra");
+                entity.Property(e => e.Id).HasColumnName("IdCompra");
+                entity.Property(e => e.NumeroDeFactura)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.IdProveedor).IsRequired();
+                entity.Property(e => e.FechaDeRegistro).HasDefaultValueSql("GETDATE()");
+                entity.Property(e => e.MontoTotal)
+                    .HasColumnType("decimal(10,2)")
+                    .HasDefaultValue(0);
+                
+                // Relación con Proveedor
+                entity.HasOne(e => e.Proveedor)
+                    .WithMany()
+                    .HasForeignKey(e => e.IdProveedor)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+            
+            // Configuración de la entidad DetalleDeLaCompra
+            modelBuilder.Entity<DetalleDeLaCompra>(entity =>
+            {
+                entity.ToTable("DetalleDeLaCompra");
+                entity.Property(e => e.Id).HasColumnName("IdDetalleDeLaCompra");
+                entity.Property(e => e.IdCompra).IsRequired();
+                entity.Property(e => e.IdProducto).IsRequired();
+                entity.Property(e => e.PrecioDeCompra)
+                    .HasColumnType("decimal(10,2)")
+                    .HasDefaultValue(0);
+                entity.Property(e => e.PrecioDeVenta)
+                    .HasColumnType("decimal(10,2)")
+                    .HasDefaultValue(0);
+                entity.Property(e => e.Cantidad).IsRequired();
+                entity.Property(e => e.Montototal)
+                    .HasColumnType("decimal(10,2)")
+                    .HasDefaultValue(0);
+                entity.Property(e => e.FechaDeRegistro).HasColumnName("FechaDeRegistro")
+                    .HasDefaultValueSql("GETDATE()");
+                
+                // Relación con Compra
+                entity.HasOne(e => e.Compra)
+                    .WithMany(c => c.DetallesDeLaCompra)
+                    .HasForeignKey(e => e.IdCompra)
+                    .OnDelete(DeleteBehavior.Cascade);
+                
+                // Relación con Producto
+                entity.HasOne(e => e.Producto)
+                    .WithMany()
+                    .HasForeignKey(e => e.IdProducto)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+        }
+        
         public SuperBodegaContext(DbContextOptions<SuperBodegaContext> options) : base(options)
         {
             // Solo intentar crear la base de datos si aún no está inicializada

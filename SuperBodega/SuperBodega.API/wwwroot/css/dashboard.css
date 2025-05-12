@@ -10,7 +10,7 @@ body {
 }
 
 #sidebar {
-    width: 250px;
+    width: 260px;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,17 +20,25 @@ body {
     color: #495057;
     transition: all 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -260px;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
     background: #2575fc;
     color: white;
+    flex-shrink: 0; /* Evita que el encabezado se contraiga */
+}
+
+#sidebar .components-container {
+    flex: 1;
+    overflow-y: auto; /* El scroll solo aparece en esta sección */
+    padding-bottom: 20px; /* Espacio adicional al final */
 }
 
 #sidebar ul.components {
@@ -212,14 +220,8 @@ body {
 
 #sidebar ul.submenu-items {
     padding-left: 20px;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-out;
+    display: none; /* Cambiado de max-height a display none para mejor manejo por jQuery */
     background-color: #f8f9fa;
-}
-
-#sidebar ul.submenu-items.open {
-    max-height: 500px;
 }
 
 /* Media queries for responsive design */
@@ -319,11 +321,11 @@ body {
 /* Ajustes específicos para la usabilidad del sidebar */
 #sidebar ul li a {
     color: #495057;
-    font-weight: 500; 
+    font-weight: 500;
 }
 
 #sidebar ul.submenu-items li a {
-    padding: 8px 20px; 
+    padding: 8px 20px;
 }
 
 /* Asegurar que el botón de colapso funcione correctamente */
