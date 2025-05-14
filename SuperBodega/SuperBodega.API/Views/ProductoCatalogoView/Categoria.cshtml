@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = $"Productos en categoría {ViewData["CategoriaNombre"]}";
+    Layout = "_DashboardLayout";
+    int categoriaId = (int)ViewData["CategoriaId"];
+}
+
+@section SidebarMenu {
+    <partial name="_ClientSidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">
+            <a href="@Url.Action("Categorias", "ProductoCatalogoView")" class="text-decoration-none text-secondary">
+                <i class="bi bi-arrow-left me-2"></i>
+            </a>
+            Productos en: @ViewData["CategoriaNombre"]
+        </h1>
+        <div class="input-group w-25">
+            <input type="text" id="searchInput" class="form-control" placeholder="Buscar en esta categoría...">
+            <button class="btn btn-primary" type="button" id="searchButton">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="btn btn-secondary" type="button" id="clearSearchButton">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div id="alertContainer" class="mb-4" style="display: none;"></div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <div id="productosContainer" class="row">
+                <!-- Los productos se cargarán dinámicamente con JavaScript -->
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <nav aria-label="Paginación de productos">
+                    <ul class="pagination" id="pagination">
+                        <!-- La paginación se generará dinámicamente -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plantilla para productos (se clonará con JS) -->
+    <template id="producto-template">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 product-card">
+                <div class="productImage">
+                    <img src="" class="card-img-top" alt="Producto">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title producto-nombre"></h5>
+                    <p class="card-text text-muted producto-categoria"></p>
+                    <p class="card-text producto-descripcion"></p>
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold producto-precio"></span>
+                            <span class="badge producto-stock"></span>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-add-cart">
+                                <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/producto-catalogo.js"></script>
+    <script>
+        // Asegurarse de que no se carguen todos los productos primero
+        document.addEventListener('DOMContentLoaded', function() {
+            // Desactivar el comportamiento predeterminado del DOMContentLoaded en producto-catalogo.js
+            const originalDomContentLoaded = document.addEventListener;
+            document.addEventListener = function(event, callback, options) {
+                if (event === 'DOMContentLoaded' && callback.toString().includes('loadCategorias()')) {
+                    // No hacer nada para evitar la carga automática
+                } else {
+                    originalDomContentLoaded.call(document, event, callback, options);
+                }
+            };
+            
+            // Establecer la categoría actual antes de cargar cualquier producto
+            currentCategoriaId = @categoriaId;
+            
+            // Evitar que los event listeners originales se ejecuten
+            setTimeout(function() {
+                // Restaurar el addEventListener original
+                document.addEventListener = originalDomContentLoaded;
+                
+                // Ahora cargar los productos de la categoría específica
+                loadProductos();
+            }, 50);
+        });
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+<li>
+    <a asp-controller="Dashboard" asp-action="ClienteDashboard"><i class="bi bi-speedometer2 me-2"></i>Panel del Cliente</a>
+</li>
+<li class="submenu">
+    <a href="#catalogoSubmenu"><i class="bi bi-grid me-2"></i>Catálogo</a>
+    <ul class="list-unstyled submenu-items" id="catalogoSubmenu">
+        <li>
+            <a asp-controller="ProductoCatalogoView" asp-action="Index"><i class="bi bi-list me-2"></i>Todos los Productos</a>
+        </li>
+        <li>
+            <a asp-controller="ProductoCatalogoView" asp-action="Categorias"><i class="bi bi-filter me-2"></i>Filtrar por Categoría</a>
+        </li>
+    </ul>
+</li>

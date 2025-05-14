@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SuperBodega.API.DTOs.Admin.CategoriaDTO>
+@{
+    ViewData["Title"] = "Categorías de Productos";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <partial name="_ClientSidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Categorías de Productos</h1>
+        <a href="@Url.Action("Index", "ProductoCatalogoView")" class="btn btn-outline-primary me-2">
+            <i class="bi bi-grid-fill"></i> Ver Todos los Productos
+        </a>
+    </div>
+    
+    <div id="alertContainer" class="mb-4" style="display: none;"></div>
+
+    <div class="row" id="categoriasContainer">
+        <!-- Categoría "Todos los productos" -->
+        <div class="col-md-4 mb-4">
+            <div class="card categoria-card h-100">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold">Todos los Productos</h6>
+                </div>
+                <div class="card-body text-center">
+                    <div class="categoria-icon">
+                        <i class="fas fa-grid-3x3-gap fs-1"></i>
+                    </div>
+                    <p>Ver todos los productos disponibles en todas las categorías.</p>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index", "ProductoCatalogoView")" class="btn btn-outline-primary">
+                            <i class="fas fa-eye me-1"></i>Ver Productos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Categorías dinámicas -->
+        @foreach (var categoria in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card categoria-card h-100">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold">@categoria.Nombre</h6>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="categoria-icon">
+                            <i class="fas fa-tag fs-1"></i>
+                        </div>
+                        <p>@(string.IsNullOrEmpty(categoria.Descripcion) ? "No hay descripción disponible." : categoria.Descripcion)</p>
+                        <div class="d-grid gap-2">
+                            <a href="@Url.Action("Categoria", "ProductoCatalogoView", new { id = categoria.Id })" class="btn btn-outline-primary">
+                                <i class="fas fa-eye me-1"></i>Ver Productos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Si no hay categorías, mostrar un mensaje
+            const categoriasContainer = document.getElementById('categoriasContainer');
+            if (categoriasContainer.children.length <= 1) { // Solo tenemos la categoría "Todos"
+                const noCategoriasDiv = document.createElement('div');
+                noCategoriasDiv.className = 'col-12 text-center mt-4';
+                noCategoriasDiv.innerHTML = '<div class="alert alert-info">No hay categorías disponibles actualmente.</div>';
+                categoriasContainer.appendChild(noCategoriasDiv);
+            }
+        });
+    </script>
+}
