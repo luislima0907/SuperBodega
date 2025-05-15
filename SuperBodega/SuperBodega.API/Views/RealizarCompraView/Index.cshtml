@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Realizar Compra";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <partial name="_ClientSidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Realizar Compra</h1>
+        <div class="d-flex">
+            <a href="@Url.Action("Index", "CarritoView")" class="btn btn-outline-primary me-2">
+                <i class="fas fa-arrow-left me-2"></i> Volver al Carrito
+            </a>
+        </div>
+    </div>
+
+    <div id="alertContainer" class="mb-4" style="display: none;"></div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold">Detalle de la Compra</h6>
+        </div>
+        <div class="card-body">
+            <!-- Sección de Detalles del Cliente -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold">Información del Cliente</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Cliente Seleccionado</label>
+                            <select class="form-select" id="clienteSelect" required>
+                                <option value="" selected disabled>Seleccione un cliente</option>
+                                <!-- Los clientes se cargarán dinámicamente con JavaScript -->
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="clienteInfo" class="mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de los Productos -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold">Productos a Comprar</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive mb-3">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="text-center">Precio</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-center">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rc-cartItems"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end fw-bold">Total:</td>
+                                    <td id="rc-total" class="text-center fw-bold">Q 0.00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Pago -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold">Detalle del Pago</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Monto a Pagar</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Q</span>
+                                <input type="number" id="rc-montoPago" class="form-control" min="0.01" step="0.01" required />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Cambio</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Q</span>
+                                <input type="text" id="rc-cambio" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fecha de Registro</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                                <input type="hidden" id="fechaDeRegistro" />
+                                <input type="text" class="form-control" id="fechaDeRegistroVisible" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <a href="@Url.Action("Index", "CarritoView")" class="btn btn-primary d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-cart-shopping me-2"></i> Ir al Carrito
+                </a>
+                <button id="rc-confirmBtn" class="btn btn-success btn-lg">
+                    <i class="fas fa-check-circle me-2"></i>Confirmar Compra
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/realizar-compra.js"></script>
+}

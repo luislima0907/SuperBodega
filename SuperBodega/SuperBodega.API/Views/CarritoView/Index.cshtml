@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "Mi Carrito";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <partial name="_ClientSidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Mi Carrito de Compras</h1>
+        <div class="d-flex">
+            <a href="@Url.Action("Index", "ProductoCatalogoView")" class="btn btn-outline-primary me-2">
+                <i class="fas fa-arrow-left me-2"></i>Seguir Comprando
+            </a>
+        </div>
+    </div>
+
+    <div id="alertContainer" class="mb-4" style="display: none;"></div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold">Carrito de Compras</h6>
+        </div>
+        <div class="card-body">
+            <!-- Sección de Selección y Detalles del Cliente (Siempre Visible) -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold">Cliente</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Cliente Seleccionado</label>
+                            <select class="form-select" id="clienteSelect" required>
+                                <option value="" selected disabled>Seleccione un cliente</option>
+                                <!-- Los clientes se cargarán dinámicamente con JavaScript -->
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="clienteDetails" class="mt-4" style="display: none;">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span class="fw-bold">Nombre:</span>
+                                        <span id="clienteNombre"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span class="fw-bold">Email:</span>
+                                        <span id="clienteEmail"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span class="fw-bold">Telefono:</span>
+                                        <span id="clienteTelefono"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span class="fw-bold">Dirección:</span>
+                                        <span id="clienteDireccion"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN Sección de Selección y Detalles del Cliente -->
+            <!-- Mensaje de Carrito Vacío -->
+            <div id="cartEmptyMessage" class="text-center p-5" style="display: none;">
+                <i class="bi bi-cart-x" style="font-size: 4rem; color: #ccc;"></i>
+                <h4 class="mt-3">El carrito está vacío</h4>
+                <p class="text-muted">No ha agregado productos a su carrito de compras.</p>
+                <a href="@Url.Action("Index", "ProductoCatalogoView")" class="btn btn-primary mt-2">
+                    <i class="fa-solid fa-bag-shopping"></i> Ir al Catálogo
+                </a>
+            </div>
+
+            <!-- Contenido del Carrito (Productos y Resumen) -->
+            <div id="cartContent" style="display: none;">
+                <h6 class="m-0 font-weight-bold mb-3">Productos en el Carrito</h6>
+                <div class="table-responsive mb-4">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th class="text-center">Precio Unitario</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Subtotal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartItemsContainer">
+                            <!-- Items cargados por JS -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-end fw-bold">Total:</td>
+                                <td id="cartTotal" class="text-center fw-bold">Q 0.00</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <button id="btnClearCart" class="btn btn-danger" style="display: none;">
+                        <i class="fa-solid fa-trash-can"></i> Vaciar Carrito
+                    </button>
+                    <a href="@Url.Action("Index", "ProductoCatalogoView")" class="btn btn-primary d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-bag-shopping me-2"></i> Ir al Catálogo
+                    </a>
+                    <a href="@Url.Action("Index", "RealizarCompraView")" class="btn btn-success d-flex align-items-center justify-content-center">
+                        <i class="fas fa-check-circle me-2"></i> Realizar Compra
+                    </a>
+                </div>
+            </div>
+            <!-- FIN Contenido del Carrito -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar cantidad -->
+<div class="modal fade" id="editCartItemModal" tabindex="-1" aria-labelledby="editCartItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCartItemModalLabel">Editar Cantidad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCartItemForm">
+                    <input type="hidden" id="editElementoCarritoId">
+                    <div class="mb-3">
+                        <label for="editProductoNombre" class="form-label">Producto</label>
+                        <input type="text" class="form-control" id="editProductoNombre" readonly>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="editProductoPrecio" class="form-label">Precio Unitario</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Q</span>
+                                <input type="text" class="form-control" id="editProductoPrecio" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editProductoStock" class="form-label">Stock Disponible</label>
+                            <input type="text" class="form-control" id="editProductoStock" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCantidadInput" class="form-label">Cantidad</label>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-outline-secondary" id="editDecreaseCantidad">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="number" class="form-control text-center" id="editCantidadInput" value="1" min="1" required>
+                            <button type="button" class="btn btn-outline-secondary" id="editIncreaseCantidad">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor ingrese una cantidad válida.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Subtotal</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Q</span>
+                            <input type="text" class="form-control" id="editSubtotalInput" readonly>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-ban me-1"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" id="confirmEditBtn">
+                    <i class="fas fa-save me-2"></i>Guardar Cambios
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/producto-catalogo.js"></script>
+    <script src="~/js/carrito.js"></script>
+}

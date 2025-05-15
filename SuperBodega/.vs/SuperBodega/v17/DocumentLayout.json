@@ -3,64 +3,128 @@
   "WorkspaceRootPath": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\productocatalogoview\\categoria.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\productocatalogoview\\categoria.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Repositories\\Interfaces\\Admin\\IProductoRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Repositories\\Interfaces\\Admin\\IProductoRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\productocatalogoview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\productocatalogoview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Repositories\\Implementations\\Admin\\ProductoRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Repositories\\Implementations\\Admin\\ProductoRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\carritoview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\carritoview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Services\\Admin\\ProductoService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Services\\Admin\\ProductoService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\shared\\_modals.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\shared\\_modals.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoView\\Create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Views\\ProductoView\\Create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\shared\\_dashboardlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\shared\\_dashboardlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\js\\productos.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\wwwroot\\js\\productos.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoView\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Views\\ProductoView\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\shared\\_clientsidebarmenupartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\shared\\_clientsidebarmenupartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoView\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Views\\ProductoView\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\wwwroot\\css\\carrito.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\wwwroot\\css\\carrito.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\wwwroot\\js\\realizar-compra.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\wwwroot\\js\\realizar-compra.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\wwwroot\\js\\carrito.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\wwwroot\\js\\carrito.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\realizarcompraview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\realizarcompraview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\controllers\\ecommerce\\realizarcompraviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\controllers\\ecommerce\\realizarcompraviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\controllers\\ecommerce\\carritoviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\controllers\\ecommerce\\carritoviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\controllers\\ecommerce\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\controllers\\ecommerce\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\services\\admin\\ecommerce\\carritoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\services\\admin\\ecommerce\\carritoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\data\\superbodegacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\data\\superbodegacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\models\\ecommerce\\elementocarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\models\\ecommerce\\elementocarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\models\\ecommerce\\carrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\models\\ecommerce\\carrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Models\\Ecommerce\\Admin\\Producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Models\\Ecommerce\\Admin\\Producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Admin\\ProductoViewController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Controllers\\Admin\\ProductoViewController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\repositories\\interfaces\\admin\\iproductorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\repositories\\interfaces\\admin\\iproductorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Admin\\ProductoController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Controllers\\Admin\\ProductoController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\repositories\\implementations\\admin\\productorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\repositories\\implementations\\admin\\productorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\productoview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\productoview\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Repositories\\Interfaces\\Admin\\ICategoriaReposity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Repositories\\Interfaces\\Admin\\ICategoriaReposity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\productoview\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\productoview\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\css\\productos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\wwwroot\\css\\productos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\views\\productoview\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\views\\productoview\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Data\\SuperBodegaContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SuperBodega.API\\Data\\SuperBodegaContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\controllers\\admin\\productocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\controllers\\admin\\productocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\controllers\\admin\\productoviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\controllers\\admin\\productoviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\services\\admin\\productoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\services\\admin\\productoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\wwwroot\\js\\productos.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\wwwroot\\js\\productos.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\repositories\\interfaces\\admin\\icategoriareposity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\repositories\\interfaces\\admin\\icategoriareposity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|c:\\users\\jomir\\documents\\superbodega\\superbodega\\superbodega.api\\wwwroot\\css\\productos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{007CAB92-77F0-4EA6-B191-AA640A7CE8AB}|SuperBodega.API\\SuperBodega.API.csproj|solutionrelative:superbodega.api\\wwwroot\\css\\productos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -75,12 +139,77 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Categoria.cshtml",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoCatalogoView\\Categoria.cshtml",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Views\\ProductoCatalogoView\\Categoria.cshtml",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoCatalogoView\\Categoria.cshtml",
+              "RelativeToolTip": "SuperBodega.API\\Views\\ProductoCatalogoView\\Categoria.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEkAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T04:56:21.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Modals.cshtml",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\Shared\\_Modals.cshtml",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Views\\Shared\\_Modals.cshtml",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\Shared\\_Modals.cshtml",
+              "RelativeToolTip": "SuperBodega.API\\Views\\Shared\\_Modals.cshtml",
+              "ViewState": "AgIAADgAAAAAAAAAAAAYwEsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T04:54:45.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\CarritoView\\Index.cshtml",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Views\\CarritoView\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\CarritoView\\Index.cshtml",
+              "RelativeToolTip": "SuperBodega.API\\Views\\CarritoView\\Index.cshtml",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAALwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T04:17:19.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_DashboardLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\Shared\\_DashboardLayout.cshtml",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Views\\Shared\\_DashboardLayout.cshtml",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\Shared\\_DashboardLayout.cshtml",
+              "RelativeToolTip": "SuperBodega.API\\Views\\Shared\\_DashboardLayout.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T04:36:21.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ClientSidebarMenuPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\Shared\\_ClientSidebarMenuPartial.cshtml",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Views\\Shared\\_ClientSidebarMenuPartial.cshtml",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\Shared\\_ClientSidebarMenuPartial.cshtml",
+              "RelativeToolTip": "SuperBodega.API\\Views\\Shared\\_ClientSidebarMenuPartial.cshtml",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAYwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T04:32:57.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Program.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Program.cs",
               "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Program.cs",
               "RelativeToolTip": "SuperBodega.API\\Program.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAAAHMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T06:16:32.136Z",
               "EditorCaption": ""
@@ -88,6 +217,162 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoCatalogoView\\Index.cshtml",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Views\\ProductoCatalogoView\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoCatalogoView\\Index.cshtml",
+              "RelativeToolTip": "SuperBodega.API\\Views\\ProductoCatalogoView\\Index.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAF0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T04:35:25.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "carrito.css",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\css\\carrito.css",
+              "RelativeDocumentMoniker": "SuperBodega.API\\wwwroot\\css\\carrito.css",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\css\\carrito.css",
+              "RelativeToolTip": "SuperBodega.API\\wwwroot\\css\\carrito.css",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-15T04:31:28.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "realizar-compra.js",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\js\\realizar-compra.js",
+              "RelativeDocumentMoniker": "SuperBodega.API\\wwwroot\\js\\realizar-compra.js",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\js\\realizar-compra.js",
+              "RelativeToolTip": "SuperBodega.API\\wwwroot\\js\\realizar-compra.js",
+              "ViewState": "AgIAACgBAAAAAAAAAAAAADcBAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-15T04:27:48.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "carrito.js",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\js\\carrito.js",
+              "RelativeDocumentMoniker": "SuperBodega.API\\wwwroot\\js\\carrito.js",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\js\\carrito.js",
+              "RelativeToolTip": "SuperBodega.API\\wwwroot\\js\\carrito.js",
+              "ViewState": "AgIAADkEAAAAAAAAAAAAAKEEAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-15T04:20:14.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\RealizarCompraView\\Index.cshtml",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Views\\RealizarCompraView\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\RealizarCompraView\\Index.cshtml",
+              "RelativeToolTip": "SuperBodega.API\\Views\\RealizarCompraView\\Index.cshtml",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAYwHsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T04:18:49.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RealizarCompraViewController.cs",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Ecommerce\\RealizarCompraViewController.cs",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Controllers\\Ecommerce\\RealizarCompraViewController.cs",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Ecommerce\\RealizarCompraViewController.cs",
+              "RelativeToolTip": "SuperBodega.API\\Controllers\\Ecommerce\\RealizarCompraViewController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:14:42.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CarritoViewController.cs",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Ecommerce\\CarritoViewController.cs",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Controllers\\Ecommerce\\CarritoViewController.cs",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Ecommerce\\CarritoViewController.cs",
+              "RelativeToolTip": "SuperBodega.API\\Controllers\\Ecommerce\\CarritoViewController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:13:45.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CarritoController.cs",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Ecommerce\\CarritoController.cs",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Controllers\\Ecommerce\\CarritoController.cs",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Ecommerce\\CarritoController.cs",
+              "RelativeToolTip": "SuperBodega.API\\Controllers\\Ecommerce\\CarritoController.cs",
+              "ViewState": "AgIAAKwAAAAAAAAAAADwv5YAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:10:08.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CarritoService.cs",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Services\\Admin\\Ecommerce\\CarritoService.cs",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Services\\Admin\\Ecommerce\\CarritoService.cs",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Services\\Admin\\Ecommerce\\CarritoService.cs",
+              "RelativeToolTip": "SuperBodega.API\\Services\\Admin\\Ecommerce\\CarritoService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:06:40.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ElementoCarrito.cs",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Models\\Ecommerce\\ElementoCarrito.cs",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Models\\Ecommerce\\ElementoCarrito.cs",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Models\\Ecommerce\\ElementoCarrito.cs",
+              "RelativeToolTip": "SuperBodega.API\\Models\\Ecommerce\\ElementoCarrito.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAkwCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:01:42.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Carrito.cs",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Models\\Ecommerce\\Carrito.cs",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Models\\Ecommerce\\Carrito.cs",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Models\\Ecommerce\\Carrito.cs",
+              "RelativeToolTip": "SuperBodega.API\\Models\\Ecommerce\\Carrito.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:00:17.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SuperBodegaContext.cs",
+              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Data\\SuperBodegaContext.cs",
+              "RelativeDocumentMoniker": "SuperBodega.API\\Data\\SuperBodegaContext.cs",
+              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Data\\SuperBodegaContext.cs",
+              "RelativeToolTip": "SuperBodega.API\\Data\\SuperBodegaContext.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAIwFgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T05:05:01.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "IProductoRepository.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Repositories\\Interfaces\\Admin\\IProductoRepository.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Repositories\\Interfaces\\Admin\\IProductoRepository.cs",
@@ -95,12 +380,11 @@
               "RelativeToolTip": "SuperBodega.API\\Repositories\\Interfaces\\Admin\\IProductoRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T06:14:59.181Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T06:14:59.181Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 20,
               "Title": "ProductoRepository.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Repositories\\Implementations\\Admin\\ProductoRepository.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Repositories\\Implementations\\Admin\\ProductoRepository.cs",
@@ -108,12 +392,11 @@
               "RelativeToolTip": "SuperBodega.API\\Repositories\\Implementations\\Admin\\ProductoRepository.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAAAAUAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T06:11:00.172Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T06:11:00.172Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 21,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoView\\Index.cshtml",
               "RelativeDocumentMoniker": "SuperBodega.API\\Views\\ProductoView\\Index.cshtml",
@@ -121,12 +404,11 @@
               "RelativeToolTip": "SuperBodega.API\\Views\\ProductoView\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T05:48:04.932Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:48:04.932Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 22,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoView\\Edit.cshtml",
               "RelativeDocumentMoniker": "SuperBodega.API\\Views\\ProductoView\\Edit.cshtml",
@@ -134,12 +416,11 @@
               "RelativeToolTip": "SuperBodega.API\\Views\\ProductoView\\Edit.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAKkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T05:47:18.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:47:18.734Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 23,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Views\\ProductoView\\Create.cshtml",
               "RelativeDocumentMoniker": "SuperBodega.API\\Views\\ProductoView\\Create.cshtml",
@@ -147,12 +428,11 @@
               "RelativeToolTip": "SuperBodega.API\\Views\\ProductoView\\Create.cshtml",
               "ViewState": "AgIAAGAAAAAAAAAAAAAAADsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T05:47:02.595Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:47:02.595Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 18,
               "Title": "Producto.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Models\\Ecommerce\\Admin\\Producto.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Models\\Ecommerce\\Admin\\Producto.cs",
@@ -160,12 +440,11 @@
               "RelativeToolTip": "SuperBodega.API\\Models\\Ecommerce\\Admin\\Producto.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T05:04:01.463Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:04:01.463Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 24,
               "Title": "ProductoController.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Admin\\ProductoController.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Controllers\\Admin\\ProductoController.cs",
@@ -173,12 +452,11 @@
               "RelativeToolTip": "SuperBodega.API\\Controllers\\Admin\\ProductoController.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAAALIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T05:05:54.063Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:05:54.063Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 25,
               "Title": "ProductoViewController.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Controllers\\Admin\\ProductoViewController.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Controllers\\Admin\\ProductoViewController.cs",
@@ -186,12 +464,11 @@
               "RelativeToolTip": "SuperBodega.API\\Controllers\\Admin\\ProductoViewController.cs",
               "ViewState": "AgIAAHgAAAAAAAAAAAAAAIcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T05:06:36.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:06:36.372Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 26,
               "Title": "ProductoService.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Services\\Admin\\ProductoService.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Services\\Admin\\ProductoService.cs",
@@ -199,12 +476,11 @@
               "RelativeToolTip": "SuperBodega.API\\Services\\Admin\\ProductoService.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T05:22:15.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:22:15.606Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 27,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Dockerfile",
               "RelativeDocumentMoniker": "SuperBodega.API\\Dockerfile",
@@ -212,12 +488,11 @@
               "RelativeToolTip": "SuperBodega.API\\Dockerfile",
               "ViewState": "AgIAABAAAAAAAAAAAAAowBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-30T05:48:23.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:48:23.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 28,
               "Title": "productos.js",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\js\\productos.js",
               "RelativeDocumentMoniker": "SuperBodega.API\\wwwroot\\js\\productos.js",
@@ -225,12 +500,11 @@
               "RelativeToolTip": "SuperBodega.API\\wwwroot\\js\\productos.js",
               "ViewState": "AgIAAJoCAAAAAAAAAAAwwL4AAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-30T05:07:56.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:07:56.816Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 29,
               "Title": "ICategoriaReposity.cs",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Repositories\\Interfaces\\Admin\\ICategoriaReposity.cs",
               "RelativeDocumentMoniker": "SuperBodega.API\\Repositories\\Interfaces\\Admin\\ICategoriaReposity.cs",
@@ -238,12 +512,11 @@
               "RelativeToolTip": "SuperBodega.API\\Repositories\\Interfaces\\Admin\\ICategoriaReposity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T05:18:21.478Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T05:18:21.478Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 30,
               "Title": "productos.css",
               "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\wwwroot\\css\\productos.css",
               "RelativeDocumentMoniker": "SuperBodega.API\\wwwroot\\css\\productos.css",
@@ -251,20 +524,7 @@
               "RelativeToolTip": "SuperBodega.API\\wwwroot\\css\\productos.css",
               "ViewState": "AgIAALcAAAAAAAAAAAAAAMAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-30T05:08:40.087Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "SuperBodegaContext.cs",
-              "DocumentMoniker": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Data\\SuperBodegaContext.cs",
-              "RelativeDocumentMoniker": "SuperBodega.API\\Data\\SuperBodegaContext.cs",
-              "ToolTip": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\Data\\SuperBodegaContext.cs",
-              "RelativeToolTip": "SuperBodega.API\\Data\\SuperBodegaContext.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T05:05:01.765Z"
+              "WhenOpened": "2025-04-30T05:08:40.087Z"
             }
           ]
         }

@@ -11,6 +11,7 @@ using SuperBodega.API.Models.Admin;
 using SuperBodega.API.Repositories.Implementations.Admin;
 using SuperBodega.API.Services.Admin;
 using SuperBodega.API.Repositories.Interfaces.Admin;
+using SuperBodega.API.Services.Ecommerce;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -107,6 +108,8 @@ builder.Services.AddScoped<ProveedorService>();
 builder.Services.AddScoped<ClienteService>();
 builder.Services.AddScoped<CompraService>();
 builder.Services.AddScoped<CategoriaService>();
+// Registrar servicios de ecommerce
+builder.Services.AddScoped<CarritoService>(); 
 
 // HttpClient para Resend
 builder.Services.AddHttpClient();

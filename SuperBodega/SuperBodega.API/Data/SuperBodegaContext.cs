@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using SuperBodega.API.Models.Admin;
+using SuperBodega.API.Models.Ecommerce;
 
 namespace SuperBodega.API.Data
 {
@@ -16,7 +17,8 @@ namespace SuperBodega.API.Data
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Compra> Compras { get; set; }
         public DbSet<DetalleDeLaCompra> DetallesDeLaCompra { get; set; }
-        
+        public DbSet<Carrito> Carritos { get; set; }
+        public DbSet<ElementoCarrito> ElementosCarrito { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -75,7 +77,54 @@ namespace SuperBodega.API.Data
                     .HasForeignKey(e => e.IdProducto)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+            // Configuración de la entidad Carrito
+            modelBuilder.Entity<Carrito>(entity =>
+            {
+                entity.ToTable("Carrito");
+                entity.Property(e => e.Id).HasColumnName("IdCarrito");
+                entity.Property(e => e.ClienteId).IsRequired();
+                entity.Property(e => e.FechaCreacion)
+                    .HasDefaultValueSql("GETDATE()");
+
+                // Relación con Cliente
+                entity.HasOne(e => e.Cliente)
+                    .WithMany()
+                    .HasForeignKey(e => e.ClienteId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                // Ignorar la propiedad calculada Total
+                entity.Ignore(c => c.Total);
+            });
+
+            // Configuración de la entidad ElementoCarrito
+            modelBuilder.Entity<ElementoCarrito>(entity =>
+            {
+                entity.ToTable("ElementoCarrito");
+                entity.Property(e => e.Id).HasColumnName("IdElementoCarrito");
+                entity.Property(e => e.CarritoId).IsRequired();
+                entity.Property(e => e.ProductoId).IsRequired();
+                entity.Property(e => e.Cantidad).IsRequired();
+                entity.Property(e => e.PrecioUnitario)
+                    .HasColumnType("decimal(10,2)")
+                    .HasDefaultValue(0m);
+
+                // Relación con Carrito
+                entity.HasOne(e => e.Carrito)
+                    .WithMany(c => c.Elementos)
+                    .HasForeignKey(e => e.CarritoId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                // Relación con Producto
+                entity.HasOne(e => e.Producto)
+                    .WithMany()
+                    .HasForeignKey(e => e.ProductoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                // Ignorar la propiedad calculada Subtotal
+                entity.Ignore(e => e.Subtotal);
+            });
         }
+
         
         public SuperBodegaContext(DbContextOptions<SuperBodegaContext> options) : base(options)
         {
