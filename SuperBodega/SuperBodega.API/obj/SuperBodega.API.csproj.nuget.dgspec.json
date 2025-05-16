@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {}
+    "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {
+    "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
         "projectName": "SuperBodega.API",
-        "projectPath": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
-        "packagesPath": "C:\\Users\\jomir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jomir\\Documents\\SuperBodega\\SuperBodega\\SuperBodega.API\\obj\\",
+        "projectPath": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
+        "packagesPath": "C:\\Users\\LENOVO FLEX\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jomir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\LENOVO FLEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -51,6 +46,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[5.8.14, )"
+            },
+            "HarfBuzzSharp.NativeAssets.Linux": {
+              "target": "Package",
+              "version": "[7.3.0.1, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -69,9 +72,17 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "RabbitMQ.Client": {
               "target": "Package",
-              "version": "[6.8.1, )"
+              "version": "[7.1.1, )"
+            },
+            "SkiaSharp.NativeAssets.Linux.NoDependencies": {
+              "target": "Package",
+              "version": "[2.88.7, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -97,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

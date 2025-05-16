@@ -1,19 +1,17 @@
-version: '3.8'
-
 services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: superbodega-sqlserver
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=${DATABASE_PASSWORD_TWO}
+      - SA_PASSWORD=${DATABASE_PASSWORD_ONE}
       - MSSQL_PID=Developer
     ports:
       - "1433:1433"
     volumes:
       - sqlserver_data:/var/opt/mssql
     healthcheck:
-      test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${DATABASE_PASSWORD_TWO} -Q 'SELECT 1' || exit 1" ]
+      test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${DATABASE_PASSWORD_ONE} -Q 'SELECT 1' || exit 1" ]
       interval: 10s
       retries: 10
       start_period: 20s
@@ -22,6 +20,26 @@ services:
       - superbodega-network
     restart: always
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: superbodega-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - superbodega-network
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: always
+  
   api:
     build:
       context: ./SuperBodega
@@ -30,17 +48,22 @@ services:
     environment:
       - DOTNET_RUNNING_IN_CONTAINER=true
       - ASPNETCORE_ENVIRONMENT=Development
-      - DB_CONNECTION_STRING=Server=sqlserver;Database=${DATABASE_NAME_TWO};User Id=sa;Password=${DATABASE_PASSWORD_TWO};TrustServerCertificate=True;
-      - SA_PASSWORD=${DATABASE_PASSWORD_TWO}
+      - DB_CONNECTION_STRING=Server=sqlserver;Database=${DATABASE_NAME_ONE};User Id=sa;Password=${DATABASE_PASSWORD_ONE};TrustServerCertificate=True;
+      - SA_PASSWORD=${DATABASE_PASSWORD_ONE}
       - ASPNETCORE_URLS=http://+:8080
       - ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - RABBITMQ_QUEUE_NAME=${RABBITMQ_QUEUE_NAME}
+  
     ports:
       - "8080:8080"
     volumes:
       - type: bind
         source: ./SuperBodega/SuperBodega.API/wwwroot
         target: /app/wwwroot
-        read_only: true
+        read_only: false
       - type: bind
         source: ./SuperBodega/SuperBodega.API/Views
         target: /app/Views
@@ -48,6 +71,8 @@ services:
       - producto-images:/app/wwwroot/images/productos
     depends_on:
       sqlserver:
+        condition: service_started
+      rabbitmq:
         condition: service_started
     networks:
       - superbodega-network
@@ -62,6 +87,7 @@ services:
 volumes:
   producto-images:
   sqlserver_data:
+  rabbitmq_data:
 
 networks:
   superbodega-network:

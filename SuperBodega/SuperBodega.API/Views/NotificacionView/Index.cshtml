@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Notificaciones";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu
+{
+    <partial name="_ClientSidebarMenuPartial"/>
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Mis Notificaciones</h1>
+        <a href="/MisPedidos/Index" class="btn btn-outline-primary me-2">
+            <i class="fas fa-arrow-left me-1"></i> Ver Mis Pedidos
+        </a>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-7">
+            <label for="clienteSelect" class="form-label">Cliente</label>
+            <select class="form-select" id="clienteSelect" name="clienteSelect" required>
+                <option value="">Seleccione un cliente</option>
+                <!-- Las opciones se cargarán dinámicamente -->
+            </select>
+        </div>
+        <div class="col-md-5 d-flex align-items-end">
+            <div id="clienteInfo"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold">Notificaciones recientes</h6>
+                    <button id="refreshNotificaciones" class="btn btn-sm btn-primary">
+                        <i class="fa-solid fa-arrow-rotate-right"></i> Actualizar
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="notificaciones-container">
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                            <p class="mt-2">Cargando notificaciones...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para ver detalles de la notificación -->
+    <div class="modal fade" id="notificacionModal" tabindex="-1" aria-labelledby="notificacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificacionModalLabel">Detalle de Notificación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="notificacionModalBody">
+                    <!-- Contenido dinámico del modal -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="#" id="verCompraBtn" class="btn btn-primary">Ver Compra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/notificaciones.js"></script>
+}

@@ -19,6 +19,13 @@ namespace SuperBodega.API.Data
         public DbSet<DetalleDeLaCompra> DetallesDeLaCompra { get; set; }
         public DbSet<Carrito> Carritos { get; set; }
         public DbSet<ElementoCarrito> ElementosCarrito { get; set; }
+        
+        public DbSet<EstadoDeLaVenta> EstadosDeLaVenta { get; set; }
+        
+        public DbSet<Venta> Ventas { get; set; }
+        
+        public DbSet<DetalleDeLaVenta> DetallesDeLaVenta { get; set; }
+        public DbSet<Notificacion> Notificaciones { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -123,6 +130,50 @@ namespace SuperBodega.API.Data
                 // Ignorar la propiedad calculada Subtotal
                 entity.Ignore(e => e.Subtotal);
             });
+            
+            //Venta Configuration
+            modelBuilder.Entity<Venta>(entity =>
+            {
+                entity.ToTable("Venta");
+                entity.HasOne(v => v.Cliente)
+                      .WithMany() // No navigation property specified from Cliente to Ventas
+                      .HasForeignKey(v => v.IdCliente)
+                      .OnDelete(DeleteBehavior.Restrict); // Prevent deleting client if they have sales
+
+                entity.HasOne(v => v.EstadoDeLaVenta)
+                      .WithMany(e => e.Ventas)
+                      .HasForeignKey(v => v.IdEstadoDeLaVenta)
+                      .OnDelete(DeleteBehavior.Restrict); // Prevent deleting state if used in sales
+
+                entity.HasMany(v => v.DetallesDeLaVenta)
+                      .WithOne(d => d.Venta)
+                      .HasForeignKey(d => d.IdVenta)
+                      .OnDelete(DeleteBehavior.Cascade); // Deleting a Venta deletes its details
+            });
+
+            // DetalleDeLaVenta Configuration
+            modelBuilder.Entity<DetalleDeLaVenta>(entity =>
+            {
+                entity.ToTable("DetalleDeLaVenta");
+                entity.HasOne(d => d.Producto)
+                      .WithMany() // No navigation property needed from Producto to DetallesDeLaVenta
+                      .HasForeignKey(d => d.IdProducto)
+                      .OnDelete(DeleteBehavior.Restrict); // Prevent deleting product if sold
+
+                entity.HasOne(d => d.Proveedor)
+                      .WithMany() // No navigation property needed from Proveedor to DetallesDeLaVenta
+                      .HasForeignKey(d => d.IdProveedor)
+                      .OnDelete(DeleteBehavior.Restrict); // Prevent deleting provider if linked? (Check logic)
+            });
+
+             // Seed initial EstadoDeLaVenta if needed
+            modelBuilder.Entity<EstadoDeLaVenta>().HasData(
+                new EstadoDeLaVenta { Id = 1, Nombre = "Recibida" },
+                new EstadoDeLaVenta { Id = 2, Nombre = "Despachada" },
+                new EstadoDeLaVenta { Id = 3, Nombre = "Entregada" },
+                new EstadoDeLaVenta { Id = 4, Nombre = "Devolución Solicitada" },
+                new EstadoDeLaVenta { Id = 5, Nombre = "Devolución Completada" }
+            );
         }
 
         

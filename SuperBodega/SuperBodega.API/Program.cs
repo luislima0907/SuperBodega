@@ -11,6 +11,7 @@ using SuperBodega.API.Models.Admin;
 using SuperBodega.API.Repositories.Implementations.Admin;
 using SuperBodega.API.Services.Admin;
 using SuperBodega.API.Repositories.Interfaces.Admin;
+using SuperBodega.API.Repositories.Interfaces.Ecommerce;
 using SuperBodega.API.Services.Ecommerce;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -101,6 +102,14 @@ builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 builder.Services.AddScoped<IProveedorRepository, ProveedorRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<ICompraRepository, CompraRepository>();
+builder.Services.AddScoped<IVentaRepository, VentaRepository>();
+builder.Services.AddScoped<IDetalleDeLaVentaRepository, DetalleDeLaVentaRepository>();
+builder.Services.AddScoped<IEstadoDeLaVentaRepository, EstadoDeLaVentaRepository>();
+
+//Configurar RabbitMQ
+builder.Services.AddSingleton<IRabbitMQService, RabbitMQService>();
+builder.Services.AddSingleton<IEmailService, EmailService>();
+
 
 // Registrar servicios
 builder.Services.AddScoped<ProductoService>();
@@ -109,7 +118,12 @@ builder.Services.AddScoped<ClienteService>();
 builder.Services.AddScoped<CompraService>();
 builder.Services.AddScoped<CategoriaService>();
 // Registrar servicios de ecommerce
-builder.Services.AddScoped<CarritoService>(); 
+builder.Services.AddScoped<CarritoService>();
+builder.Services.AddScoped<VentaService>();
+builder.Services.AddScoped<EstadoDeLaVentaService>();
+builder.Services.AddHostedService<NotificacionWorkerService>();
+builder.Services.AddScoped<NotificacionService>();
+
 
 // HttpClient para Resend
 builder.Services.AddHttpClient();

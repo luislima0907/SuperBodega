@@ -1,0 +1,25 @@
+﻿.product-details {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.product-details .table {
+    margin-bottom: 0;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.pedido-row {
+    cursor: pointer;
+}
+
+.pedido-row:hover {
+    background-color: rgba(0,0,0,0.03);
+}

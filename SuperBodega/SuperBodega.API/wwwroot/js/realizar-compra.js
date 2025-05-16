@@ -20,7 +20,7 @@
         pagoSection.insertBefore(preferenciasDiv, pagoSection.querySelector('.d-flex.justify-content-end'));
 
         // Guardar preferencia al cambiar
-        document.getElementById('notificacionSincronica').addEventListener('change', function () {
+        document.getElementById('notificacionSincronica').addEventListener('change', function() {
             localStorage.setItem('preferNotificacionSincronica', this.checked);
         });
     }
@@ -34,7 +34,7 @@
                 imagenes.forEach(img => {
                     if (!img.getAttribute('data-ampliable-configurado')) {
                         img.setAttribute('data-ampliable-configurado', 'true');
-                        img.addEventListener('click', function () {
+                        img.addEventListener('click', function() {
                             mostrarImagenAmpliada(this.src, this.alt || 'Producto');
                         });
                     }
@@ -51,7 +51,7 @@
     // Configurar el cambio de cliente
     const clienteSelect = document.getElementById('clienteSelect');
     if (clienteSelect) {
-        clienteSelect.addEventListener('change', function () {
+        clienteSelect.addEventListener('change', function() {
             const selectedClienteId = this.value;
             if (selectedClienteId) {
                 localStorage.setItem('lastClienteId', selectedClienteId);
@@ -253,7 +253,7 @@
             imagenes.forEach(img => {
                 if (!img.getAttribute('data-ampliable-configurado')) {
                     img.setAttribute('data-ampliable-configurado', 'true');
-                    img.addEventListener('click', function () {
+                    img.addEventListener('click', function() {
                         mostrarImagenAmpliada(this.src, this.alt || 'Producto');
                     });
                 }
@@ -263,8 +263,8 @@
 
     function calcularCambio() {
         const pago = parseFloat(document.getElementById('rc-montoPago').value) || 0;
-        const total = parseFloat(document.getElementById('rc-total').textContent.replace('Q', '').trim()) || 0;
-        document.getElementById('rc-cambio').value = pago >= total
+        const total = parseFloat(document.getElementById('rc-total').textContent.replace('Q','').trim())||0;
+        document.getElementById('rc-cambio').value = pago>=total
             ? (pago - total).toFixed(2)
             : '';
     }
@@ -300,13 +300,102 @@
     }
 
     async function confirmarCompra() {
-        // Una alerta swal indicando que la funcion de confirmacion de compra esta en desarrollo
+        const clienteId = document.getElementById('clienteSelect').value;
+        if (!clienteId) {
+            return Swal.fire('Error', 'Debe seleccionar un cliente', 'error');
+        }
+
+        const pago = parseFloat(document.getElementById('rc-montoPago').value);
+        const total = parseFloat(document.getElementById('rc-total').textContent.replace('Q','').trim());
+
+        if (isNaN(pago) || pago <= 0) {
+            return Swal.fire('Error', 'Ingrese un monto de pago válido', 'error');
+        }
+
+        if (pago < total) {
+            return Swal.fire('Error','El monto pagado debe ser igual o mayor al total','error');
+        }
+
         Swal.fire({
-            title: 'En desarrollo',
-            text: 'Esta función está en desarrollo y no está disponible en este momento.',
-            icon: 'info',
-            confirmButtonText: 'Aceptar'
+            title: 'Procesando compra',
+            text: 'Espere un momento...',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
         });
-        return;
+
+        const cartResponse = await fetch(`/api/ecommerce/Carrito/${clienteId}`);
+        if (!cartResponse.ok) throw new Error('No se pudo cargar el carrito');
+        const data = await cartResponse.json();
+
+        if (!data.elementos || data.elementos.length === 0) {
+            throw new Error('El carrito está vacío');
+        }
+
+        // Obtener información de proveedores para cada producto
+        const detallesPromises = data.elementos.map(async (el) => {
+            // Obtener detalles del producto para conocer su proveedor
+            const productoResponse = await fetch(`/api/producto/${el.productoId}`);
+            const producto = await productoResponse.json();
+
+            return {
+                idProducto: el.productoId,
+                cantidad: el.cantidad,
+                precioDeVenta: el.precioUnitario,
+                idProveedor: producto.proveedorId || 1,
+                nombreDelProveedor: producto.proveedorNombre || "Proveedor por defecto"
+            };
+        });
+
+        const detalles = await Promise.all(detallesPromises);
+
+        // Obtener preferencia de notificación
+        const notificacionSincronica = document.getElementById('notificacionSincronica')?.checked ||
+            (localStorage.getItem('preferNotificacionSincronica') === 'true');
+
+        return fetch('/api/Venta/Create',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({
+                idCliente: parseInt(clienteId),
+                montoDePago: pago,
+                detalles,
+                fechaDeRegistro: document.getElementById('fechaDeRegistro').value,
+                usarNotificacionSincronica: notificacionSincronica
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        try {
+                            // Intenta analizar como JSON para obtener el mensaje de error
+                            const errorData = JSON.parse(text);
+                            throw new Error(errorData.message || `Error ${response.status}`);
+                        } catch (e) {
+                            // Si no es JSON, usa el texto tal cual
+                            throw new Error(`Error ${response.status}: ${text || 'Error desconocido'}`);
+                        }
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Proceder a limpiar el carrito SOLO si la venta se realizó correctamente
+                return fetch(`/api/ecommerce/Carrito/clear/client/${clienteId}`,{ method:'DELETE' })
+                    .then(() => data); // Pasar los datos de la venta al siguiente then
+            })
+            .then(ventaData => {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: `Compra realizada correctamente. Factura: ${ventaData.numeroDeFactura}`,
+                    icon: 'success',
+                    confirmButtonText: 'Ver mis pedidos'
+                }).then(() => location.href = '/MisPedidos/Index');
+            })
+            .catch(error => {
+                console.error('Error al confirmar la compra:', error);
+                Swal.fire('Error', 'No se pudo confirmar la compra', 'error');
+            });
     }
 });
