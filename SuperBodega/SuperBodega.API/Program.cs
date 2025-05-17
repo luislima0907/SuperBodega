@@ -9,10 +9,14 @@ using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.FileProviders;
 using SuperBodega.API.Models.Admin;
 using SuperBodega.API.Repositories.Implementations.Admin;
-using SuperBodega.API.Services.Admin;
 using SuperBodega.API.Repositories.Interfaces.Admin;
 using SuperBodega.API.Repositories.Interfaces.Ecommerce;
+using SuperBodega.API.Services.Admin;
 using SuperBodega.API.Services.Ecommerce;
+using OfficeOpenXml;
+using QuestPDF.Infrastructure;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,10 +93,16 @@ builder.Services.AddDbContext<SuperBodegaContext>(options =>
     });
 });
 
-
+// Agregar al inicio del método Main o configuración de servicios en Program.cs
+ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+// Add this near the beginning with your other using statements
+// Add this with your other service configurations
+QuestPDF.Settings.License = LicenseType.Community;
 
 // Registrar el servicio de inicialización de la base de datos
 builder.Services.AddScoped<DatabaseInitializerService>();
+// configuración de servicios
+builder.Services.AddScoped<CategoriaService>();
 
 // implementación del repositorio genérico
 builder.Services.AddScoped<IGenericOperationsRepository<Categoria>, CategoriaRepository>();
@@ -106,32 +116,31 @@ builder.Services.AddScoped<IVentaRepository, VentaRepository>();
 builder.Services.AddScoped<IDetalleDeLaVentaRepository, DetalleDeLaVentaRepository>();
 builder.Services.AddScoped<IEstadoDeLaVentaRepository, EstadoDeLaVentaRepository>();
 
-//Configurar RabbitMQ
-builder.Services.AddSingleton<IRabbitMQService, RabbitMQService>();
-builder.Services.AddSingleton<IEmailService, EmailService>();
-
-
 // Registrar servicios
 builder.Services.AddScoped<ProductoService>();
-builder.Services.AddScoped<ProveedorService>(); 
+builder.Services.AddScoped<ProveedorService>();
 builder.Services.AddScoped<ClienteService>();
 builder.Services.AddScoped<CompraService>();
-builder.Services.AddScoped<CategoriaService>();
-// Registrar servicios de ecommerce
-builder.Services.AddScoped<CarritoService>();
 builder.Services.AddScoped<VentaService>();
 builder.Services.AddScoped<EstadoDeLaVentaService>();
-builder.Services.AddHostedService<NotificacionWorkerService>();
-builder.Services.AddScoped<NotificacionService>();
 
+// Registrar servicios de ecommerce
+builder.Services.AddScoped<CarritoService>();
 
 // HttpClient para Resend
 builder.Services.AddHttpClient();
 
+// Configurar RabbitMQ
+builder.Services.AddSingleton<IRabbitMQService, RabbitMQService>();
+builder.Services.AddSingleton<IEmailService, EmailService>();
+
+builder.Services.AddHostedService<NotificacionWorkerService>();
+builder.Services.AddScoped<NotificacionService>();
+
 // Agregar CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", 
+    options.AddPolicy("AllowAll",
         builder => builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
@@ -145,6 +154,57 @@ builder.Services.AddHealthChecks();
 builder.Services.AddControllers();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "SuperBodega API",
+        Version = "v1",
+        Description = "API para el sistema de gestión de SuperBodega",
+        Contact = new OpenApiContact
+        {
+            Name = "SuperBodega Development Team",
+            Email = "contacto@superbodega.com"
+        }
+    });
+
+    // Para incluir comentarios XML de documentación en Swagger
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+    // Imprime información de depuración
+    Console.WriteLine($"Archivo XML: {xmlFile}");
+    Console.WriteLine($"Ruta completa: {xmlPath}");
+    Console.WriteLine($"El archivo existe: {File.Exists(xmlPath)}");
+
+    if (File.Exists(xmlPath))
+    {
+        c.IncludeXmlComments(xmlPath);
+    }
+    else
+    {
+        Console.WriteLine("¡ADVERTENCIA! No se encontró el archivo XML de documentación.");
+    }
+
+    // Configuración para agrupar endpoints
+    c.TagActionsBy(api => {
+        if (api.GroupName != null)
+        {
+            return new[] { api.GroupName };
+        }
+
+        var controllerName = api.ActionDescriptor.RouteValues["controller"];
+        if (controllerName != null)
+        {
+            return new[] { controllerName };
+        }
+
+        return new[] { "Otros" };
+    });
+
+    c.DocInclusionPredicate((docName, apiDesc) => true);
+});
 
 // los middleware
 var app = builder.Build();
@@ -162,6 +222,13 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+// Swagger en el pipeline HTTP
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SuperBodega API v1"));
 }
 
 // Configurar los archivos estáticos antes de los demás middlewares
@@ -190,7 +257,7 @@ app.MapHealthChecks("/health", new HealthCheckOptions
     ResponseWriter = async (context, report) =>
     {
         context.Response.ContentType = MediaTypeNames.Application.Json;
-        
+
         var response = new
         {
             Status = report.Status.ToString(),
@@ -202,7 +269,7 @@ app.MapHealthChecks("/health", new HealthCheckOptions
             }),
             TotalDuration = report.TotalDuration
         };
-        
+
         await context.Response.WriteAsync(JsonSerializer.Serialize(response));
     }
 });

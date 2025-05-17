@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {}
+    "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {
+    "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
+        "projectUniqueName": "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
         "projectName": "SuperBodega.API",
-        "projectPath": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
-        "packagesPath": "C:\\Users\\LENOVO FLEX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\obj\\",
+        "projectPath": "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
+        "packagesPath": "C:\\Users\\meam5\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\LENOVO FLEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\meam5\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -75,6 +80,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2023.12.6, )"
             },
             "RabbitMQ.Client": {
               "target": "Package",

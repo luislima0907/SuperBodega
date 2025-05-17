@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Ventas por Cliente";
+    Layout = "_DashboardLayout";
+}
+
+@section SidebarMenu {
+    <partial name="_SidebarMenuPartial" />
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Reporte de Ventas por Cliente</h1>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold">Seleccione el cliente</h6>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-7">
+                    <label for="clienteSelect" class="form-label">Cliente</label>
+                    <select class="form-select" id="clienteSelect" name="clienteSelect" required>
+                        <option value="">Seleccione un cliente</option>
+                        <!-- Las opciones se cargarán dinámicamente -->
+                    </select>
+                </div>
+                <div class="col-md-5 d-flex align-items-end gap-2">
+                    <button id="btnExportarPorCliente" class="btn btn-success" disabled>
+                        <i class="bi bi-file-excel"></i> Exportar a Excel
+                    </button>
+                    <button id="btnExportarPorClientePDF" class="btn btn-danger" disabled>
+                        <i class="bi bi-file-pdf"></i> Exportar a PDF
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="ventasTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#Factura</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ventasTableBody">
+                        <!-- Aquí se cargarán las ventas dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/reportes.js"></script>
+}

@@ -1115,6 +1115,23 @@
           }
         }
       },
+      "QuestPDF/2023.12.6": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp": "2.88.7",
+          "SkiaSharp.HarfBuzz": "2.88.7"
+        },
+        "compile": {
+          "lib/net8.0/QuestPDF.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/QuestPDF.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "RabbitMQ.Client/7.1.1": {
         "type": "package",
         "dependencies": {
@@ -1145,6 +1162,23 @@
         },
         "runtime": {
           "lib/net6.0/SkiaSharp.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "SkiaSharp.HarfBuzz/2.88.7": {
+        "type": "package",
+        "dependencies": {
+          "HarfBuzzSharp": "7.3.0.1",
+          "SkiaSharp": "2.88.7"
+        },
+        "compile": {
+          "lib/net6.0/SkiaSharp.HarfBuzz.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SkiaSharp.HarfBuzz.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -3672,6 +3706,26 @@
         "packageIcon.png"
       ]
     },
+    "QuestPDF/2023.12.6": {
+      "sha512": "6WYu+g7Q+q8ZKnoqpu7BhVUdoS8n2TD7tqpbm3ZCczDhk+SuatI3rwIuJKTrADI1kSMrrkOCVvr9nrWd3jyZXw==",
+      "type": "package",
+      "path": "questpdf/2023.12.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Logo.png",
+        "PackageLicense.md",
+        "PackageReadme.md",
+        "lib/net6.0/QuestPDF.dll",
+        "lib/net6.0/QuestPDF.xml",
+        "lib/net8.0/QuestPDF.dll",
+        "lib/net8.0/QuestPDF.xml",
+        "lib/netstandard2.0/QuestPDF.dll",
+        "lib/netstandard2.0/QuestPDF.xml",
+        "questpdf.2023.12.6.nupkg.sha512",
+        "questpdf.nuspec"
+      ]
+    },
     "RabbitMQ.Client/7.1.1": {
       "sha512": "WggKwAQqPyV3h4RADfWgHA8LuVQkOgkh335rn578JZI6BDH8Z1ICztY32vr57NlhbN3eELPjLerPK3P+O/w/Yw==",
       "type": "package",
@@ -3761,6 +3815,36 @@
         "lib/xamarinwatchos1.0/SkiaSharp.xml",
         "skiasharp.2.88.7.nupkg.sha512",
         "skiasharp.nuspec"
+      ]
+    },
+    "SkiaSharp.HarfBuzz/2.88.7": {
+      "sha512": "4Vd+GpokorZNpDvUp09zjK6CMXN35zyJtNvzkGtS1TsXlG/5yA3lWTsQIU0nSQjfgpYql0tSEU5+WTsjxljugg==",
+      "type": "package",
+      "path": "skiasharp.harfbuzz/2.88.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/net462/SkiaSharp.HarfBuzz.dll",
+        "lib/net462/SkiaSharp.HarfBuzz.pdb",
+        "lib/net462/SkiaSharp.HarfBuzz.xml",
+        "lib/net6.0/SkiaSharp.HarfBuzz.dll",
+        "lib/net6.0/SkiaSharp.HarfBuzz.pdb",
+        "lib/net6.0/SkiaSharp.HarfBuzz.xml",
+        "lib/netcoreapp3.1/SkiaSharp.HarfBuzz.dll",
+        "lib/netcoreapp3.1/SkiaSharp.HarfBuzz.pdb",
+        "lib/netcoreapp3.1/SkiaSharp.HarfBuzz.xml",
+        "lib/netstandard1.3/SkiaSharp.HarfBuzz.dll",
+        "lib/netstandard1.3/SkiaSharp.HarfBuzz.pdb",
+        "lib/netstandard1.3/SkiaSharp.HarfBuzz.xml",
+        "lib/netstandard2.0/SkiaSharp.HarfBuzz.dll",
+        "lib/netstandard2.0/SkiaSharp.HarfBuzz.pdb",
+        "lib/netstandard2.0/SkiaSharp.HarfBuzz.xml",
+        "lib/netstandard2.1/SkiaSharp.HarfBuzz.dll",
+        "lib/netstandard2.1/SkiaSharp.HarfBuzz.pdb",
+        "lib/netstandard2.1/SkiaSharp.HarfBuzz.xml",
+        "skiasharp.harfbuzz.2.88.7.nupkg.sha512",
+        "skiasharp.harfbuzz.nuspec"
       ]
     },
     "SkiaSharp.NativeAssets.Linux.NoDependencies/2.88.7": {
@@ -5567,25 +5651,31 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.0",
       "Newtonsoft.Json >= 13.0.3",
+      "QuestPDF >= 2023.12.6",
       "RabbitMQ.Client >= 7.1.1",
       "SkiaSharp.NativeAssets.Linux.NoDependencies >= 2.88.7",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO FLEX\\.nuget\\packages\\": {}
+    "C:\\Users\\meam5\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
+      "projectUniqueName": "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
       "projectName": "SuperBodega.API",
-      "projectPath": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
-      "packagesPath": "C:\\Users\\LENOVO FLEX\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO FLEX\\Desktop\\SuperBodega\\SuperBodega\\SuperBodega.API\\obj\\",
+      "projectPath": "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\SuperBodega.API.csproj",
+      "packagesPath": "C:\\Users\\meam5\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\meam5\\OneDrive\\Escritorio\\SuperBodega\\SuperBodega\\SuperBodega\\SuperBodega.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\LENOVO FLEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\meam5\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5593,6 +5683,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5646,6 +5737,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "QuestPDF": {
+            "target": "Package",
+            "version": "[2023.12.6, )"
           },
           "RabbitMQ.Client": {
             "target": "Package",
