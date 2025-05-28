@@ -45,9 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Inicializar otros componentes UI si es necesario
-    setupUIComponents();
 });
 
 // Cargar categorías desde la API

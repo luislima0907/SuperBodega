@@ -60,7 +60,7 @@ function formatearFechaAmPm(fechaStr) {
     return `${dia}/${mes}/${año} ${horasStr}:${minutos} ${ampm}`;
 }
 
-// Función para que muestre los datos en la tabla (sin validaciones de ventas)
+// Función para que muestre los datos en la tabla
 function cargarClientes() {
     // Mostrar indicador de carga en la tabla
     const tablaBody = document.querySelector('#clientesTable tbody');
@@ -77,45 +77,65 @@ function cargarClientes() {
         })
         .then(data => {
             if (tablaBody) {
-                // Limpiar tabla y mostrar datos
-                tablaBody.innerHTML = '';
+                // Crear promesas para verificar dependencias de todos los clientes
+                const verificacionPromesas = data.map(cliente =>
+                    fetch(`/api/Validaciones/cliente/${cliente.id}/tieneVentasActivas`)
+                        .then(response => response.json())
+                        .then(resultado => ({ id: cliente.id, tieneVentasActivas: resultado.tieneVentasActivas }))
+                        .catch(() => ({ id: cliente.id, tieneVentasActivas: false }))
+                );
 
-                if (data.length === 0) {
-                    tablaBody.innerHTML = '<tr><td colspan="9" class="text-center">No se encontraron clientes</td></tr>';
-                    return;
-                }
+                Promise.all(verificacionPromesas)
+                    .then(resultados => {
+                        // Crear un mapa para acceder rápidamente a los resultados
+                        const dependenciasMap = {};
+                        resultados.forEach(r => dependenciasMap[r.id] = r.tieneVentasActivas);
 
-                data.forEach(cliente => {
-                    const fechaFormateada = formatearFechaAmPm(cliente.fechaDeRegistro);
+                        // Limpiar tabla y mostrar datos
+                        tablaBody.innerHTML = '';
 
-                    tablaBody.innerHTML += `
-                        <tr>
-                            <td>${cliente.id}</td>
-                            <td>${cliente.nombre}</td>
-                            <td>${cliente.apellido || '-'}</td>
-                            <td>${cliente.email || '-'}</td>
-                            <td>${cliente.telefono || '-'}</td>
-                            <td>${cliente.direccion || '-'}</td>
-                            <td>
-                                <span class="badge ${cliente.estado ? 'bg-success' : 'bg-danger'}">
-                                    ${cliente.estado ? 'Activo' : 'Inactivo'}
-                                </span>
-                            </td>
-                            <td>${fechaFormateada}</td>
-                            <td>
-                                <a href="/Clientes/Edit/${cliente.id}" class="btn btn-sm btn-primary me-1">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <button class="btn btn-sm btn-danger btn-eliminar-cliente" data-id="${cliente.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
+                        if (data.length === 0) {
+                            tablaBody.innerHTML = '<tr><td colspan="9" class="text-center">No se encontraron clientes</td></tr>';
+                            return;
+                        }
 
-                // Reconfigurar los botones de eliminar
-                configurarBotonesEliminar();
+                        data.forEach(cliente => {
+                            const tieneVentasActivas = dependenciasMap[cliente.id] || false;
+                            const fechaFormateada = formatearFechaAmPm(cliente.fechaDeRegistro);
+
+                            tablaBody.innerHTML += `
+                                <tr>
+                                    <td>${cliente.id}</td>
+                                    <td>${cliente.nombre}</td>
+                                    <td>${cliente.apellido || '-'}</td>
+                                    <td>${cliente.email || '-'}</td>
+                                    <td>${cliente.telefono || '-'}</td>
+                                    <td>${cliente.direccion || '-'}</td>
+                                    <td>
+                                        <span class="badge ${cliente.estado ? 'bg-success' : 'bg-danger'}">
+                                            ${cliente.estado ? 'Activo' : 'Inactivo'}
+                                        </span>
+                                    </td>
+                                    <td>${fechaFormateada}</td>
+                                    <td>
+                                        <a href="/Clientes/Edit/${cliente.id}" 
+                                          class="btn btn-sm btn-primary me-1 ${tieneVentasActivas ? 'disabled' : ''}" 
+                                          ${tieneVentasActivas ? 'title="No se puede editar mientras tenga ventas activas"' : ''}>
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-danger btn-eliminar-cliente" 
+                                                data-id="${cliente.id}" 
+                                                ${tieneVentasActivas ? 'disabled title="No se puede eliminar mientras tenga ventas activas"' : ''}>
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+
+                        // Reconfigurar los botones de eliminar
+                        configurarBotonesEliminar();
+                    });
             }
         })
         .catch(error => {
@@ -431,8 +451,6 @@ function validarFormularioCliente() {
     const email = document.getElementById('email').value.trim();
     const telefono = document.getElementById('telefono').value.trim();
     const direccion = document.getElementById('direccion').value.trim();
-    const estado = document.getElementById('estado').value === 'true';
-    const fechaDeRegistro = document.getElementById('fechaDeRegistro').value;
 
     let isValid = true;
 
@@ -702,7 +720,7 @@ function enviarFormularioEdicion(id){
 
     // Crear objeto para enviar
     const clienteDto = {
-        id: id, // Incluir el ID en el objeto
+        id: id,
         nombre: nombre,
         apellido: apellido,
         email: email,

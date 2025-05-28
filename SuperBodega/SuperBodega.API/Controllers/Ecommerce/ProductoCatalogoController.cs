@@ -1,14 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SuperBodega.API.DTOs.Admin;
 using SuperBodega.API.Services.Admin;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SuperBodega.API.Controllers.Ecommerce
 {
+    /// <summary>
+    /// Controlador para gestionar el catálogo de productos.
+    /// Proporciona métodos para obtener productos y categorías,
+    /// así como para filtrar y paginar los resultados.
+    /// </summary>
     [Route("api/ecommerce/[controller]")]
     [ApiController]
+    [Produces("application/json")]
+    [ApiConventionType(typeof(DefaultApiConventions))]
     public class ProductoCatalogoController : ControllerBase
     {
         private readonly ProductoService _productoService;
@@ -20,8 +24,21 @@ namespace SuperBodega.API.Controllers.Ecommerce
             _categoriaService = categoriaService;
         }
 
-        // GET: api/ecommerce/ProductoCatalogo?page=1&pageSize=12&search=texto
+        /// <summary>
+        /// Obtiene todos los productos del catálogo.
+        /// Incluye opciones de paginación y búsqueda.
+        /// </summary>
+        /// <param name="page">Número de página para la paginación (default: 1)</param>
+        /// <param name="pageSize">Número de elementos por página (default: 12)</param>
+        /// <param name="search">Texto para filtrar productos por nombre, descripción o categoría</param>
+        /// <returns>Lista de productos paginada y filtrada</returns>
+        /// <response code="200">Retorna la lista de productos</response>
+        /// <response code="404">No se encontraron productos.</response>
+        /// <response code="500">Error interno del servidor</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductoDTO>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 12, [FromQuery] string search = null)
         {
             var allProductos = await _productoService.GetAllProductosAsync();
@@ -79,8 +96,22 @@ namespace SuperBodega.API.Controllers.Ecommerce
             });
         }
 
-        // GET: api/ecommerce/ProductoCatalogo/categoria/1?page=1&pageSize=12&search=texto
+        /// <summary>
+        /// Obtiene productos por categoría.
+        /// Incluye opciones de paginación y búsqueda.
+        /// </summary>
+        /// <param name="categoriaId">ID de la categoría</param>
+        /// <param name="page">Número de página para la paginación (default: 1)</param>
+        /// <param name="pageSize">Número de elementos por página (default: 12)</param>
+        /// <param name="search">Texto para filtrar productos por nombre o descripción</param>
+        /// <returns>Lista de productos paginada y filtrada</returns>
+        /// <response code="200">Retorna la lista de productos</response>
+        /// <response code="404">No se encontraron productos o la categoría no existe.</response>
+        /// <response code="500">Error interno del servidor</response>
         [HttpGet("categoria/{categoriaId}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductoDTO>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetByCategoria(int categoriaId, [FromQuery] int page = 1, [FromQuery] int pageSize = 12, [FromQuery] string search = null)
         {
             // Verificar primero si existe la categoría

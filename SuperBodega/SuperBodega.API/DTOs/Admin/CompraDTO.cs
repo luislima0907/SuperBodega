@@ -1,44 +1,90 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace SuperBodega.API.DTOs.Admin;
 
-namespace SuperBodega.API.DTOs.Admin;
-
+/// <summary>
+/// DTO para visualizar datos completos de una compra
+/// </summary>
 public class CompraDTO
 {
+    /// <summary>
+    /// Identificador único de la compra
+    /// </summary>
     public int Id { get; set; }
+    
+    /// <summary>
+    /// Número de factura de la compra
+    /// </summary>
     public string NumeroDeFactura { get; set; }
+    
+    /// <summary>
+    /// Identificador del proveedor asociado a la compra
+    /// </summary>
     public int IdProveedor { get; set; }
+    
+    /// <summary>
+    /// Nombre del proveedor asociado a la compra
+    /// </summary>
     public string NombreDelProveedor { get; set; }
+    
+    /// <summary>
+    /// Fecha en que se registró la compra
+    /// </summary>
     public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
+    
+    /// <summary>
+    /// Monto total de la compra
+    /// </summary>
     public decimal MontoTotal { get; set; }
+    
+    /// <summary>
+    /// Detalles de la compra
+    /// </summary>
     public List<DetalleDeLaCompraDTO> DetallesDeLaCompra { get; set; } = new List<DetalleDeLaCompraDTO>();
 }
 
+/// <summary>
+/// DTO para la creación de una nueva compra
+/// </summary>
 public class CreateCompraDTO
 {
-    [Required(ErrorMessage = "El numero de factura es obligatorio")]
-    [StringLength(50, ErrorMessage = "El numero de factura no puede exceder los 50 caracteres")]
+    /// <summary>
+    /// Número de factura de la compra
+    /// </summary>
     public string NumeroDeFactura { get; set; }
     
-    [Required(ErrorMessage = "El id del proveedor es obligatorio")]
+    /// <summary>
+    /// Identificador del proveedor asociado a la compra
+    /// </summary>
     public int IdProveedor { get; set; }
     
-    [Required(ErrorMessage = "Se requiere al menos un detalle de compra")]
-    [MinLength(1, ErrorMessage = "Se requiere al menos un detalle de compra")]
+    /// <summary>
+    /// Detalles de la compra
+    /// </summary>
     public List<CreateDetalleDeLaCompraDTO> DetallesDeLaCompra { get; set; } = new List<CreateDetalleDeLaCompraDTO>();
 
+    /// <summary>
+    /// Fecha en que se registró la compra
+    /// </summary>
     public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
 
 }
 
+/// <summary>
+/// DTO para la actualización de una compra
+/// </summary>
 public class UpdateCompraDTO
 {
-    [Required(ErrorMessage = "El numero de factura es obligatorio")]
-    [StringLength(50, ErrorMessage = "El numero de factura no puede exceder los 50 caracteres")]
+    /// <summary>
+    /// Número de factura de la compra
+    /// </summary>
     public string NumeroDeFactura { get; set; }
     
-    [Required(ErrorMessage = "El id del proveedor es obligatorio")]
+    /// <summary>
+    /// Identificador del proveedor asociado a la compra
+    /// </summary>
     public int IdProveedor { get; set; }
 
+    /// <summary>
+    /// Detalles de la compra
+    /// </summary>
     public List<UpdateDetalleDeLaCompraDTO> DetallesDeLaCompra { get; set; } = new List<UpdateDetalleDeLaCompraDTO>();
-
 }

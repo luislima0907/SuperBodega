@@ -58,8 +58,6 @@
             }
         });
     } else {
-        // Si no estamos en la vista de notificaciones pero hay un componente que necesita cargar notificaciones
-        // (como un contador en el menú lateral), usamos el ID del último cliente seleccionado o un valor predeterminado
         const clienteId = obtenerClienteId();
         actualizarContadorNotificaciones(clienteId);
     }
@@ -86,7 +84,7 @@ function obtenerClienteId() {
         "lastClienteId=", localStorage.getItem('lastClienteId'),
         "lastSelectedClienteId=", localStorage.getItem('lastSelectedClienteId'));
 
-    // Verificar primero el selector visible (la opción más segura)
+    // Verificar primero el selector visible
     const clienteSelect = document.getElementById('clienteSelect');
     if (clienteSelect && clienteSelect.value) {
         console.log("Usando ID desde selector:", clienteSelect.value);
@@ -336,7 +334,6 @@ function mostrarDetalleNotificacion(id, estado, ventaId, factura) {
                         <tbody>
             `;
 
-            // Check which property contains the details
             const detalles = venta.detalles || venta.detallesDeLaVenta || venta.DetallesDeLaVenta || [];
 
             if (detalles && detalles.length > 0) {

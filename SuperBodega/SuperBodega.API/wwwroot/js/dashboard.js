@@ -12,7 +12,7 @@ $(document).ready(function() {
     $(document).on('click', '.submenu > a', function(e) {
         e.preventDefault();
         var $parent = $(this).parent('li');
-        var duracionAnimacion = 300; // Duración en milisegundos (ajusta según prefieras)
+        var duracionAnimacion = 300; // Duración en milisegundos
 
         // Antes de la animación, compensar el scrollbar para evitar saltos
         if ($(document).height() > $(window).height()) {

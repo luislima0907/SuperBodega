@@ -1,44 +1,99 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SuperBodega.API.DTOs.Admin
+﻿namespace SuperBodega.API.DTOs.Admin
 {
+    /// <summary>
+    /// DTO para visualizar datos completos de un detalle de la venta
+    /// </summary>
     public class DetalleDeLaVentaDTO
     {
+        /// <summary>
+        /// Identificador único del detalle de la venta
+        /// </summary>
         public int Id { get; set; }
+        
+        /// <summary>
+        /// Identificador de la venta asociada al detalle
+        /// </summary>
         public int IdVenta { get; set; }
+        
+        /// <summary>
+        /// Identificador del producto asociado al detalle
+        /// </summary>
         public int IdProducto { get; set; }
+        
+        /// <summary>
+        /// Código del producto asociado al detalle
+        /// </summary>
         public string CodigoDelProducto { get; set; }
+        
+        /// <summary>
+        /// Nombre del producto asociado al detalle
+        /// </summary>
         public string NombreDelProducto { get; set; }
+        
+        /// <summary>
+        /// Imagen del producto asociado al detalle
+        /// </summary>
         public string ImagenDelProducto { get; set; }
-        public string NombreCategoria { get; set; } // Included as per model
+        
+        /// <summary>
+        /// Categoría del producto asociado al detalle
+        /// </summary>
+        public string NombreCategoria { get; set; }
+        
+        /// <summary>
+        /// Precio de venta del producto asociado al detalle
+        /// </summary>
         public decimal PrecioDeVenta { get; set; }
+        
+        /// <summary>
+        /// Cantidad del producto asociado al detalle
+        /// </summary>
         public int Cantidad { get; set; }
+        
+        /// <summary>
+        /// Monto total del detalle de la venta
+        /// </summary>
         public decimal MontoTotal { get; set; }
-        public int IdProveedor { get; set; } // Included as per model
-        public string NombreDelProveedor { get; set; } // Included as per model
+        
+        /// <summary>
+        /// Fecha de registro del detalle de la venta
+        /// </summary>
         public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
     }
 
+    /// <summary>
+    /// DTO para la creación de un nuevo detalle de la venta
+    /// </summary>
     public class CreateDetalleDeLaVentaDTO
     {
-        [Required]
+        /// <summary>
+        /// Identificador del producto asociado al detalle
+        /// </summary>
         public int IdProducto { get; set; }
 
-        [Required]
-        [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser al menos 1.")]
+        /// <summary>
+        /// Cantidad del producto asociado al detalle
+        /// </summary>
         public int Cantidad { get; set; }
 
-        [Required]
+        /// <summary>
+        /// Identificador del proveedor asociado al detalle
+        /// </summary>
         public int IdProveedor { get; set; }
 
+        /// <summary>
+        /// Nombre del proveedor asociado al detalle
+        /// </summary>
         public string NombreDelProveedor { get; set; }
 
-        // PrecioDeVenta might be fetched server-side based on IdProducto to prevent manipulation,
-        // or passed from client if pricing can vary. Assuming passed from client for now.
-        [Required]
-        [Range(0.01, (double)decimal.MaxValue)]
+        /// <summary>
+        /// Precio de venta del producto asociado al detalle
+        /// </summary>
         public decimal PrecioDeVenta { get; set; }
 
+        /// <summary>
+        /// Fecha de registro del detalle de la venta
+        /// </summary>
         public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
     }
 }

@@ -23,17 +23,17 @@
         <div class="card-body">
             @if (ViewBag.CategoriaInactiva == true)
             {
-            <div class="alert alert-warning" role="alert">
-                <i class="fas fa-exclamation-triangle me-2"></i>
-                <strong>¡Atención!</strong> La categoría actual está inactiva. Se recomienda seleccionar una categoría activa.
-            </div>
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>¡Atención!</strong> La categoría actual está inactiva. Se recomienda seleccionar una categoría activa.
+                </div>
             }
-
+            
             <form asp-action="Edit" method="post" enctype="multipart/form-data" id="formEditarProducto">
                 <input type="hidden" name="Id" value="@ViewBag.ProductoId" />
                 <input type="hidden" id="categoriaOriginalId" value="@ViewBag.CategoriaOriginalId" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+                
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -67,10 +67,10 @@
                                     {
                                         string optionClass = categoria.Group.Name == "Categorías Activas" ? "" : "text-danger";
                                         string selected = categoria.Value == ViewBag.CategoriaOriginalId.ToString() ? "selected" : "";
-
-                                    <option value="@categoria.Value" class="@optionClass" selected="@(categoria.Value == ViewBag.CategoriaOriginalId.ToString())">
-                                        @categoria.Text
-                                    </option>
+                                        
+                                        <option value="@categoria.Value" class="@optionClass" selected="@(categoria.Value == ViewBag.CategoriaOriginalId.ToString())">
+                                            @categoria.Text
+                                        </option>
                                     }
                                 </select>
                             </div>
@@ -116,15 +116,15 @@
                             </div>
                             @if (!string.IsNullOrEmpty(producto?.ImagenUrl))
                             {
-                            <div class="mt-2">
-                                <img src="@producto.ImagenUrl" class="img-thumbnail" style="max-height: 150px;" alt="@producto.Nombre" data-fecha-registro="@producto.FechaDeRegistro.ToString("o")" />
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox" id="mantenerImagen" name="MantenerImagen" checked>
-                                    <label class="form-check-label" for="mantenerImagen">
-                                        Mantener imagen actual
-                                    </label>
+                                <div class="mt-2">
+                                    <img src="@producto.ImagenUrl" class="img-thumbnail" style="max-height: 150px;" alt="@producto.Nombre" data-fecha-registro="@producto.FechaDeRegistro.ToString("o")" />
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="checkbox" id="mantenerImagen" name="MantenerImagen" checked>
+                                        <label class="form-check-label" for="mantenerImagen">
+                                            Mantener imagen actual
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
                             }
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                     <label for="fechaDeRegistro" class="form-label">Fecha de Registro</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
-                        <input type="hidden" id="fechaDeRegistro" name="fechaDeRegistro" value="@producto?.FechaDeRegistro.ToString(" o")">
+                        <input type="hidden" id="fechaDeRegistro" name="fechaDeRegistro" value="@producto?.FechaDeRegistro.ToString("o")">
                         <input type="text" class="form-control" id="fechaDeRegistroVisible" readonly>
                     </div>
                     <small class="text-muted">La fecha de registro no se puede modificar.</small>

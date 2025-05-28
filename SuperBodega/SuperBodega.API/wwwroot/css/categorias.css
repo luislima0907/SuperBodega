@@ -1,6 +1,4 @@
-﻿/* Enhanced styles for categoria views */
-
-/* Category cards */
+﻿/* Category cards */
 .categoria-card {
     border: none;
     border-radius: 0.75rem;
@@ -31,11 +29,11 @@
     font-weight: 600;
 }
 
-#categoriasTable tbody tr td:nth-child(4) {  /* Estado column */
+#categoriasTable tbody tr td:nth-child(4) { 
     text-align: center;
 }
 
-#categoriasTable tbody tr td:last-child {  /* Actions column */
+#categoriasTable tbody tr td:last-child { 
     text-align: center;
 }
 

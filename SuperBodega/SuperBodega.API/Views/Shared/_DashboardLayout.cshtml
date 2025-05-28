@@ -13,27 +13,28 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/productos.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/categorias.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/shared.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/productos.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/compras.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/carrito.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/catalogo.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/carrito.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/mis-pedidos.css" asp-append-version="true" />
-    
 </head>
 <body>
     <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><i class="bi bi-shop me-2"></i>SuperBodega</h3>
+                <h3><a href="/" class="text-white text-decoration-none"><i class="bi bi-shop me-2"></i>SuperBodega</a></h3>
             </div>
 
-            <ul class="list-unstyled components">
-                @RenderSection("SidebarMenu", required: true)
-            </ul>
+            <div class="components-container">
+                <ul class="list-unstyled components">
+                    @RenderSection("SidebarMenu", required: true)
+                </ul>
+            </div>
         </nav>
 
         <!-- Page Content -->

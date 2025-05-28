@@ -1,0 +1,608 @@
+﻿{
+  "info": {
+    "name": "SuperBodega Notificaciones Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "0. Crear Venta - Sincrónica (Recibida)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function() {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"createSyncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Respuesta sincrónica (creación): \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Guardar ID de la venta para usarlo en pruebas posteriores",
+              "var jsonData = pm.response.json();",
+              "pm.globals.set(\"ventaId\", jsonData.id);",
+              "",
+              "pm.test(\"Venta creada correctamente con notificación sincrónica\", function() {",
+              "    pm.expect(jsonData.id).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"NumeroDeFactura\": \"T-{{$randomInt}}\",\n    \"IdCliente\": 1,\n    \"MontoDePago\": 1500.00,\n    \"MontoDeCambio\": 100.00,\n    \"MontoTotal\": 1400.00,\n    \"Detalles\": [\n        {\n            \"idProducto\": 1,\n            \"nombreDelProducto\": \"Laptop\",\n            \"idProveedor\": 1,\n            \"nombreDelProveedor\": \"TechSupplier\",\n            \"cantidad\": 1,\n            \"precioDeVenta\": 999.99,\n            \"montoTotal\": 999.99\n        },\n        {\n            \"idProducto\": 2,\n            \"nombreDelProducto\": \"Smartphone\",\n            \"idProveedor\": 2,\n            \"nombreDelProveedor\": \"MobileWorld\",\n            \"cantidad\": 1,\n            \"precioDeVenta\": 400.01,\n            \"montoTotal\": 400.01\n        }\n    ],\n    \"UsarNotificacionSincronica\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/Create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "Create"]
+        },
+        "description": "Crea una nueva venta usando notificación sincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "0.1 Crear Venta - Asincrónica (Recibida)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function() {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"createAsyncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Respuesta asincrónica (creación): \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Comparar tiempos de respuesta",
+              "var syncTime = pm.globals.get(\"createSyncResponseTime\");",
+              "if (syncTime) {",
+              "    pm.test(\"Creación asincrónica más rápida que sincrónica\", function() {",
+              "        console.log(\"Sincrónico: \" + syncTime + \"ms, Asincrónico: \" + responseTime + \"ms\");",
+              "        pm.expect(responseTime).to.be.below(syncTime);",
+              "    });",
+              "}",
+              "",
+              "// Guardar ID de la venta para usarlo en pruebas posteriores",
+              "var jsonData = pm.response.json();",
+              "pm.globals.set(\"ventaId2\", jsonData.id);",
+              "",
+              "pm.test(\"Venta creada correctamente con notificación asincrónica\", function() {",
+              "    pm.expect(jsonData.id).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"NumeroDeFactura\": \"T-{{$randomInt}}\",\n    \"IdCliente\": 2,\n    \"MontoDePago\": 1700.00,\n    \"MontoDeCambio\": 50.00,\n    \"MontoTotal\": 1650.00,\n    \"Detalles\": [\n        {\n            \"idProducto\": 1,\n            \"nombreDelProducto\": \"Laptop\",\n            \"idProveedor\": 1,\n            \"nombreDelProveedor\": \"TechSupplier\",\n            \"cantidad\": 1,\n            \"precioDeVenta\": 999.99,\n            \"montoTotal\": 999.99\n        },\n        {\n            \"idProducto\": 3,\n            \"nombreDelProducto\": \"Audífonos\",\n            \"idProveedor\": 3,\n            \"nombreDelProveedor\": \"AudioTech\",\n            \"cantidad\": 2,\n            \"precioDeVenta\": 325.00,\n            \"montoTotal\": 650.00\n        }\n    ],\n    \"UsarNotificacionSincronica\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/Create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "Create"]
+        },
+        "description": "Crea una nueva venta usando notificación asincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "1. Cambiar Estado - Sincrónico (Despachada)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"syncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Respuesta sincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Verificar mensaje",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"Mensaje contiene información del modo\", function() {",
+              "    pm.expect(jsonData.message).to.include(\"sincrónico\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IdEstadoDeLaVenta\": 2,\n    \"UsarNotificacionSincronica\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/estado/edit/{{ventaId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "estado", "edit", "{{ventaId}}"]
+        },
+        "description": "Cambia el estado de Recibida (1) a Despachada (2) usando notificación sincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "1.1 Cambiar Estado - Sincrónico (Entregada)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"syncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Respuesta sincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Verificar mensaje",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"Mensaje contiene información del modo\", function() {",
+              "    pm.expect(jsonData.message).to.include(\"sincrónico\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IdEstadoDeLaVenta\": 3,\n    \"UsarNotificacionSincronica\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/estado/edit/{{ventaId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "estado", "edit", "{{ventaId}}"]
+        },
+        "description": "Cambia el estado de Despachada (2) a Entregada (3) usando notificación sincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Cambiar Estado - Asincrónico (Despachada)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"asyncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Respuesta asincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Comparar tiempos de respuesta",
+              "var syncTime = pm.globals.get(\"syncResponseTime\");",
+              "if (syncTime) {",
+              "    pm.test(\"Respuesta asincrónica más rápida que sincrónica\", function() {",
+              "        console.log(\"Sincrónico: \" + syncTime + \"ms, Asincrónico: \" + responseTime + \"ms\");",
+              "        pm.expect(responseTime).to.be.below(syncTime);",
+              "    });",
+              "}",
+              "",
+              "// Verificar mensaje",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"Mensaje contiene información del modo\", function() {",
+              "    pm.expect(jsonData.message).to.include(\"asincrónico\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IdEstadoDeLaVenta\": 2,\n    \"UsarNotificacionSincronica\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/estado/edit/{{ventaId2}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "estado", "edit", "{{ventaId2}}"]
+        },
+        "description": "Cambia el estado de Recibida (1) a Despachada (2) usando notificación asincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "2.1 Cambiar Estado - Asincrónico (Entregada)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"asyncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Respuesta asincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Comparar tiempos de respuesta",
+              "var syncTime = pm.globals.get(\"syncResponseTime\");",
+              "if (syncTime) {",
+              "    pm.test(\"Respuesta asincrónica más rápida que sincrónica\", function() {",
+              "        console.log(\"Sincrónico: \" + syncTime + \"ms, Asincrónico: \" + responseTime + \"ms\");",
+              "        pm.expect(responseTime).to.be.below(syncTime);",
+              "    });",
+              "}",
+              "",
+              "// Verificar mensaje",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"Mensaje contiene información del modo\", function() {",
+              "    pm.expect(jsonData.message).to.include(\"asincrónico\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IdEstadoDeLaVenta\": 3,\n    \"UsarNotificacionSincronica\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/estado/edit/{{ventaId2}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "estado", "edit", "{{ventaId2}}"]
+        },
+        "description": "Cambia el estado de Despachada (2) a Entregada (3) usando notificación asincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Solicitar Devolución - Sincrónico",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"devSolicitudSyncTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured for synchronous return request\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Solicitud devolución sincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Verificar mensaje",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"La solicitud se procesó correctamente\", function() {",
+              "    pm.expect(jsonData.message).to.include(\"actualizado correctamente\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IdEstadoDeLaVenta\": 4,\n    \"UsarNotificacionSincronica\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/estado/edit/{{ventaId3}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "estado", "edit", "{{ventaId3}}"]
+        },
+        "description": "Solicita una devolución (cambia a estado 4) usando notificación sincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "3.1 Procesar Devolución - Sincrónico",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"devSyncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured for syncronous return\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Procesamiento devolución sincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "pm.test(\"Devolución procesada correctamente\", function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.message).to.include('procesada correctamente');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"usarNotificacionSincronica\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/devolucion/{{ventaId3}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "devolucion", "{{ventaId3}}"]
+        },
+        "description": "Procesa la devolución usando notificación sincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Solicitar Devolución - Asincrónico",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"devSolicitudAsyncTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured for asynchronous return request\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Solicitud devolución asincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "// Comparar con solicitud sincrónica",
+              "var syncTime = pm.globals.get(\"devSolicitudSyncTime\");",
+              "if (syncTime) {",
+              "    pm.test(\"Solicitud asincrónica más rápida que sincrónica\", function() {",
+              "        console.log(\"Solicitud sincrónica: \" + syncTime + \"ms, Solicitud asincrónica: \" + responseTime + \"ms\");",
+              "        pm.expect(responseTime).to.be.below(syncTime);",
+              "    });",
+              "}",
+              "",
+              "// Verificar mensaje",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"La solicitud se procesó correctamente\", function() {",
+              "    pm.expect(jsonData.message).to.include(\"actualizado correctamente\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IdEstadoDeLaVenta\": 4,\n    \"UsarNotificacionSincronica\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/estado/edit/{{ventaId4}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "estado", "edit", "{{ventaId4}}"]
+        },
+        "description": "Solicita una devolución (cambia a estado 4) usando notificación asincrónica"
+      },
+      "response": []
+    },
+    {
+      "name": "4.1 Procesar Devolución - Asincrónico",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Guardar tiempo de respuesta",
+              "var responseTime = pm.response.responseTime;",
+              "pm.globals.set(\"devAsyncResponseTime\", responseTime);",
+              "",
+              "pm.test(\"Response time is captured for asyncronous return\", function() {",
+              "    pm.expect(responseTime).to.be.above(0);",
+              "    console.log(\"Procesamiento devolución asincrónica: \" + responseTime + \"ms\");",
+              "});",
+              "",
+              "var syncTime = pm.globals.get(\"devSyncResponseTime\");",
+              "if (syncTime) {",
+              "    pm.test(\"Devolución asincrónica es más rápida que sincrónica\", function() {",
+              "        console.log(\"Devolución sincrónica: \" + syncTime + \"ms, Devolución asincrónica: \" + responseTime + \"ms\");",
+              "        pm.expect(responseTime).to.be.below(syncTime);",
+              "    });",
+              "}",
+              "",
+              "pm.test(\"Devolución procesada correctamente\", function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.message).to.include('procesada correctamente');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"usarNotificacionSincronica\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/Venta/devolucion/{{ventaId4}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "Venta", "devolucion", "{{ventaId4}}"]
+        },
+        "description": "Procesa la devolución usando notificación asincrónica"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "ventaId",
+      "value": "1",
+      "description": "ID de la venta para cambio de estado de Recibida a Despachada, y de Despachada a Entregada de forma sincrónica."
+    },
+    {
+      "key": "ventaId2",
+      "value": "2",
+      "description": "ID de la venta para cambio de estado de Recibida a Despachada, y de Despachada a Entregada de forma asincrónica."
+    },
+    {
+      "key": "ventaId3",
+      "value": "3",
+      "description": "ID para solicitar y procesar devolución de forma sincrónica"
+    },
+    {
+      "key": "ventaId4",
+      "value": "4",
+      "description": "ID para solicitar y procesar devolución de forma asincrónica"
+    }
+  ]
+}

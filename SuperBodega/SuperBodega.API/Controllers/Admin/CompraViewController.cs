@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SuperBodega.API.DTOs.Admin;
 using SuperBodega.API.Services.Admin;
 
 namespace SuperBodega.API.Controllers.Admin;
 
+/// <summary>
+/// Controlador para las vistas relacionadas con la gestión de compras.
+/// </summary>
+/// <remarks>
+/// Proporciona acceso a las páginas web para administrar compras,
+/// como listado, creación, edición y visualización de detalles.
+/// </remarks>
 [Route("Compras")]
 public class CompraViewController : Controller
 {
@@ -11,6 +17,12 @@ public class CompraViewController : Controller
     private readonly ProveedorService _proveedorService;
     private readonly ProductoService _productoService;
 
+    /// <summary>
+    /// Inicializa una nueva instancia del controlador de vistas de compras.
+    /// </summary>
+    /// <param name="compraService">Servicio de compras a utilizar</param>
+    /// <param name="proveedorService">Servicio de proveedores a utilizar</param>
+    /// <param name="productoService">Servicio de productos a utilizar</param>
     public CompraViewController
     (
         CompraService compraService, 
@@ -23,6 +35,13 @@ public class CompraViewController : Controller
         _productoService = productoService;
     }
 
+    /// <summary>
+    /// Muestra la página de listado de compras.
+    /// </summary>
+    /// <returns>Vista de listado de compras</returns>
+    /// <remarks>
+    /// Esta vista carga los datos dinámicamente mediante JavaScript.
+    /// </remarks>
     [HttpGet("Index")]
     public async Task<IActionResult> Index()
     {
@@ -30,6 +49,14 @@ public class CompraViewController : Controller
         return View(compras);
     }
 
+    /// <summary>
+    /// Muestra la página de detalles de una compra específica.
+    /// </summary>
+    /// <param name="id">ID de la compra a mostrar</param>
+    /// <returns>Vista de detalles de la compra</returns>
+    /// <remarks>
+    /// Si la compra no existe, retorna NotFound (404).
+    /// </remarks>
     [HttpGet("Details/{id}")]
     public async Task<IActionResult> Details(int id)
     {
@@ -41,36 +68,30 @@ public class CompraViewController : Controller
         return View(compra);
     }
 
+    /// <summary>
+    /// Muestra la página para crear una nueva compra.
+    /// </summary>
+    /// <returns>Vista de creación de compra</returns>
+    /// <remarks>
+    /// Esta vista carga la lista de proveedores para el dropdown.
+    /// </remarks>
+    /// <response code="200">Retorna la vista de creación de compra</response>
+    /// <response code="500">Error interno del servidor</response>
     [HttpGet("Create")]
     public async Task<IActionResult> Create()
     {
-        ViewBag.Proveedores = await _proveedorService.GetAllAsync();
+        ViewBag.Proveedores = await _proveedorService.GetAllProveedoresAsync();
         return View();
     }
 
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create(CreateCompraDTO compraDto)
-        // {
-        //     if (!ModelState.IsValid)
-        //     {
-        //         ViewBag.Proveedores = await _proveedorService.GetAllProveedoresAsync();
-        //         return View(compraDto);
-        //     }
-        //
-        //     try
-        //     {
-        //         await _compraService.CreateAsync(compraDto);
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         ModelState.AddModelError("", $"Error al crear la compra: {ex.Message}");
-        //         ViewBag.Proveedores = await _proveedorService.GetAllProveedoresAsync();
-        //         return View(compraDto);
-        //     }
-        // }
-
+    /// <summary>
+    /// Muestra la página para editar una compra existente.
+    /// </summary>
+    /// <param name="id">ID de la compra a editar</param>
+    /// <returns>Vista de edición de compra</returns>
+    /// <remarks>
+    /// Si la compra no existe, retorna NotFound (404).
+    /// </remarks>
     [HttpGet("Edit/{id}")]
     public async Task<IActionResult> Edit(int id)
     {
@@ -84,7 +105,7 @@ public class CompraViewController : Controller
             }
 
             // Obtener lista de proveedores para el dropdown, incluyendo su estado
-            var proveedores = await _proveedorService.GetAllAsync();
+            var proveedores = await _proveedorService.GetAllProveedoresAsync();
                 
             // Verificar si el proveedor actual está inactivo
             var proveedorActual = proveedores.FirstOrDefault(p => p.Id == compra.IdProveedor);
@@ -104,29 +125,4 @@ public class CompraViewController : Controller
             return RedirectToAction(nameof(Index));
         }
     }
-
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Edit(int id, UpdateCompraDTO compraDto)
-        // {
-        //     if (!ModelState.IsValid)
-        //     {
-        //         ViewBag.CompraId = id;
-        //         ViewBag.Proveedores = await _proveedorService.GetAllProveedoresAsync();
-        //         return View(compraDto);
-        //     }
-        //
-        //     try
-        //     {
-        //         await _compraService.UpdateAsync(id, compraDto);
-        //         return RedirectToAction(nameof(Details), new { id });
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         ModelState.AddModelError("", $"Error al actualizar la compra: {ex.Message}");
-        //         ViewBag.CompraId = id;
-        //         ViewBag.Proveedores = await _proveedorService.GetAllProveedoresAsync();
-        //         return View(compraDto);
-        //     }
-        // }
 }

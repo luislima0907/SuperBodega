@@ -1,10 +1,11 @@
+@model SuperBodega.API.ViewModels.AdminDashboardViewModel
 @{
     ViewData["Title"] = "Panel de Administración";
     Layout = "_DashboardLayout";
 }
 
-@section SidebarMenu{
-    <partial name = "_SidebarMenuPartial"/>
+@section SidebarMenu {
+    <partial name="_SidebarMenuPartial" />
 }
 
 <div class="container-fluid">
@@ -19,7 +20,7 @@
                     <div class="icon">
                         <i class="bi bi-box"></i>
                     </div>
-                    <div class="stat-value">345</div>
+                    <div class="stat-value">@Model.TotalProductos</div>
                     <div class="stat-title">Productos</div>
                 </div>
             </div>
@@ -31,7 +32,7 @@
                     <div class="icon">
                         <i class="bi bi-cash-coin"></i>
                     </div>
-                    <div class="stat-value">$54.5K</div>
+                    <div class="stat-value">Q @Model.VentasDelMes.ToString("N2")</div>
                     <div class="stat-title">Ventas del Mes</div>
                 </div>
             </div>
@@ -43,7 +44,7 @@
                     <div class="icon">
                         <i class="bi bi-people"></i>
                     </div>
-                    <div class="stat-value">128</div>
+                    <div class="stat-value">@Model.TotalClientes</div>
                     <div class="stat-title">Clientes</div>
                 </div>
             </div>
@@ -55,7 +56,7 @@
                     <div class="icon">
                         <i class="bi bi-truck"></i>
                     </div>
-                    <div class="stat-value">32</div>
+                    <div class="stat-value">@Model.TotalProveedores</div>
                     <div class="stat-title">Proveedores</div>
                 </div>
             </div>
@@ -67,7 +68,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Ventas Recientes</h5>
-                    <a href="#" class="btn btn-sm btn-primary">Ver Todas</a>
+                    <a href="/Ventas/Index" class="btn btn-sm btn-primary">Ver Todas</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -83,46 +84,43 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>V-2023-001</td>
-                                    <td>Juan Pérez</td>
-                                    <td>23/10/2023</td>
-                                    <td>$1,250.00</td>
-                                    <td><span class="badge bg-success">Entregado</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>V-2023-002</td>
-                                    <td>María López</td>
-                                    <td>22/10/2023</td>
-                                    <td>$876.50</td>
-                                    <td><span class="badge bg-warning">Despachado</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>V-2023-003</td>
-                                    <td>Carlos García</td>
-                                    <td>21/10/2023</td>
-                                    <td>$543.25</td>
-                                    <td><span class="badge bg-info">Procesando</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>V-2023-004</td>
-                                    <td>Ana Martínez</td>
-                                    <td>20/10/2023</td>
-                                    <td>$231.75</td>
-                                    <td><span class="badge bg-success">Entregado</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
+                                @if (Model.VentasRecientes.Any())
+                                {
+                                    @foreach (var venta in Model.VentasRecientes)
+                                    {
+                                        <tr>
+                                            <td>@venta.NumeroFactura</td>
+                                            <td>@venta.NombreCliente</td>
+                                            <td>@venta.FechaRegistro.ToString("dd/MM/yyyy hh:mm tt")</td>
+                                            <td>Q @String.Format("{0:N2}", venta.MontoTotal)</td>
+                                            <td>
+                                                @{
+                                                    string badgeClass = venta.Estado.ToLower() switch
+                                                    {
+                                                        "entregada" => "bg-success",
+                                                        "despachada" => "bg-warning",
+                                                        "recibida" => "bg-info",
+                                                        "devolución solicitada" => "bg-danger",
+                                                        "devolución completada" => "bg-secondary",
+                                                        _ => "bg-primary"
+                                                    };
+                                                }
+                                                <span class="badge @badgeClass">@venta.Estado</span>
+                                            </td>
+                                            <td>
+                                                <a href="/Ventas/Details/@venta.Id" class="btn btn-sm btn-outline-primary">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6" class="text-center">No hay ventas registradas</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -135,51 +133,27 @@
                     <h5 class="mb-0">Productos Más Vendidos</h5>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <span>Smartphone Galaxy S21</span>
-                            <span class="text-primary">86%</span>
+                    @if (Model.ProductosMasVendidos.Any())
+                    {
+                        @foreach (var producto in Model.ProductosMasVendidos)
+                        {
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>@producto.Nombre</span>
+                                    <span class="text-primary">@producto.Porcentaje%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar @producto.GetBarColor()" style="width: @producto.Porcentaje%"></div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            No hay datos de ventas para mostrar productos más vendidos.
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-primary" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <span>Laptop Dell XPS 15</span>
-                            <span class="text-success">72%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" style="width: 72%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <span>TV Samsung 55"</span>
-                            <span class="text-warning">64%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" style="width: 64%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <span>Audífonos Sony WH-1000XM4</span>
-                            <span class="text-danger">53%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-danger" style="width: 53%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <span>Tablet iPad Air</span>
-                            <span class="text-info">49%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" style="width: 49%"></div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -204,27 +178,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Smartphone Galaxy S21</td>
-                                    <td>Electrónicos</td>
-                                    <td>3</td>
-                                    <td>5</td>
-                                    <td><span class="badge bg-danger">Crítico</span></td>
-                                </tr>
-                                <tr>
-                                    <td>TV Samsung 55"</td>
-                                    <td>Electrónicos</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                    <td><span class="badge bg-warning">Bajo</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Audífonos Sony</td>
-                                    <td>Accesorios</td>
-                                    <td>6</td>
-                                    <td>10</td>
-                                    <td><span class="badge bg-warning">Bajo</span></td>
-                                </tr>
+                                @if (Model.ProductosStockBajo.Any())
+                                {
+                                    @foreach (var producto in Model.ProductosStockBajo)
+                                    {
+                                        <tr>
+                                            <td>@producto.Nombre</td>
+                                            <td>@producto.Categoria</td>
+                                            <td>@producto.StockActual</td>
+                                            <td>@producto.StockMinimo</td>
+                                            <td>
+                                                <span class="badge @producto.GetBadgeClass()">@producto.GetEstadoStock()</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="5" class="text-center">No hay productos con stock bajo</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -237,48 +211,32 @@
                     <h5 class="mb-0">Últimas Actividades</h5>
                 </div>
                 <div class="card-body">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-indicator bg-primary"><i class="bi bi-box"></i></div>
-                            </div>
-                            <div class="timeline-item-content">
-                                <p class="mb-0 fw-bold">Producto actualizado</p>
-                                <p class="mb-0">Smartphone Galaxy S21 - Stock: 10</p>
-                                <p class="text-muted mb-0 small">Hoy 10:45 AM</p>
-                            </div>
+                    @if (Model.UltimasActividades.Any())
+                    {
+                        <div class="timeline">
+                            @foreach (var actividad in Model.UltimasActividades)
+                            {
+                                <div class="timeline-item">
+                                    <div class="timeline-item-marker">
+                                        <div class="timeline-item-marker-indicator bg-@actividad.TipoClase">
+                                            <i class="bi bi-@actividad.TipoIcono"></i>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item-content">
+                                        <p class="mb-0 fw-bold">@actividad.Titulo</p>
+                                        <p class="mb-0">@actividad.Descripcion</p>
+                                        <p class="text-muted mb-0 small">@actividad.Fecha.ToString("dd/MM/yyyy hh:mm tt")</p>
+                                    </div>
+                                </div>
+                            }
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-indicator bg-success"><i class="bi bi-cash-coin"></i></div>
-                            </div>
-                            <div class="timeline-item-content">
-                                <p class="mb-0 fw-bold">Nueva venta</p>
-                                <p class="mb-0">Cliente: Juan Pérez - $1,250.00</p>
-                                <p class="text-muted mb-0 small">Hoy 9:30 AM</p>
-                            </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            No hay actividades recientes para mostrar.
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-indicator bg-warning"><i class="bi bi-truck"></i></div>
-                            </div>
-                            <div class="timeline-item-content">
-                                <p class="mb-0 fw-bold">Nuevo proveedor añadido</p>
-                                <p class="mb-0">ElectroMax S.A.</p>
-                                <p class="text-muted mb-0 small">Ayer 3:15 PM</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-indicator bg-info"><i class="bi bi-people"></i></div>
-                            </div>
-                            <div class="timeline-item-content">
-                                <p class="mb-0 fw-bold">Nuevo cliente registrado</p>
-                                <p class="mb-0">María López</p>
-                                <p class="text-muted mb-0 small">Ayer 11:20 AM</p>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

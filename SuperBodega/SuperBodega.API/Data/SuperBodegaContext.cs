@@ -163,7 +163,7 @@ namespace SuperBodega.API.Data
                 entity.HasOne(d => d.Proveedor)
                       .WithMany() // No navigation property needed from Proveedor to DetallesDeLaVenta
                       .HasForeignKey(d => d.IdProveedor)
-                      .OnDelete(DeleteBehavior.Restrict); // Prevent deleting provider if linked? (Check logic)
+                      .OnDelete(DeleteBehavior.Restrict); // Prevent deleting provider if linked
             });
 
              // Seed initial EstadoDeLaVenta if needed

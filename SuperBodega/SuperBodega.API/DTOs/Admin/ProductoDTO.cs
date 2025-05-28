@@ -1,78 +1,174 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace SuperBodega.API.DTOs.Admin;
 
+/// <summary>
+/// DTO para visualizar datos completos de un producto
+/// </summary>
 public class ProductoDTO
 {
+    /// <summary>
+    /// Identificador único del producto
+    /// </summary>
     public int Id { get; set; }
+    
+    /// <summary>
+    /// Código del producto
+    /// </summary>
     public string Codigo { get; set; }
+    
+    /// <summary>
+    /// Nombre del producto
+    /// </summary>
     public string Nombre { get; set; }
+    
+    /// <summary>
+    /// Descripción del producto
+    /// </summary>
     public string Descripcion { get; set; }
+    
+    /// <summary>
+    /// Identificador de la categoría asociada al producto
+    /// </summary>
     public int CategoriaId { get; set; }
+    
+    /// <summary>
+    /// Nombre de la categoría asociada al producto
+    /// </summary>
     public string CategoriaNombre { get; set; }
-    public bool? CategoriaActiva { get; set; }  // Propiedad a�adida para indicar si la categor�a est� activa
+    
+    /// <summary>
+    /// Indica si la categoría asociada al producto está activa o inactiva
+    /// </summary>
+    public bool? CategoriaActiva { get; set; } 
+    
+    /// <summary>
+    /// Cantidad de producto disponible en stock
+    /// </summary>
     public int Stock { get; set; }
+    
+    /// <summary>
+    /// Precio de compra del producto
+    /// </summary>
     public decimal? PrecioDeCompra { get; set; }
+    
+    /// <summary>
+    /// Precio de venta del producto
+    /// </summary>
     public decimal? PrecioDeVenta { get; set; }
+    
+    /// <summary>
+    /// Indica si el producto está activo o inactivo
+    /// </summary>
     public bool Estado { get; set; }
+    
+    /// <summary>
+    /// URL de la imagen del producto
+    /// </summary>
     public string? ImagenUrl { get; set; }
+    
+    /// <summary>
+    /// Fecha en que se registró el producto en el sistema
+    /// </summary>
     public DateTime FechaDeRegistro { get; set; }
 }
 
+/// <summary>
+/// DTO para la creación de un nuevo producto
+/// </summary>
 public class CreateProductoDTO
 {
-    [Required(ErrorMessage = "El codigo es obligatorio")]
-    [StringLength(50, ErrorMessage = "El codigo no puede superar los 50 caracteres")]
+    /// <summary>
+    /// Código del producto
+    /// </summary>
     public string Codigo { get; set; }
-
-    [Required(ErrorMessage = "El nombre es obligatorio")]
-    [StringLength(100, ErrorMessage = "El nombre no puede superar los 100 caracteres")]
+    
+    /// <summary>
+    /// Nombre del producto
+    /// </summary>
     public string Nombre { get; set; }
-
-    [StringLength(200, ErrorMessage = "La descripcion no puede superar los 200 caracteres")]
+    
+    /// <summary>
+    /// Descripción del producto
+    /// </summary>
     public string Descripcion { get; set; }
-
-    [Required(ErrorMessage = "La categoria es obligatoria")]
+    
+    /// <summary>
+    /// Identificador de la categoría asociada al producto
+    /// </summary>
     public int CategoriaId { get; set; }
-
+    
+    /// <summary>
+    /// Cantidad de producto disponible en stock
+    /// </summary>
     public int Stock { get; set; }
 
-    [Range(0, 999999.99, ErrorMessage = "El precio de compra debe estar entre 0 y 999999.99")]
+    /// <summary>
+    /// Precio de compra del producto
+    /// </summary>
     public decimal? PrecioDeCompra { get; set; } = 0;
 
-    [Range(0, 999999.99, ErrorMessage = "El precio de venta debe estar entre 0 y 999999.99")]
+    /// <summary>
+    /// Precio de venta del producto
+    /// </summary>
     public decimal? PrecioDeVenta { get; set; } = 0;
-
+    
+    /// <summary>
+    /// Indica si el producto está activo o inactivo
+    /// </summary>
     public bool Estado { get; set; }
-
+    
+    /// <summary>
+    /// URL de la imagen del producto
+    /// </summary>
     public string? ImagenUrl { get; set; }
-
+    
+    /// <summary>
+    /// Fecha en que se registró el producto en el sistema
+    /// </summary>
     public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
 }
 
+/// <summary>
+/// DTO para la actualización de un producto
+/// </summary>
 public class UpdateProductoDTO
 {
-    [Required(ErrorMessage = "El c�digo es obligatorio")]
-    [StringLength(50, ErrorMessage = "El c�digo no puede superar los 50 caracteres")]
+    /// <summary>
+    /// Código del producto
+    /// </summary>
     public string Codigo { get; set; }
-
-    [Required(ErrorMessage = "El nombre es obligatorio")]
-    [StringLength(50, ErrorMessage = "El nombre no puede superar los 50 caracteres")]
+    
+    /// <summary>
+    /// Nombre del producto
+    /// </summary>
     public string Nombre { get; set; }
-
-    [StringLength(200, ErrorMessage = "La descripci�n no puede superar los 200 caracteres")]
+    
+    /// <summary>
+    /// Descripción del producto
+    /// </summary>
     public string Descripcion { get; set; }
-
-    [Required(ErrorMessage = "La categor�a es obligatoria")]
+    
+    /// <summary>
+    /// Identificador de la categoría asociada al producto
+    /// </summary>
     public int CategoriaId { get; set; }
-
-    [Range(0, 999999.99, ErrorMessage = "El precio de compra debe estar entre 0 y 999999.99")]
+       
+    /// <summary>
+    /// Precio de compra del producto
+    /// </summary>
     public decimal? PrecioDeCompra { get; set; }
-
-    [Range(0, 999999.99, ErrorMessage = "El precio de venta debe estar entre 0 y 999999.99")]
+        
+    /// <summary>
+    /// Precio de venta del producto
+    /// </summary>
     public decimal? PrecioDeVenta { get; set; }
-
+        
+    /// <summary>
+    /// Indica si el producto está activo o inactivo
+    /// </summary>
     public bool Estado { get; set; }
-
+      
+    /// <summary>
+    /// URL de la imagen del producto
+    /// </summary>
     public string? ImagenUrl { get; set; }
 }

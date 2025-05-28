@@ -480,7 +480,6 @@ function mostrarDetallesPedido(ventaId, estado, factura) {
                         <tbody>
             `;
 
-            // Check which property contains the details
             const detalles = venta.detalles || venta.detallesDeLaVenta || venta.DetallesDeLaVenta || [];
 
             if (detalles && detalles.length > 0) {

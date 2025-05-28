@@ -1,30 +1,23 @@
 ﻿/**
- * producto-catalogo-carrito.js - Manejo de la interacción del catálogo con el carrito
+ * carrito.js - Manejo de la interacción con el carrito
  */
 
-// Add this at the beginning of your carrito.js file
 function isCartPage() {
     return window.location.pathname.includes('/Carrito/Index');
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Only run catalog-related functionality if we're not on the cart page
+document.addEventListener('DOMContentLoaded', function() {
     if (!isCartPage()) {
-        // Initialize cart functionality for catalog pages
         initCartFunctionality();
     } else {
-        // Initialize cart page functionality
         initCartPageFunctionality();
     }
 
-    // Configurar las imágenes ampliables después de renderizar el carrito
     setTimeout(() => configurarImagenesAmpliables(), 100);
 
-    // Always update the cart badge
     updateCartBadge();
 });
 
-// Function to initialize the cart page functionality
 function initCartPageFunctionality() {
     const clienteId = localStorage.getItem('lastClienteId');
     if (!clienteId) {
@@ -41,7 +34,7 @@ function initCartPageFunctionality() {
     // Configurar el cambio de cliente
     const clienteSelect = document.getElementById('clienteSelect');
     if (clienteSelect) {
-        clienteSelect.addEventListener('change', function () {
+        clienteSelect.addEventListener('change', function() {
             const selectedClienteId = this.value;
             if (selectedClienteId) {
                 localStorage.setItem('lastClienteId', selectedClienteId);
@@ -72,10 +65,8 @@ function initCartPageFunctionality() {
     }
 }
 
-// Function to load client details in the cart page
 function loadClienteDetails(clienteId) {
     const clienteDetails = document.getElementById('clienteDetails');
-    // const clienteLoading = document.getElementById('clienteLoading');
     const clienteNombre = document.getElementById('clienteNombre');
     const clienteEmail = document.getElementById('clienteEmail');
     const clienteTelefono = document.getElementById('clienteTelefono');
@@ -87,7 +78,6 @@ function loadClienteDetails(clienteId) {
     }
 
     // Mostrar indicador de carga, ocultar detalles
-    // clienteLoading.style.display = 'block';
     clienteDetails.style.display = 'none';
 
     fetch(`/api/cliente/${clienteId}`)
@@ -106,8 +96,7 @@ function loadClienteDetails(clienteId) {
         })
         .catch(error => {
             console.error('Error:', error);
-            // clienteLoading.style.display = 'none'; // Ocultar carga en caso de error
-            clienteDetails.style.display = 'none'; // Ocultar detalles en caso de error
+            clienteDetails.style.display = 'none';
             Swal.fire({
                 title: 'Error',
                 text: 'No se pudo cargar la información del cliente',
@@ -116,7 +105,6 @@ function loadClienteDetails(clienteId) {
         });
 }
 
-// Function to load clients for the cart page selector
 function loadClientesForCart() {
     const clienteSelect = document.getElementById('clienteSelect');
     if (!clienteSelect) return;
@@ -173,7 +161,7 @@ function loadClientesForCart() {
 
 
             // Definir el nuevo listener
-            const changeListener = function () {
+            const changeListener = function() {
                 const selectedClienteId = this.value;
                 if (selectedClienteId) {
                     localStorage.setItem('lastClienteId', selectedClienteId);
@@ -195,8 +183,6 @@ function loadClientesForCart() {
         });
 }
 
-
-// Function to load cart items
 function loadCartItems(clienteId) {
     const cartContent = document.getElementById('cartContent'); // Div que contiene la tabla y total
     const cartEmptyMessage = document.getElementById('cartEmptyMessage');
@@ -206,7 +192,7 @@ function loadCartItems(clienteId) {
     if (cartContent) cartContent.style.display = 'none';
     if (cartEmptyMessage) cartEmptyMessage.style.display = 'none';
 
-    // Mostrar spinner DENTRO del tbody
+    // Mostrar spinner dentro del tbody
     if (cartItemsContainer) {
         cartItemsContainer.innerHTML = `
             <tr>
@@ -229,7 +215,7 @@ function loadCartItems(clienteId) {
     fetch(`/api/ecommerce/Carrito/${clienteId}`)
         .then(response => {
             if (!response.ok) {
-                // Si el cliente no existe o hay otro error 4xx/5xx
+                // Si el cliente no existe o hay otro error
                 if (response.status === 404) {
                     throw new Error('Carrito no encontrado para este cliente.');
                 }
@@ -253,13 +239,12 @@ function loadCartItems(clienteId) {
         });
 }
 
-// Function to render cart items
 function renderCartItems(cartData) {
     const cartItemsContainer = document.getElementById('cartItemsContainer'); // tbody
     const cartContent = document.getElementById('cartContent'); // Contenedor de tabla y total
     const cartEmptyMessage = document.getElementById('cartEmptyMessage');
     const cartTotal = document.getElementById('cartTotal');
-    const btnClearCart = document.getElementById('btnClearCart'); // Get clear button
+    const btnClearCart = document.getElementById('btnClearCart');
 
     if (!cartItemsContainer || !cartContent || !cartEmptyMessage || !cartTotal) {
         console.error("Elementos necesarios para renderizar el carrito no encontrados.");
@@ -306,33 +291,32 @@ function renderCartItems(cartData) {
         cartItemsContainer.appendChild(row);
     });
 
-    // Update total
+    // Actualizar total
     cartTotal.textContent = `Q ${parseFloat(cartData.total).toFixed(2)}`;
 
     // Mostrar contenido del carrito, ocultar mensaje vacío
     cartContent.style.display = 'block';
     cartEmptyMessage.style.display = 'none';
-    if (btnClearCart) btnClearCart.style.display = 'inline-block'; // Show clear button
+    if (btnClearCart) btnClearCart.style.display = 'inline-block';
 
-    // Setup edit and delete buttons
+    // Configurar los botones de editar y eliminar
     setupCartItemButtons();
 
     // Configurar las imágenes después de renderizar
     setTimeout(() => configurarImagenesAmpliables(), 50);
 }
 
-// Function to show empty cart message
 function showEmptyCartMessage(show, message = null) {
     const cartContent = document.getElementById('cartContent'); // Contenedor de tabla y total
     const cartEmptyMessage = document.getElementById('cartEmptyMessage');
-    const btnClearCart = document.getElementById('btnClearCart'); // Get clear button
+    const btnClearCart = document.getElementById('btnClearCart'); 
 
     if (cartContent) {
         cartContent.style.display = show ? 'none' : 'block'; // Oculta tabla y total
     }
 
     if (btnClearCart) {
-        btnClearCart.style.display = 'none'; // Hide clear button when cart is empty
+        btnClearCart.style.display = 'none'; 
     }
 
     if (cartEmptyMessage) {
@@ -344,7 +328,6 @@ function showEmptyCartMessage(show, message = null) {
             if (messageElement) {
                 messageElement.textContent = message;
             } else {
-                // Si no existe el <p>, añadirlo (o modificar el h4)
                 const titleElement = cartEmptyMessage.querySelector('h4');
                 if (titleElement) titleElement.textContent = message;
             }
@@ -414,30 +397,28 @@ function clearCart(clienteId) {
         });
 }
 
-// Function to setup event listeners for cart item buttons
 function setupCartItemButtons() {
-    // Edit buttons
+    // Configurar los botones de editar y eliminar
     document.querySelectorAll('.btn-edit-item').forEach(button => {
         // Remover listener previo si existe para evitar duplicados
         button.replaceWith(button.cloneNode(true));
         // Obtener nueva referencia y agregar listener
         const newButton = document.querySelector(`.btn-edit-item[data-item-id="${button.dataset.itemId}"]`);
         if (newButton) {
-            newButton.addEventListener('click', function () {
+            newButton.addEventListener('click', function() {
                 const itemId = this.dataset.itemId;
                 openEditCartItemModal(itemId);
             });
         }
     });
 
-    // Delete buttons
     document.querySelectorAll('.btn-delete-item').forEach(button => {
         // Remover listener previo si existe
         button.replaceWith(button.cloneNode(true));
         // Obtener nueva referencia y agregar listener
         const newButton = document.querySelector(`.btn-delete-item[data-item-id="${button.dataset.itemId}"]`);
         if (newButton) {
-            newButton.addEventListener('click', function () {
+            newButton.addEventListener('click', function() {
                 const row = this.closest('tr');
                 const itemId = this.dataset.itemId;
                 confirmDeleteCartItem(itemId, row);
@@ -451,7 +432,7 @@ function setupCartItemButtons() {
  */
 function initCartFunctionality() {
     // Agregar evento a los botones "Añadir al carrito"
-    document.addEventListener('click', function (event) {
+    document.addEventListener('click', function(event) {
         if (event.target.classList.contains('btn-add-cart') ||
             event.target.parentElement.classList.contains('btn-add-cart')) {
 
@@ -489,7 +470,7 @@ function initCartFunctionality() {
     loadClientes();
 
     // Evento para confirmar la adición al carrito
-    document.getElementById('confirmAddToCartBtn').addEventListener('click', function () {
+    document.getElementById('confirmAddToCartBtn').addEventListener('click', function() {
         if (validateCartForm()) {
             addToCart();
         }
@@ -509,23 +490,19 @@ function openAddToCartModal(productoId, nombre, precio, stock) {
     document.getElementById('productoPrecio').value = precio.toFixed(2);
     document.getElementById('productoStock').value = stock;
 
-    // Restablecer la cantidad a 1 (temporarily, will be updated)
+    // Restablecer la cantidad a 1
     const cantidadInput = document.getElementById('cantidadInput');
     cantidadInput.value = 1;
-    cantidadInput.max = stock; // Set max based on stock
+    cantidadInput.max = stock; 
 
-    // Get the client select from the modal
-    const modalClienteSelect = document.getElementById('clienteSelect'); // Assumes this ID is used in the modal
-    const clienteId = modalClienteSelect.value || localStorage.getItem('lastClienteId'); // Get current/last client
+    const modalClienteSelect = document.getElementById('clienteSelect'); 
+    const clienteId = modalClienteSelect.value || localStorage.getItem('lastClienteId'); 
 
-    // Fetch current quantity for the selected client and product
-    // This will update the quantityInput value if the item is already in the cart
     fetchAndSetModalQuantity(clienteId, productoId);
-    // Note: updateSubtotal() is called inside fetchAndSetModalQuantity
 
     // Mostrar el modal
     const modalElement = document.getElementById('addToCartModal');
-    const modal = bootstrap.Modal.getOrCreateInstance(modalElement); // Use getOrCreateInstance
+    const modal = bootstrap.Modal.getOrCreateInstance(modalElement); 
     modal.show();
 }
 
@@ -581,7 +558,7 @@ function setupQuantityButtons() {
     const cantidadInput = document.getElementById('cantidadInput');
     const stockInput = document.getElementById('productoStock');
 
-    decreaseBtn.addEventListener('click', function () {
+    decreaseBtn.addEventListener('click', function() {
         const currentValue = parseInt(cantidadInput.value);
         if (currentValue > 1) {
             cantidadInput.value = currentValue - 1;
@@ -589,7 +566,7 @@ function setupQuantityButtons() {
         }
     });
 
-    increaseBtn.addEventListener('click', function () {
+    increaseBtn.addEventListener('click', function() {
         const currentValue = parseInt(cantidadInput.value);
         const maxStock = parseInt(stockInput.value);
 
@@ -811,7 +788,12 @@ function addNewCartItem(clienteId, productoId, cantidad) {
                 title: '¡Agregado!',
                 text: 'El producto se ha añadido a su carrito',
                 icon: 'success',
-                showConfirmButton: true
+                showConfirmButton: true,
+                confirmButtonText: 'Ver Carrito'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Carrito/Index";
+                }
             });
 
             // Actualizar el contador de elementos en el carrito
@@ -855,7 +837,7 @@ function openEditCartItemModal(itemId) {
     // Calcular subtotal inicial
     updateEditSubtotal();
 
-    // Configurar botones de cantidad del modal de edición (si no están configurados)
+    // Configurar botones de cantidad del modal de edición
     setupEditQuantityButtons();
 
     // Mostrar el modal
@@ -883,7 +865,7 @@ function setupEditQuantityButtons() {
     const newIncreaseBtn = document.getElementById('editIncreaseCantidad');
     const newCantidadInput = document.getElementById('editCantidadInput');
 
-    newDecreaseBtn.addEventListener('click', function () {
+    newDecreaseBtn.addEventListener('click', function() {
         const currentValue = parseInt(newCantidadInput.value);
         if (currentValue > 1) {
             newCantidadInput.value = currentValue - 1;
@@ -891,7 +873,7 @@ function setupEditQuantityButtons() {
         }
     });
 
-    newIncreaseBtn.addEventListener('click', function () {
+    newIncreaseBtn.addEventListener('click', function() {
         const currentValue = parseInt(newCantidadInput.value);
         const maxStock = parseInt(stockInput.value); // Usar el stock del campo readonly
 
@@ -1036,7 +1018,7 @@ function deleteCartItem(itemId, rowElement) {
             // Éxito: Mostrar mensaje y recargar
             Swal.fire('¡Eliminado!', data?.message || 'El producto ha sido eliminado del carrito.', 'success');
 
-            // Animar y luego recargar (opcional, pero mejor UX)
+            // Animar y luego recargar
             if (rowElement) {
                 rowElement.classList.add('fade-out');
                 setTimeout(() => {
@@ -1064,8 +1046,6 @@ function deleteCartItem(itemId, rowElement) {
             }
         });
 }
-
-// ... (resto de funciones como updateCartBadge, etc.)
 
 /**
  * Actualiza el contador de productos en el carrito
@@ -1105,48 +1085,35 @@ function fetchCartCount(clienteId) {
         });
 }
 
-/**
- * Fetches the current quantity of a specific product for a client from their cart
- * and updates the quantity input in the 'Add to Cart' modal.
- * Defaults to 1 if the item is not found or an error occurs.
- * @param {string} clienteId - The ID of the selected client.
- * @param {string} productoId - The ID of the product being added.
- */
 function fetchAndSetModalQuantity(clienteId, productoId) {
     const cantidadInput = document.getElementById('cantidadInput');
     if (!clienteId || !productoId || !cantidadInput) {
-        if (cantidadInput) cantidadInput.value = 1; // Default to 1 if IDs are missing
+        if (cantidadInput) cantidadInput.value = 1;
         updateSubtotal();
         return;
     }
 
-    // Optional: Add a temporary loading state to the input?
-    // cantidadInput.disabled = true;
-
     fetch(`/api/ecommerce/Carrito/${clienteId}`)
         .then(response => {
             if (!response.ok) {
-                // If cart doesn't exist (404), item isn't there. Treat as quantity 0 (default to 1 for adding).
                 if (response.status === 404) return { elementos: [] };
                 throw new Error('Error al buscar item en carrito');
             }
             return response.json();
         })
         .then(data => {
-            const itemInCart = data.elementos.find(el => el.productoId == productoId); // Use == for safety, === if types are certain
+            const itemInCart = data.elementos.find(el => el.productoId == productoId);
 
             if (itemInCart) {
                 cantidadInput.value = itemInCart.cantidad;
             } else {
-                cantidadInput.value = 1; // Default to 1 if not found in cart
+                cantidadInput.value = 1; 
             }
-            // cantidadInput.disabled = false; // Re-enable input
-            updateSubtotal(); // Update subtotal based on fetched/default quantity
+            updateSubtotal(); 
         })
         .catch(error => {
             console.error("Error fetching cart item quantity:", error);
-            cantidadInput.value = 1; // Default to 1 on error
-            // cantidadInput.disabled = false; // Re-enable input on error
+            cantidadInput.value = 1;
             updateSubtotal();
         });
 }

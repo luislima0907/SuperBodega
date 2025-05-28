@@ -1,6 +1,4 @@
-﻿/* Shared enhanced styles for dashboard components */
-
-/* Card enhancements */
+﻿/* Card enhancements */
 .card {
     border: none;
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
@@ -90,13 +88,11 @@
 
 
 .btn-warning {
-/background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);/
-border: none;
+    border: none;
 }
 
 .btn-warning:hover {
-/background: linear-gradient(135deg, #5a6268 0%, #4e555b 100%);/
-transform: translateY(-1px);
+    transform: translateY(-1px);
     box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
 }
 

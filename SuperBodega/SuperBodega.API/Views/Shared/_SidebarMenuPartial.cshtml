@@ -1,86 +1,86 @@
 @{
     Layout = null;
 }
-<li>
-    <a asp-controller="Dashboard" asp-action="AdminDashboard"><i class="bi bi-speedometer2 me-2"></i>Panel de Administración</a>
-</li>
-<li class="submenu">
-    <a href="#categoriasSubmenu"><i class="bi bi-tags me-2"></i>Categorías</a>
-    <ul class="list-unstyled submenu-items" id="categoriasSubmenu">
-        <li>
-            <a asp-controller="CategoriaView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
-        </li>
-        <li>
-            <a asp-controller="CategoriaView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
-        </li>
-    </ul>
-</li>
-<li class="submenu">
-    <a href="#productosSubmenu"><i class="bi bi-box me-2"></i>Productos</a>
-    <ul class="list-unstyled submenu-items" id="productosSubmenu">
-        <li>
-            <a asp-controller="ProductoView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
-        </li>
-        <li>
-            <a asp-controller="ProductoView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
-        </li>
-    </ul>
-</li>
-<li class="submenu">
-    <a href="#proveedoresSubmenu"><i class="bi bi-truck me-2"></i>Proveedores</a>
-    <ul class="list-unstyled submenu-items" id="proveedoresSubmenu">
-        <li>
-            <a asp-controller="ProveedorView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
-        </li>
-        <li>
-            <a asp-controller="ProveedorView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
-        </li>
-    </ul>
-</li>
-<li class="submenu">
-    <a href="#clientesSubmenu"><i class="bi bi-people me-2"></i>Clientes</a>
-    <ul class="list-unstyled submenu-items" id="clientesSubmenu">
-        <li>
-            <a asp-controller="ClienteView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
-        </li>
-        <li>
-            <a asp-controller="ClienteView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
-        </li>
-    </ul>
-</li>
-<li class="submenu">
-    <a href="#comprasSubmenu"><i class="bi bi-cart-plus me-2"></i>Compras</a>
-    <ul class="list-unstyled submenu-items" id="comprasSubmenu">
-        <li>
-            <a asp-controller="CompraView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
-        </li>
-        <li>
-            <a asp-controller="CompraView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
-        </li>
-    </ul>
-</li>
-<li class="submenu">
-    <a href="#ventasSubmenu"><i class="bi bi-cash-coin me-2"></i>Ventas</a>
-    <ul class="list-unstyled submenu-items" id="ventasSubmenu">
-        <li>
-            <a asp-controller="VentaView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
-        </li>
-    </ul>
-</li>
-<li class="submenu">
-    <a href="#reportesSubmenu"><i class="bi bi-bar-chart me-2"></i>Reportes</a>
-    <ul class="list-unstyled submenu-items" id="reportesSubmenu">
-        <li>
-            <a asp-controller="ReporteView" asp-action="VentasPorPeriodo"><i class="bi bi-calendar-range me-2"></i>Ventas por Período</a>
-        </li>
-        <li>
-            <a asp-controller="ReporteView" asp-action="VentasPorProducto"><i class="bi bi-box-seam me-2"></i>Ventas por Producto</a>
-        </li>
-        <li>
-            <a asp-controller="ReporteView" asp-action="VentasPorCliente"><i class="bi bi-person me-2"></i>Ventas por Cliente</a>
-        </li>
-        <li>
-            <a asp-controller="ReporteView" asp-action="VentasPorProveedor"><i class="bi bi-truck me-2"></i>Ventas por Proveedor</a>
-        </li>
-    </ul>
-</li>
+    <li>
+        <a asp-controller="Dashboard" asp-action="AdminDashboard"><i class="bi bi-speedometer2 me-2"></i>Panel de Administración</a>
+    </li>
+    <li class="submenu">
+        <a href="#categoriasSubmenu"><i class="bi bi-tags me-2"></i>Categorías</a>
+        <ul class="list-unstyled submenu-items" id="categoriasSubmenu">
+            <li>
+                <a asp-controller="CategoriaView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a asp-controller="CategoriaView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#productosSubmenu"><i class="bi bi-box me-2"></i>Productos</a>
+        <ul class="list-unstyled submenu-items" id="productosSubmenu">
+            <li>
+                <a asp-controller="ProductoView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a asp-controller="ProductoView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#proveedoresSubmenu"><i class="bi bi-truck me-2"></i>Proveedores</a>
+        <ul class="list-unstyled submenu-items" id="proveedoresSubmenu">
+            <li>
+                <a asp-controller="ProveedorView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a asp-controller="ProveedorView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#clientesSubmenu"><i class="bi bi-people me-2"></i>Clientes</a>
+        <ul class="list-unstyled submenu-items" id="clientesSubmenu">
+            <li>
+                <a asp-controller="ClienteView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a asp-controller="ClienteView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#comprasSubmenu"><i class="bi bi-cart-plus me-2"></i>Compras</a>
+        <ul class="list-unstyled submenu-items" id="comprasSubmenu">
+            <li>
+                <a asp-controller="CompraView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+            <li>
+                <a asp-controller="CompraView" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Agregar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#ventasSubmenu"><i class="bi bi-cash-coin me-2"></i>Ventas</a>
+        <ul class="list-unstyled submenu-items" id="ventasSubmenu">
+            <li>
+                <a asp-controller="VentaView" asp-action="Index"><i class="bi bi-list me-2"></i>Listar</a>
+            </li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="#reportesSubmenu"><i class="bi bi-bar-chart me-2"></i>Reportes</a>
+        <ul class="list-unstyled submenu-items" id="reportesSubmenu">
+            <li>
+                <a asp-controller="ReporteView" asp-action="VentasPorPeriodo"><i class="bi bi-calendar-range me-2"></i>Ventas por Período</a>
+            </li>
+            <li>
+                <a asp-controller="ReporteView" asp-action="VentasPorProducto"><i class="bi bi-box-seam me-2"></i>Ventas por Producto</a>
+            </li>
+            <li>
+                <a asp-controller="ReporteView" asp-action="VentasPorCliente"><i class="bi bi-person me-2"></i>Ventas por Cliente</a>
+            </li>
+            <li>
+                <a asp-controller="ReporteView" asp-action="VentasPorProveedor"><i class="bi bi-truck me-2"></i>Ventas por Proveedor</a>
+            </li>
+        </ul>
+    </li>

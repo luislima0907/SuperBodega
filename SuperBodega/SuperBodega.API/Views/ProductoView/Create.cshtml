@@ -22,19 +22,19 @@
         <div class="card-body">
             <form asp-action="Create" method="post" enctype="multipart/form-data" id="formCrearProducto">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+                
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label asp-for="Codigo" class="form-label">Código</label>
+                            <label asp-for="Codigo" class="form-label">CÃ³digo</label>
                             <div class="input-group">
                                 <span class="input-group-text" style="height: auto;"><i class="bi bi-upc-scan"></i></span>
                                 <input asp-for="Codigo" class="form-control" readonly />
-                                <span class="input-group-text bg-light text-muted" style="height: auto;" title="Código generado automáticamente">
+                                <span class="input-group-text bg-light text-muted" style="height: auto;" title="CÃ³digo generado automÃ¡ticamente">
                                     <i class="bi bi-info-circle"></i>
                                 </span>
                             </div>
-                            <small class="text-muted">Código generado automáticamente</small>
+                            <small class="text-muted">CÃ³digo generado automÃ¡ticamente</small>
                             <span asp-validation-for="Codigo" class="text-danger"></span>
                         </div>
 
@@ -47,19 +47,19 @@
                             <span asp-validation-for="Nombre" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="CategoriaId" class="form-label">Categoría</label>
+                            <label asp-for="CategoriaId" class="form-label">CategorÃ­a</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-tags"></i></span>
                                 <select asp-for="CategoriaId" class="form-select" id="CategoriaId" required>
-                                    <option value="">-- Seleccionar Categoría --</option>
+                                    <option value="">-- Seleccionar CategorÃ­a --</option>
                                     @foreach (var categoria in ViewBag.Categorias)
                                     {
-                                        string optionClass = categoria.Group.Name == "Categorías Activas" ? "" : "text-danger";
-                                    <option value="@categoria.Value" class="@optionClass">@categoria.Text</option>
+                                        string optionClass = categoria.Group.Name == "CategorÃ­as Activas" ? "" : "text-danger";
+                                        <option value="@categoria.Value" class="@optionClass">@categoria.Text</option>
                                     }
                                 </select>
                             </div>
-                            <small class="text-muted">Las categorías inactivas aparecen en rojo.</small>
+                            <small class="text-muted">Las categorÃ­as inactivas aparecen en rojo.</small>
                             <span asp-validation-for="CategoriaId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
@@ -105,10 +105,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Descripcion" class="form-label">Descripción</label>
+                    <label asp-for="Descripcion" class="form-label">DescripciÃ³n</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-file-text"></i></span>
-                        <textarea asp-for="Descripcion" class="form-control" rows="3" placeholder="Describa las características del producto"></textarea>
+                        <textarea asp-for="Descripcion" class="form-control" rows="3" placeholder="Describa las caracterÃ­sticas del producto"></textarea>
                     </div>
                     <span asp-validation-for="Descripcion" class="text-danger"></span>
                 </div>
@@ -120,7 +120,7 @@
                         <input type="hidden" class="form-control" id="fechaDeRegistro" name="FechaDeRegistro">
                         <input type="text" class="form-control" id="fechaDeRegistroVisible" readonly>
                     </div>
-                    <small class="text-muted">La fecha de registro se establece automáticamente.</small>
+                    <small class="text-muted">La fecha de registro se establece automÃ¡ticamente.</small>
                 </div>
 
                 <div class="text-end">

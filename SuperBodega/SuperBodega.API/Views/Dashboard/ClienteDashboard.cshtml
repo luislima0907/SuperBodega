@@ -1,3 +1,4 @@
+@model SuperBodega.API.ViewModels.ClienteDashboardViewModel
 @{
     ViewData["Title"] = "Panel de Cliente";
     Layout = "_DashboardLayout";
@@ -8,308 +9,314 @@
 }
 
 <div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0">Panel de Cliente</h1>
-    </div>
+    @if (Model.NoHayCliente)
+    {
+        <div class="alert alert-warning">
+            <h4 class="alert-heading">¡No hay cliente seleccionado!</h4>
+            <p>No se encontró ningún cliente activo para mostrar el dashboard. Por favor, crea un cliente o activa uno existente.</p>
+            <hr>
+            <p class="mb-0">Puedes ir a la sección de <a href="/Clientes/Index" class="alert-link">Administración de Clientes</a> para crear o activar un cliente.</p>
+        </div>
+    }
+    else
+    {
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0">Panel de Cliente: @Model.ClienteNombre</h1>
+        </div>
 
-    <div class="row">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="stat-card primary">
-                    <div class="icon">
-                        <i class="bi bi-bag-check"></i>
-                    </div>
-                    <div class="stat-value">5</div>
-                    <div class="stat-title">Pedidos Realizados</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="stat-card success">
-                    <div class="icon">
-                        <i class="bi bi-cart-check"></i>
-                    </div>
-                    <div class="stat-value">3</div>
-                    <div class="stat-title">Pedidos Entregados</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="stat-card warning">
-                    <div class="icon">
-                        <i class="bi bi-truck"></i>
-                    </div>
-                    <div class="stat-value">1</div>
-                    <div class="stat-title">Pedidos en Tránsito</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="stat-card danger">
-                    <div class="icon">
-                        <i class="bi bi-cart"></i>
-                    </div>
-                    <div class="stat-value">2</div>
-                    <div class="stat-title">Artículos en Carrito</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Mis Pedidos Recientes</h5>
-                    <a href="#" class="btn btn-sm btn-primary">Ver Todos</a>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#Pedido</th>
-                                    <th>Fecha</th>
-                                    <th>Total</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>P-1045</td>
-                                    <td>23/10/2023</td>
-                                    <td>$1,250.00</td>
-                                    <td><span class="badge bg-success">Entregado</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>P-1033</td>
-                                    <td>18/10/2023</td>
-                                    <td>$876.50</td>
-                                    <td><span class="badge bg-warning">En tránsito</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>P-1021</td>
-                                    <td>10/10/2023</td>
-                                    <td>$543.25</td>
-                                    <td><span class="badge bg-success">Entregado</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>P-1015</td>
-                                    <td>05/10/2023</td>
-                                    <td>$231.75</td>
-                                    <td><span class="badge bg-success">Entregado</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="mb-0">Notificaciones</h5>
-                </div>
-                <div class="card-body">
-                    <div class="notifications-list">
-                        <div class="notification-item">
-                            <div class="notification-icon bg-primary">
-                                <i class="bi bi-truck"></i>
-                            </div>
-                            <div class="notification-content">
-                                <p class="mb-0 fw-bold">Pedido en camino</p>
-                                <p class="mb-0">Tu pedido #P-1033 está en camino.</p>
-                                <p class="text-muted mb-0 small">Hace 2 horas</p>
-                            </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="stat-card primary">
+                        <div class="icon">
+                            <i class="bi bi-bag-check"></i>
                         </div>
-                        <hr>
-                        <div class="notification-item">
-                            <div class="notification-icon bg-success">
-                                <i class="bi bi-tag"></i>
-                            </div>
-                            <div class="notification-content">
-                                <p class="mb-0 fw-bold">¡Oferta especial!</p>
-                                <p class="mb-0">30% de descuento en electrónicos.</p>
-                                <p class="text-muted mb-0 small">Ayer</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="notification-item">
-                            <div class="notification-icon bg-info">
-                                <i class="bi bi-check-circle"></i>
-                            </div>
-                            <div class="notification-content">
-                                <p class="mb-0 fw-bold">Pedido entregado</p>
-                                <p class="mb-0">Tu pedido #P-1021 ha sido entregado.</p>
-                                <p class="text-muted mb-0 small">Hace 5 días</p>
-                            </div>
-                        </div>
+                        <div class="stat-value">@Model.TotalPedidos</div>
+                        <div class="stat-title">Pedidos Realizados</div>
                     </div>
                 </div>
             </div>
             
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">Mi Carrito</h5>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="stat-card success">
+                        <div class="icon">
+                            <i class="bi bi-cart-check"></i>
+                        </div>
+                        <div class="stat-value">@Model.PedidosEntregados</div>
+                        <div class="stat-title">Pedidos Entregados</div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="cart-items">
-                        <div class="cart-item d-flex mb-3">
-                            <img src="https://via.placeholder.com/50" alt="Producto" class="me-3">
-                            <div class="cart-item-details flex-grow-1">
-                                <h6 class="mb-0">Smartphone Galaxy S21</h6>
-                                <p class="text-muted mb-0">1 x $899.99</p>
-                            </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="stat-card warning">
+                        <div class="icon">
+                            <i class="bi bi-truck"></i>
                         </div>
-                        <div class="cart-item d-flex mb-3">
-                            <img src="https://via.placeholder.com/50" alt="Producto" class="me-3">
-                            <div class="cart-item-details flex-grow-1">
-                                <h6 class="mb-0">Audífonos Sony WH-1000XM4</h6>
-                                <p class="text-muted mb-0">1 x $349.99</p>
-                            </div>
+                        <div class="stat-value">@Model.PedidosEnTransito</div>
+                        <div class="stat-title">Pedidos en Tránsito</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="stat-card danger">
+                        <div class="icon">
+                            <i class="bi bi-cart"></i>
                         </div>
-                        <hr>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-0">Total:</h6>
-                            <h6 class="mb-0">$1,249.98</h6>
-                        </div>
-                        <div class="d-grid gap-2 mt-3">
-                            <a href="#" class="btn btn-primary">
-                                <i class="bi bi-cart-check me-2"></i>Proceder al pago
-                            </a>
-                        </div>
+                        <div class="stat-value">@Model.ArticulosEnCarrito</div>
+                        <div class="stat-title">Artículos en Carrito</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Productos Recomendados</h5>
-                    <a href="#" class="btn btn-sm btn-primary">Ver Catálogo</a>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Mis Pedidos Recientes</h5>
+                        <a href="/MisPedidos/Index" class="btn btn-sm btn-primary">Ver Todos</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#Pedido</th>
+                                        <th>Fecha</th>
+                                        <th>Total</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.PedidosRecientes.Any())
+                                    {
+                                        @foreach (var pedido in Model.PedidosRecientes)
+                                        {
+                                            <tr>
+                                                <td>@pedido.NumeroFactura</td>
+                                                <td>@pedido.FechaRegistro.ToString("dd/MM/yyyy hh:mm tt")</td>
+                                                <td>Q @String.Format("{0:N2}", pedido.MontoTotal)</td>
+                                                <td>
+                                                    @{
+                                                        string badgeClass = pedido.Estado.ToLower() switch
+                                                        {
+                                                            "entregada" => "bg-success",
+                                                            "despachada" => "bg-warning",
+                                                            "recibida" => "bg-info",
+                                                            "devolución solicitada" => "bg-danger",
+                                                            "devolución completada" => "bg-secondary",
+                                                            _ => "bg-primary"
+                                                        };
+                                                    }
+                                                    <span class="badge @badgeClass">@pedido.Estado</span>
+                                                </td>
+                                                <td>
+                                                    <a href="/MisPedidos/Index" class="btn btn-sm btn-outline-primary">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">No has realizado ningún pedido aún</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3 mb-4">
-                            <div class="card product-card h-100">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
-                                <div class="card-body">
-                                    <h5 class="card-title">Smartphone Galaxy S21</h5>
-                                    <p class="card-text text-muted">Samsung</p>
-                                    <p class="card-text fw-bold">$899.99</p>
-                                    <div class="d-grid gap-2">
-                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
-                                        </a>
+            </div>
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Notificaciones</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="notifications-list">
+                            @if (Model.Notificaciones.Any())
+                            {
+                                @foreach (var notificacion in Model.Notificaciones)
+                                {
+                                    <div class="notification-item">
+                                        <div class="notification-icon @notificacion.GetIconClass()">
+                                            <i class="bi bi-@notificacion.TipoIcono"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="mb-0 fw-bold">@notificacion.Titulo</p>
+                                            <p class="mb-0">@notificacion.Mensaje</p>
+                                            <p class="text-muted mb-0 small">@notificacion.TiempoFormateado</p>
+                                        </div>
                                     </div>
+                                    @if (!notificacion.Equals(Model.Notificaciones.Last()))
+                                    {
+                                        <hr>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <div class="text-center py-3">
+                                    <i class="bi bi-bell-slash fs-1 text-muted"></i>
+                                    <p class="mt-2">No tienes notificaciones</p>
                                 </div>
-                            </div>
+                            }
                         </div>
-                        <div class="col-md-3 mb-4">
-                            <div class="card product-card h-100">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
-                                <div class="card-body">
-                                    <h5 class="card-title">Laptop Dell XPS 15</h5>
-                                    <p class="card-text text-muted">Dell</p>
-                                    <p class="card-text fw-bold">$1,899.99</p>
-                                    <div class="d-grid gap-2">
-                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
-                                        </a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Mi Carrito</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="cart-items">
+                            @if (Model.ElementosCarrito.Any())
+                            {
+                                @foreach (var elemento in Model.ElementosCarrito)
+                                {
+                                    <div class="cart-item d-flex mb-3">
+                                        <img src="@elemento.ImagenUrl" alt="@elemento.NombreProducto" 
+                                             class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                        <div class="cart-item-details flex-grow-1">
+                                            <h6 class="mb-0">@elemento.NombreProducto</h6>
+                                            <p class="text-muted mb-0">@elemento.Cantidad x Q@(elemento.PrecioUnitario?.ToString("N2") ?? "0.00")</p>
+                                        </div>
                                     </div>
+                                }
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-0">Total:</h6>
+                                    <h6 class="mb-0">Q@(Model.TotalCarrito?.ToString("N2") ?? "0.00")</h6>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-4">
-                            <div class="card product-card h-100">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
-                                <div class="card-body">
-                                    <h5 class="card-title">Audífonos Sony WH-1000XM4</h5>
-                                    <p class="card-text text-muted">Sony</p>
-                                    <p class="card-text fw-bold">$349.99</p>
-                                    <div class="d-grid gap-2">
-                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
-                                        </a>
-                                    </div>
+                                <div class="d-grid gap-2 mt-3">
+                                    <a href="/RealizarCompra/Index" class="btn btn-primary">
+                                        <i class="bi bi-cart-check me-2"></i>Proceder al pago
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-4">
-                            <div class="card product-card h-100">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto">
-                                <div class="card-body">
-                                    <h5 class="card-title">TV Samsung 55"</h5>
-                                    <p class="card-text text-muted">Samsung</p>
-                                    <p class="card-text fw-bold">$749.99</p>
-                                    <div class="d-grid gap-2">
-                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                            <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
-                                        </a>
-                                    </div>
+                            }
+                            else
+                            {
+                                <div class="text-center py-3">
+                                    <i class="bi bi-cart-x fs-1 text-muted"></i>
+                                    <p class="mt-2">Tu carrito está vacío</p>
+                                    <a href="/Catalogo/Productos" class="btn btn-outline-primary btn-sm mt-2">
+                                        <i class="bi bi-shop me-1"></i>Ir a la tienda
+                                    </a>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Productos Recomendados</h5>
+                        <a href="/Catalogo/Productos" class="btn btn-sm btn-primary">Ver Catálogo</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @if (Model.ProductosRecomendados.Any())
+                            {
+                                @foreach (var producto in Model.ProductosRecomendados)
+                                {
+                                    <div class="col-md-3 mb-4">
+                                        <div class="card product-card h-100" 
+                                            data-id="@producto.Id" 
+                                            data-precio="@producto.Precio" 
+                                            data-stock="@(producto.Stock ?? 10)">
+                                            <img src="@producto.ImagenUrl" class="card-img-top" alt="@producto.Nombre">
+                                            <div class="card-body">
+                                                <h5 class="card-title producto-nombre">@producto.Nombre</h5>
+                                                <p class="card-text text-muted">@producto.Categoria</p>
+                                                <p class="card-text fw-bold">Q@(producto.Precio?.ToString("N2") ?? "0.00")</p>
+                                                <div class="d-grid gap-2">
+                                                    <button class="btn btn-primary btn-add-cart" 
+                                                            data-id="@producto.Id" 
+                                                            data-nombre="@producto.Nombre" 
+                                                            data-precio="@producto.Precio" 
+                                                            data-stock="@(producto.Stock ?? 10)">
+                                                        <i class="fas fa-cart-plus me-2"></i> Añadir al carrito
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-12">
+                                    <div class="alert alert-info text-center">
+                                        No hay productos recomendados en este momento.
+                                        <br>
+                                        <a href="/Catalogo/Productos" class="btn btn-outline-primary btn-sm mt-2">
+                                            <i class="bi bi-shop me-1"></i>Explorar catálogo
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
 
-<style>
-    .notification-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 10px;
-    }
+<partial name="_Modals"></partial>
+
+@section Scripts {
+    <script src="~/js/producto-catalogo.js"></script>
+    <script src="~/js/carrito.js"></script>
     
-    .notification-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 15px;
-        flex-shrink: 0;
-    }
-    
-    .product-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .product-card img {
-        padding: 10px;
-        object-fit: contain;
-        height: 150px;
-    }
-</style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-add-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productoId = this.dataset.id;
+                    const nombre = this.dataset.nombre;
+                    const precio = parseFloat(this.dataset.precio);
+                    const stock = parseInt(this.dataset.stock);
+                    
+                    if (stock <= 0) {
+                        Swal.fire({
+                            title: 'Sin stock',
+                            text: 'Este producto no tiene unidades disponibles',
+                            icon: 'warning'
+                        });
+                        return;
+                    }
+                    
+                    if (typeof openAddToCartModal === 'function') {
+                        openAddToCartModal(productoId, nombre, precio, stock);
+                    } else {
+                        console.error('Function openAddToCartModal not found');
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'No se pudo abrir el modal de carrito',
+                            icon: 'error'
+                        });
+                    }
+                });
+            });
+            
+            if (typeof updateCartBadge === 'function') {
+                updateCartBadge();
+            }
+        });
+    </script>
+}

@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 class="m-0 font-weight-bold">Información de la Venta</h6>
+                    <h6 class="m-0 font-weight-bold">InformaciÃ³n de la Venta</h6>
                     <span class="badge bg-primary fs-5 py-2 px-3 fw-bold">@Model.NombreEstadoDeLaVenta</span>
                 </div>
                 <div class="card-body">
@@ -65,7 +65,7 @@
                             <thead>
                                 <tr>
                                     <th>Producto</th>
-                                    <th>Categoría</th>
+                                    <th>CategorÃ­a</th>
                                     <th>Precio</th>
                                     <th>Cantidad</th>
                                     <th>Subtotal</th>
@@ -74,25 +74,25 @@
                             <tbody>
                                 @foreach (var detalle in Model.DetallesDeLaVenta)
                                 {
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img src="@detalle.ImagenDelProducto" alt="@detalle.NombreDelProducto"
-                                                 class="img-thumbnail venta-producto-img"
-                                                 style="width: 40px; height: 40px; object-fit: cover; cursor: pointer;"
-                                                 title="Clic para ampliar">
-                                            <div>
-                                                <span class="fw-bold">@detalle.CodigoDelProducto</span>
-                                                <br>
-                                                <span>@detalle.NombreDelProducto</span>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="@detalle.ImagenDelProducto" alt="@detalle.NombreDelProducto" 
+                                                    class="img-thumbnail venta-producto-img" 
+                                                    style="width: 40px; height: 40px; object-fit: cover; cursor: pointer;"
+                                                    title="Clic para ampliar">                                                     
+                                                <div>
+                                                    <span class="fw-bold">@detalle.CodigoDelProducto</span>
+                                                    <br>
+                                                    <span>@detalle.NombreDelProducto</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>@detalle.NombreCategoria</td>
-                                    <td>Q @detalle.PrecioDeVenta.ToString("N2")</td>
-                                    <td>@detalle.Cantidad</td>
-                                    <td>Q @detalle.MontoTotal.ToString("N2")</td>
-                                </tr>
+                                        </td>
+                                        <td>@detalle.NombreCategoria</td>
+                                        <td>Q @detalle.PrecioDeVenta.ToString("N2")</td>
+                                        <td>@detalle.Cantidad</td>
+                                        <td>Q @detalle.MontoTotal.ToString("N2")</td>
+                                    </tr>
                                 }
                             </tbody>
                             <tfoot>

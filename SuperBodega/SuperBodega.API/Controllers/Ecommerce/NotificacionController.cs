@@ -4,8 +4,13 @@ using SuperBodega.API.DTOs.Ecommerce;
 
 namespace SuperBodega.API.Controllers.Ecommerce
 {
+    /// <summary>
+    /// Controlador para gestionar las notificaciones en el sistema
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
+    [ApiConventionType(typeof(DefaultApiConventions))]
     public class NotificacionController : ControllerBase
     {
         private readonly NotificacionService _notificacionService;
@@ -19,7 +24,18 @@ namespace SuperBodega.API.Controllers.Ecommerce
             _logger = logger;
         }
 
+        /// <summary>
+        /// Obtiene todas las notificaciones para un cliente específico
+        /// </summary>
+        /// <param name="clienteId">ID del cliente</param>
+        /// <returns>Lista de notificaciones</returns>
+        /// <response code="200">Retorna la lista de notificaciones</response>
+        /// <response code="404">No se encontraron notificaciones.</response>
+        /// <response code="500">Error interno del servidor</response>
         [HttpGet("cliente/{clienteId}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NotificacionDTO>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetByCliente(int clienteId)
         {
             try
@@ -42,7 +58,18 @@ namespace SuperBodega.API.Controllers.Ecommerce
             }
         }
 
+        /// <summary>
+        /// Envía una notificación de cambio de estado a un cliente
+        /// </summary>
+        /// <param name="ventaId">ID de la venta</param>
+        /// <returns>Resultado de la operación para notificar</returns>
+        /// <response code="200">Notificación enviada correctamente</response>
+        /// <response code="404">No se encontró la venta.</response>
+        /// <response code="500">Error interno del servidor</response>
         [HttpPost("enviar/{ventaId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> EnviarNotificacion(int ventaId)
         {
             try
@@ -57,7 +84,18 @@ namespace SuperBodega.API.Controllers.Ecommerce
             }
         }
 
+        /// <summary>
+        /// Marca una notificación como leída
+        /// </summary>
+        /// <param name="id">ID de la notificación</param>
+        /// <returns>Resultado de la operación para marcar como leída</returns>
+        /// <response code="200">Notificación marcada como leída</response>
+        /// <response code="404">No se encontró la notificación.</response>
+        /// <response code="500">Error interno del servidor</response>
         [HttpPost("marcar-leida/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> MarcarComoLeida(int id)
         {
             try

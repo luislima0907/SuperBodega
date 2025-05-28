@@ -32,13 +32,13 @@ body {
     padding: 20px;
     background: #2575fc;
     color: white;
-    flex-shrink: 0; /* Evita que el encabezado se contraiga */
+    flex-shrink: 0;
 }
 
 #sidebar .components-container {
     flex: 1;
-    overflow-y: auto; /* El scroll solo aparece en esta sección */
-    padding-bottom: 20px; /* Espacio adicional al final */
+    overflow-y: auto;
+    padding-bottom: 20px;
 }
 
 #sidebar ul.components {
@@ -220,7 +220,7 @@ body {
 
 #sidebar ul.submenu-items {
     padding-left: 20px;
-    display: none; /* Cambiado de max-height a display none para mejor manejo por jQuery */
+    display: none;
     background-color: #f8f9fa;
 }
 
@@ -332,4 +332,37 @@ body {
 #content.active {
     width: 100%;
     margin-left: 0;
+}
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.notification-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    padding: 10px;
+    object-fit: contain;
+    height: 150px;
 }

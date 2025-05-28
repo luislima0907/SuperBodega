@@ -83,7 +83,7 @@ function setupLinkInterception() {
     const enlaces = document.querySelectorAll('a[href]:not([href^="#"]):not([href^="javascript"])');
 
     enlaces.forEach(enlace => {
-        enlace.addEventListener('click', function (e) {
+        enlace.addEventListener('click', function(e) {
             // Ignorar si es un evento de menú de sidebar (para desplegar/colapsar submenús)
             if (e.isSidebarMenuEvent ||
                 (enlace.closest('.submenu') && enlace.getAttribute('href').startsWith('#'))) {
@@ -131,7 +131,7 @@ function setupLinkInterception() {
     };
 }
 
-// Nueva función para detectar cambios en el formulario de creación
+// Función para detectar cambios en el formulario de creación
 function setupFormCreacionChangesDetection() {
     const elementos = ['Codigo', 'Nombre', 'CategoriaId', 'Descripcion', 'imagen'];
 
@@ -255,7 +255,7 @@ function setupImagePreview() {
     previewImage.title = 'Clic para ampliar';
 
     // Agregar evento de clic para ampliar la imagen
-    previewImage.addEventListener('click', function (e) {
+    previewImage.addEventListener('click', function(e) {
         // Evitar la propagación del evento si se hace clic en el botón de eliminar
         if (!e.target.closest('#clear-image-button')) {
             mostrarImagenAmpliada(this.src, 'Vista previa');
@@ -269,13 +269,13 @@ function setupImagePreview() {
         inputGroup.parentNode.insertBefore(previewContainer, inputGroup.nextSibling);
     }
 
-    imagenInput.addEventListener('change', function () {
+    imagenInput.addEventListener('change', function() {
         const previewImage = document.getElementById('image-preview');
 
         if (this.files && this.files[0]) {
             const reader = new FileReader();
 
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 previewImage.src = e.target.result;
                 previewContainer.style.display = 'block';
 
@@ -298,7 +298,7 @@ function setupImagePreview() {
                 clearButton.innerHTML = '<i class="bi bi-x-lg"></i>';
                 clearButton.title = 'Quitar imagen seleccionada';
 
-                clearButton.addEventListener('click', function (e) {
+                clearButton.addEventListener('click', function(e) {
                     e.stopPropagation(); // Evitar que el clic se propague a la imagen
                     imagenInput.value = '';
                     previewContainer.style.display = 'none';
@@ -343,7 +343,7 @@ function configurarVistasPreviasImagenes() {
     // 1. Configurar las imágenes en la tabla de productos
     const tablaProductos = document.getElementById('tablaProductos');
     if (tablaProductos) {
-        tablaProductos.addEventListener('click', function (e) {
+        tablaProductos.addEventListener('click', function(e) {
             // Verificar si el clic fue en una imagen
             const imagen = e.target.closest('img.img-thumbnail');
             if (imagen) {
@@ -357,7 +357,7 @@ function configurarVistasPreviasImagenes() {
     // 2. Configurar la vista previa en el formulario de creación/edición
     const previewContainer = document.getElementById('image-preview-container');
     if (previewContainer) {
-        previewContainer.addEventListener('click', function (e) {
+        previewContainer.addEventListener('click', function(e) {
             const imagen = e.target.closest('#image-preview');
             if (imagen && imagen.src) {
                 // Evitar hacer clic en el botón de eliminar
@@ -373,7 +373,7 @@ function configurarVistasPreviasImagenes() {
     if (imagenExistente) {
         imagenExistente.style.cursor = 'pointer';
         imagenExistente.title = 'Clic para ampliar';
-        imagenExistente.addEventListener('click', function () {
+        imagenExistente.addEventListener('click', function() {
             const nombreProducto = this.getAttribute('alt') || 'Producto';
             mostrarImagenAmpliada(this.src, nombreProducto);
         });
@@ -527,7 +527,7 @@ function inicializarFormularioProducto() {
                 botonRegenerar.id = 'btnRegenerarCodigo';
                 botonRegenerar.title = 'Generar nuevo código';
                 botonRegenerar.innerHTML = '<i class="bi bi-arrow-repeat"></i>';
-                botonRegenerar.onclick = function () {
+                botonRegenerar.onclick = function() {
                     codigoInput.value = generarCodigoProducto();
                     formHasChanges = true;
                 };
@@ -573,8 +573,8 @@ function inicializarFormularioProducto() {
         const campoPrecioCompra = document.getElementById('PrecioDeCompra');
         const campoPrecioVenta = document.getElementById('PrecioDeVenta');
 
-        if (campoStock) {
-            //campoStock.disabled = true;
+        if (campoStock)
+        {
             agregarMensajeAdvertencia(campoStock);
         }
         if (campoPrecioCompra) {
@@ -597,7 +597,7 @@ function inicializarFormularioProducto() {
 
         if (mantenerImagenCheckbox && imagenInput) {
             // Si se selecciona una nueva imagen, desmarcar "mantener imagen"
-            imagenInput.addEventListener('change', function () {
+            imagenInput.addEventListener('change', function() {
                 if (this.files && this.files.length > 0) {
                     mantenerImagenCheckbox.checked = false;
                 }
@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Configurar botón de cancelar en edición/creación
     const btnCancelar = document.querySelector('#formCrearProducto a.btn-secondary, #formEditarProducto a.btn-secondary');
     if (btnCancelar) {
-        btnCancelar.addEventListener('click', function (e) {
+        btnCancelar.addEventListener('click', function(e) {
             if (formHasChanges) {
                 e.preventDefault();
 
@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Añadir manejo específico para el botón de regenerar código
     const btnRegenerarCodigo = document.getElementById('btnRegenerarCodigo');
     if (btnRegenerarCodigo) {
-        btnRegenerarCodigo.addEventListener('click', function () {
+        btnRegenerarCodigo.addEventListener('click', function() {
             const codigoInput = document.getElementById('Codigo');
             if (codigoInput) {
                 codigoInput.value = generarCodigoProducto();
@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Configurar el buscador de productos
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-        searchInput.addEventListener('keyup', function (e) {
+        searchInput.addEventListener('keyup', function(e) {
             if (e.key === 'Enter') {
                 loadProductos(this.value);
             }
@@ -695,7 +695,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Botón de búsqueda (si existe)
         const searchButton = document.getElementById('searchButton');
         if (searchButton) {
-            searchButton.addEventListener('click', function () {
+            searchButton.addEventListener('click', function() {
                 loadProductos(searchInput.value);
             });
         }
@@ -703,7 +703,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Botón para limpiar búsqueda
         const clearSearchButton = document.getElementById('clearSearchButton');
         if (clearSearchButton) {
-            clearSearchButton.addEventListener('click', function () {
+            clearSearchButton.addEventListener('click', function() {
                 searchInput.value = '';
                 loadProductos('');
             });
@@ -744,10 +744,10 @@ function loadProductos(searchTerm = '') {
     if (!tableBody) return;
 
     // Mostrar indicador de carga
-    tableBody.innerHTML = '<tr><td colspan="11" class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div></td></tr>';
+    tableBody.innerHTML = '<tr><td colspan="9" class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div></td></tr>';
 
     // Llamada a la API
-    fetch(`/api/Producto/GetAll`)
+    fetch('/api/Producto/GetAll')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al cargar productos');
@@ -777,7 +777,7 @@ function loadProductos(searchTerm = '') {
         })
         .catch(error => {
             console.error('Error:', error);
-            tableBody.innerHTML = `<tr><td colspan="11" class="text-center text-danger">Error al cargar datos: ${error.message}</td></tr>`;
+            tableBody.innerHTML = `<tr><td colspan="9" class="text-center text-danger">Error al cargar datos: ${error.message}</td></tr>`;
         });
 }
 
@@ -799,69 +799,90 @@ function renderProductos() {
 
     const imagenPorDefecto = '/images/productos/default.png';
 
-    // Renderizar productos directamente sin verificaciones adicionales
-    paginatedProductos.forEach(producto => {
-        const row = document.createElement('tr');
-        const fechaFormateada = formatearFechaAmPm(producto.fechaDeRegistro);
+    // Crear promesas para verificar dependencias de todos los productos
+    const verificacionPromesas = paginatedProductos.map(producto =>
+        fetch(`/api/Validaciones/producto/${producto.id}/tieneVentasActivas`)
+            .then(response => response.json())
+            .then(data => ({ id: producto.id, tieneVentasActivas: data.tieneVentasActivas }))
+            .catch(() => ({ id: producto.id, tieneVentasActivas: false })) // En caso de error, asumimos que no hay dependencias
+    );
 
-        // Determinar la URL de la imagen con verificación más robusta
-        let imagenUrl = imagenPorDefecto;
+    // Esperar a que todas las verificaciones terminen
+    Promise.all(verificacionPromesas)
+        .then(resultados => {
+            // Crear un mapa para acceder rápidamente a los resultados
+            const dependenciasMap = {};
+            resultados.forEach(r => dependenciasMap[r.id] = r.tieneVentasActivas);
 
-        if (producto.imagenUrl && producto.imagenUrl.trim() !== '' &&
-            producto.imagenUrl !== null && producto.imagenUrl !== 'null') {
-            // Verificar si la ruta es relativa y añadir la base si es necesario
-            if (producto.imagenUrl.startsWith('/')) {
-                imagenUrl = producto.imagenUrl;
-            } else {
-                imagenUrl = '/' + producto.imagenUrl;
-            }
-        }
+            paginatedProductos.forEach(producto => {
+                const row = document.createElement('tr');
+                const fechaFormateada = formatearFechaAmPm(producto.fechaDeRegistro);
 
-        // Generar los botones de acción sin verificación de ventas activas
-        let botonesAccion = `
-            <a href="/Productos/Edit/${producto.id}" class="btn btn-sm btn-primary me-1">
-                <i class="fas fa-edit"></i>
-            </a>
-            <button class="btn btn-sm btn-danger btn-eliminar-producto" 
-                    data-id="${producto.id}" 
-                    onclick="eliminarProducto(${producto.id})">
-                <i class="fas fa-trash"></i>
-            </button>
-        `;
+                // Determinar si el producto tiene ventas activas
+                const tieneVentasActivas = dependenciasMap[producto.id] || false;
 
-        row.innerHTML = `
-            <td class="text-center">
-                <img src="${imagenUrl}" 
-                    alt="${producto.nombre}"
-                    data-nombre="${producto.nombre}"
-                    class="img-thumbnail" 
-                    style="width: 50px; height: 50px; cursor: pointer;"
-                    title="Clic para ampliar"
-                    onerror="this.src='${imagenPorDefecto}';">
-            </td>
-            <td>${producto.codigo}</td>
-            <td>${producto.nombre}</td>
-            <td>${producto.descripcion}</td>
-            <td>${producto.categoriaNombre}</td>
-            <td class="${producto.stock <= 5 ? 'text-danger fw-bold' : ''}">${producto.stock}</td>
-            <td>${formatearPrecio(producto.precioDeCompra)}</td>
-            <td>${formatearPrecio(producto.precioDeVenta)}</td>
-            <td>
-                <span class="badge ${producto.estado ? 'bg-success' : 'bg-danger'}">
-                    ${producto.estado ? 'Activo' : 'Inactivo'}
-                </span>
-            </td>
-            <td>${fechaFormateada}</td>
-            <td>
-                ${botonesAccion}
-            </td>
-        `;
+                // Determinar la URL de la imagen con verificación más robusta
+                let imagenUrl = imagenPorDefecto;
 
-        tableBody.appendChild(row);
-    });
+                if (producto.imagenUrl && producto.imagenUrl.trim() !== '' &&
+                    producto.imagenUrl !== null && producto.imagenUrl !== 'null') {
+                    // Verificar si la ruta es relativa y añadir la base si es necesario
+                    if (producto.imagenUrl.startsWith('/')) {
+                        imagenUrl = producto.imagenUrl;
+                    } else {
+                        imagenUrl = '/' + producto.imagenUrl;
+                    }
+                }
 
-    // Configurar las imágenes ampliables después de renderizar
-    // configurarImagenesAmpliables();
+                // Generar los botones de acción con base en las dependencias
+                let botonesAccion = `
+                    <a href="/Productos/Edit/${producto.id}" 
+                       class="btn btn-sm btn-primary me-1 ${tieneVentasActivas ? 'disabled' : ''}" 
+                       ${tieneVentasActivas ? 'title="No se puede editar mientras tenga ventas activas"' : ''}>
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <button class="btn btn-sm btn-danger btn-eliminar-producto" 
+                            data-id="${producto.id}" 
+                            onclick="eliminarProducto(${producto.id})"
+                            ${tieneVentasActivas ? 'disabled title="No se puede eliminar mientras tenga ventas activas"' : ''}>
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+
+                row.innerHTML = `
+                    <td class="text-center">
+                        <img src="${imagenUrl}" 
+                            alt="${producto.nombre}"
+                            data-nombre="${producto.nombre}"
+                            class="img-thumbnail" 
+                            style="width: 50px; height: 50px; cursor: pointer;"
+                            title="Clic para ampliar"
+                            onerror="this.src='${imagenPorDefecto}';">
+                    </td>
+                    <td>${producto.codigo}</td>
+                    <td>${producto.nombre}</td>
+                    <td>${producto.descripcion}</td>
+                    <td>${producto.categoriaNombre}</td>
+                    <td class="${producto.stock <= 5 ? 'text-danger fw-bold' : ''}">${producto.stock}</td>
+                    <td>${formatearPrecio(producto.precioDeCompra)}</td>
+                    <td>${formatearPrecio(producto.precioDeVenta)}</td>
+                    <td>
+                        <span class="badge ${producto.estado ? 'bg-success' : 'bg-danger'}">
+                            ${producto.estado ? 'Activo' : 'Inactivo'}
+                        </span>
+                    </td>
+                    <td>${fechaFormateada}</td>
+                    <td>
+                        ${botonesAccion}
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+            // Configurar las imágenes ampliables después de renderizar
+            configurarImagenesAmpliables();
+        });
 }
 
 // Renderizar paginación
@@ -894,7 +915,7 @@ function renderPaginacion() {
     pagination.appendChild(nextLi);
 }
 
-// Función para cargar y mostrar los productos (actualizada)
+// Función para cargar y mostrar los productos
 function cargarProductos() {
     loadProductos();
     inicializarCampoFechaRegistro();
@@ -950,7 +971,7 @@ function restaurarDatosOriginalesProducto() {
 function configurarBotonRestaurar() {
     const btnRestaurar = document.getElementById('btnRestaurarProducto');
     if (btnRestaurar) {
-        btnRestaurar.addEventListener('click', function () {
+        btnRestaurar.addEventListener('click', function() {
             Swal.fire({
                 title: 'Confirmar',
                 text: '¿Desea restaurar todos los campos a su valor original?',
@@ -983,7 +1004,7 @@ function formatearPrecio(precio) {
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'GTQ' }).format(precio);
 }
 
-// Función para crear un nuevo producto (modificada para manejar mejor el error)
+// Función para crear un nuevo producto
 function crearProducto(event) {
     if (!validarFormularioProducto()) {
         return false;
@@ -1102,13 +1123,15 @@ function validarFormularioProducto() {
         document.getElementById('Nombre').classList.remove('is-invalid');
     }
 
-    if (descripcion.length > 200) {
+    if (descripcion.length > 200)
+    {
         isValid = false;
         document.getElementById('Descripcion').classList.add('is-invalid');
         mostrarAlerta('La descripción no puede exceder los 200 caracteres', 'danger');
         return false;
     }
-    else if (!descripcion) {
+    else if (!descripcion)
+    {
         isValid = false;
         document.getElementById('Descripcion').classList.add('is-invalid');
         mostrarAlerta('La descripción del producto es obligatoria', 'danger');
@@ -1186,7 +1209,6 @@ function editarProducto() {
             mostrarAlerta('Error al verificar datos: ' + error.message, 'danger');
         });
 }
-// ImagenUrl: mantenerImagen ? document.querySelector('img.img-thumbnail')?.getAttribute('src') : '/images/productos/default.png'
 
 function enviarFormularioEdicion() {
     const form = document.getElementById('formEditarProducto');
@@ -1221,7 +1243,6 @@ function enviarFormularioEdicion() {
         // Asegurarnos que el formulario tenga los campos necesarios
         formData.set('PrecioDeCompra', precioCompra);
         formData.set('PrecioDeVenta', precioVenta);
-        // Agregar el estado explícitamente
         formData.set('Estado', estadoValor ? 'true' : 'false');
 
         fetch(`/api/Producto/EditImage/${id}`, {
@@ -1270,10 +1291,10 @@ function enviarFormularioEdicion() {
             PrecioDeCompra: parseFloat(precioCompra),
             PrecioDeVenta: parseFloat(precioVenta),
             Estado: estadoValor,
-            ImagenUrl: null // Vamos a establecer esto correctamente
+            ImagenUrl: null
         };
 
-        // SOLUCIÓN CORREGIDA: Obtener la URL correctamente cuando se mantiene la imagen
+        // Obtener la URL correctamente cuando se mantiene la imagen
         if (mantenerImagen) {
             // Buscar la imagen más directamente (buscando dentro del div específico de imagen)
             const imgElement = document.querySelector('.mt-2 img.img-thumbnail');
@@ -1386,7 +1407,7 @@ function limpiarFormularioProducto() {
 function configurarBotonLimpiarProducto() {
     const btnLimpiar = document.getElementById('btnLimpiarProducto');
     if (btnLimpiar) {
-        btnLimpiar.addEventListener('click', function () {
+        btnLimpiar.addEventListener('click', function() {
             Swal.fire({
                 title: 'Confirmar',
                 text: '¿Está seguro que desea limpiar el formulario?',
@@ -1449,14 +1470,14 @@ function configurarBotonesEliminar() {
     const botonesEliminar = document.querySelectorAll('.btn-eliminar-producto, .btn-eliminar');
 
     botonesEliminar.forEach(boton => {
-        boton.addEventListener('click', function () {
+        boton.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
             eliminarProducto(id);
         });
     });
 }
 
-// Función para eliminar un producto (actualizada)
+// Función para eliminar un producto
 function eliminarProducto(id) {
     Swal.fire({
         title: '¿Está seguro?',

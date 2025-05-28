@@ -1,23 +1,23 @@
 $(document).ready(function() {
     // Crear contenedor para los toast si es necesario
     $('body').append('<div class="toast-container"></div>');
-    
+
     // Efecto de aparecer gradualmente para la sección principal
     $('.hero-section').hide().fadeIn(800);
-    
+
     // Funcionalidad básica
     setTimeout(() => {
         showToast('info', 'Bienvenido', 'Bienvenido a SuperBodega.');
     }, 1000);
-    
+
     // Función simplificada para toast de notificación
     function showToast(type, title, message) {
         console.log(`Mostrando toast: ${type} - ${title} - ${message}`);
-        
+
         const toastId = 'toast-' + new Date().getTime();
         let bgClass = 'bg-primary text-white';
         let iconClass = 'bi-info-circle';
-        
+
         switch(type) {
             case 'success':
                 bgClass = 'bg-success text-white';
@@ -32,7 +32,7 @@ $(document).ready(function() {
                 iconClass = 'bi-exclamation-triangle';
                 break;
         }
-        
+
         const $toast = $(`
             <div id="${toastId}" class="toast ${bgClass}" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -46,16 +46,16 @@ $(document).ready(function() {
                 </div>
             </div>
         `);
-        
+
         $('.toast-container').append($toast);
-        
+
         const toast = new bootstrap.Toast($toast[0], {
             delay: 5000,
             autohide: true
         });
-        
+
         toast.show();
-        
+
         $toast.on('hidden.bs.toast', function() {
             $(this).remove();
         });

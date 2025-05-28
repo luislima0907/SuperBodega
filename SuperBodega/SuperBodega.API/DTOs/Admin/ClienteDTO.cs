@@ -1,66 +1,130 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace SuperBodega.API.DTOs.Admin;
 
-namespace SuperBodega.API.DTOs.Admin;
-
+/// <summary>
+/// DTO para visualizar datos completos de un cliente
+/// </summary>
 public class ClienteDTO
 {
+    /// <summary>
+    /// Identificador único del cliente
+    /// </summary>
     public int Id { get; set; }
+    
+    /// <summary>
+    /// Nombre del cliente
+    /// </summary>
     public string Nombre { get; set; }
+    
+    /// <summary>
+    /// Apellido del cliente
+    /// </summary>
     public string Apellido { get; set; }
+    
+    /// <summary>
+    /// Correo electrónico del cliente
+    /// </summary>
     public string Email { get; set; }
+    
+    /// <summary>
+    /// Número de teléfono del cliente
+    /// </summary>
     public string Telefono { get; set; }
+    
+    /// <summary>
+    /// Dirección física del cliente
+    /// </summary>
     public string Direccion { get; set; }
+    
+    /// <summary>
+    /// Indica si el cliente está activo o inactivo
+    /// </summary>
     public bool Estado { get; set; }
+    
+    /// <summary>
+    /// Fecha en que se registró el cliente en el sistema
+    /// </summary>
+    /// <remarks>
+    /// Esta fecha se establece automáticamente al crear el cliente.
+    /// </remarks>
     public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
 }
 
+/// <summary>
+/// DTO para la creación de un nuevo cliente
+/// </summary>
 public class CreateClienteDTO
 {
-    [Required(ErrorMessage = "El nombre del cliente es obligatorio")]
-    [StringLength(100, ErrorMessage = "El nombre del cliente no puede exceder los 100 caracteres")]
+    /// <summary>
+    /// Nombre del cliente (obligatorio)
+    /// </summary>
     public string Nombre { get; set; }
     
-    [Required(ErrorMessage = "El apellido del cliente es obligatorio")]
-    [StringLength(100, ErrorMessage = "El apellido del cliente no puede exceder los 100 caracteres")]
+    /// <summary>
+    /// Apellido del cliente (obligatorio)
+    /// </summary>
     public string Apellido { get; set; }
     
-    [EmailAddress(ErrorMessage = "El email no es válido")]
-    [StringLength(50, ErrorMessage = "El email no puede exceder los 50 caracteres")]
+    /// <summary>
+    /// Correo electrónico del cliente
+    /// </summary>
     public string Email { get; set; }
     
-    [Phone(ErrorMessage = "El teléfono no es válido")]
-    [StringLength(15, ErrorMessage = "El teléfono no puede exceder los 15 caracteres")]
+    /// <summary>
+    /// Número de teléfono del cliente
+    /// </summary>
     public string Telefono { get; set; }
     
-    [StringLength(200, ErrorMessage = "La dirección no puede exceder los 200 caracteres")]
+    /// <summary>
+    /// Dirección física del cliente
+    /// </summary>
     public string Direccion { get; set; }
+    
+    /// <summary>
+    /// Indica si el cliente está activo o inactivo
+    /// </summary>
     public bool Estado { get; set; }
     
-    [Required(ErrorMessage = "La fecha de registro es obligatoria")]
-    [DataType(DataType.Date, ErrorMessage = "La fecha de registro no es válida")]
-    public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
+    /// <summary>
+    /// Fecha de registro del cliente
+    /// </summary>
+    /// <remarks>
+    /// Esta fecha se establece automáticamente al crear el cliente.
+    /// </remarks>
+    public DateTime FechaDeRegistro { get; set; } = DateTime.Now;
 }
 
+/// <summary>
+/// DTO para actualizar datos de un cliente existente
+/// </summary>
 public class UpdateClienteDTO
 {
-    [Required(ErrorMessage = "El nombre del cliente es obligatorio")]
-    [StringLength(100, ErrorMessage = "El nombre del cliente no puede exceder los 100 caracteres")]
+    /// <summary>
+    /// Nombre del cliente (obligatorio)
+    /// </summary>
     public string Nombre { get; set; }
     
-    [Required(ErrorMessage = "El apellido del cliente es obligatorio")]
-    [StringLength(100, ErrorMessage = "El apellido del cliente no puede exceder los 100 caracteres")]
+    /// <summary>
+    /// Apellido del cliente (obligatorio)
+    /// </summary>
     public string Apellido { get; set; }
     
-    [EmailAddress(ErrorMessage = "El email no es válido")]
-    [StringLength(50, ErrorMessage = "El email no puede exceder los 50 caracteres")]
+    /// <summary>
+    /// Correo electrónico del cliente
+    /// </summary>
     public string Email { get; set; }
     
-    [Phone(ErrorMessage = "El teléfono no es válido")]
-    [StringLength(15, ErrorMessage = "El teléfono no puede exceder los 15 caracteres")]
+    /// <summary>
+    /// Número de teléfono del cliente
+    /// </summary>
     public string Telefono { get; set; }
     
-    [StringLength(200, ErrorMessage = "La dirección no puede exceder los 200 caracteres")]
+    /// <summary>
+    /// Dirección física del cliente
+    /// </summary>
     public string Direccion { get; set; }
     
+    /// <summary>
+    /// Estado del cliente (activo/inactivo)
+    /// </summary>
     public bool Estado { get; set; }
 }

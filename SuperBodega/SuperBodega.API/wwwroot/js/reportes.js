@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname;
 
-    // Determinar quÈ vista de reportes est· activa
+    // Determinar qu√© vista de reportes est√° activa
     if (currentPath.includes('VentasPorPeriodo')) {
         initReportePorPeriodo();
     } else if (currentPath.includes('VentasPorCliente')) {
@@ -16,18 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Reporte por PerÌodo de Tiempo
+// Reporte por Per√≠odo de Tiempo
 function initReportePorPeriodo() {
-    console.log('Inicializando reporte por perÌodo');
+    console.log('Inicializando reporte por per√≠odo');
 
-    // Resetear las variables de fechas de b˙squeda
+    // Resetear las variables de fechas de b√∫squeda
     ultimaFechaInicioBusqueda = null;
     ultimaFechaFinBusqueda = null;
 
     // Configurar selector de fecha de inicio
     const fechaInicio = document.getElementById('fechaInicio');
     if (fechaInicio) {
-        // Establecer como valor predeterminado el primer dÌa del mes actual
+        // Establecer como valor predeterminado el primer d√≠a del mes actual
         const primerDiaDelMes = new Date();
         primerDiaDelMes.setDate(1);
         fechaInicio.valueAsDate = primerDiaDelMes;
@@ -40,27 +40,27 @@ function initReportePorPeriodo() {
         fechaFin.valueAsDate = new Date();
     }
 
-    // Configurar botÛn de b˙squeda
+    // Configurar bot√≥n de b√∫squeda
     const btnBuscar = document.getElementById('btnBuscarPorPeriodo');
     if (btnBuscar) {
         btnBuscar.addEventListener('click', buscarVentasPorPeriodo);
     }
 
-    // Configurar botÛn de exportaciÛn
+    // Configurar bot√≥n de exportaci√≥n
     const btnExportar = document.getElementById('btnExportarPorPeriodo');
     if (btnExportar) {
         btnExportar.addEventListener('click', exportarVentasPorPeriodo);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportar.disabled = true;
     }
 
-    // Configurar botÛn de exportaciÛn PDF
+    // Configurar bot√≥n de exportaci√≥n PDF
     const btnExportarPDF = document.getElementById('btnExportarPorPeriodoPDF');
     if (btnExportarPDF) {
         btnExportarPDF.addEventListener('click', exportarVentasPorPeriodoPDF);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportarPDF.disabled = true;
     }
 }
@@ -96,21 +96,21 @@ function initReportePorCliente() {
         clienteSelect.addEventListener('change', buscarVentasPorCliente);
     }
 
-    // Configurar botÛn de exportaciÛn
+    // Configurar bot√≥n de exportaci√≥n
     const btnExportar = document.getElementById('btnExportarPorCliente');
     if (btnExportar) {
         btnExportar.addEventListener('click', exportarVentasPorCliente);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportar.disabled = true;
     }
 
-    // Configurar botÛn de exportaciÛn PDF
+    // Configurar bot√≥n de exportaci√≥n PDF
     const btnExportarPDF = document.getElementById('btnExportarPorClientePDF');
     if (btnExportarPDF) {
         btnExportarPDF.addEventListener('click', exportarVentasPorClientePDF);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportarPDF.disabled = true;
     }
 }
@@ -146,21 +146,21 @@ function initReportePorProducto() {
         productoSelect.addEventListener('change', buscarVentasPorProducto);
     }
 
-    // Configurar botÛn de exportaciÛn
+    // Configurar bot√≥n de exportaci√≥n
     const btnExportar = document.getElementById('btnExportarPorProducto');
     if (btnExportar) {
         btnExportar.addEventListener('click', exportarVentasPorProducto);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportar.disabled = true;
     }
 
-    // Configurar botÛn de exportaciÛn PDF
+    // Configurar bot√≥n de exportaci√≥n PDF
     const btnExportarPDF = document.getElementById('btnExportarPorProductoPDF');
     if (btnExportarPDF) {
         btnExportarPDF.addEventListener('click', exportarVentasPorProductoPDF);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportarPDF.disabled = true;
     }
 }
@@ -196,26 +196,26 @@ function initReportePorProveedor() {
         proveedorSelect.addEventListener('change', buscarVentasPorProveedor);
     }
 
-    // Configurar botÛn de exportaciÛn
+    // Configurar bot√≥n de exportaci√≥n
     const btnExportar = document.getElementById('btnExportarPorProveedor');
     if (btnExportar) {
         btnExportar.addEventListener('click', exportarVentasPorProveedor);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportar.disabled = true;
     }
 
-    // Configurar botÛn de exportaciÛn PDF
+    // Configurar bot√≥n de exportaci√≥n PDF
     const btnExportarPDF = document.getElementById('btnExportarPorProveedorPDF');
     if (btnExportarPDF) {
         btnExportarPDF.addEventListener('click', exportarVentasPorProveedorPDF);
 
-        // Deshabilitar botÛn de exportaciÛn inicialmente
+        // Deshabilitar bot√≥n de exportaci√≥n inicialmente
         btnExportarPDF.disabled = true;
     }
 }
 
-// Variables para almacenar las fechas de la ˙ltima b˙squeda exitosa
+// Variables para almacenar las fechas de la √∫ltima b√∫squeda exitosa
 let ultimaFechaInicioBusqueda = null;
 let ultimaFechaFinBusqueda = null;
 
@@ -232,7 +232,7 @@ function buscarVentasPorPeriodo() {
     // Mostrar indicador de carga
     mostrarCargando();
 
-    // Deshabilitar los botones de exportaciÛn al iniciar una nueva b˙squeda
+    // Deshabilitar los botones de exportaci√≥n al iniciar una nueva b√∫squeda
     const btnExportar = document.getElementById('btnExportarPorPeriodo');
     const btnExportarPDF = document.getElementById('btnExportarPorPeriodoPDF');
     if (btnExportar) btnExportar.disabled = true;
@@ -241,7 +241,7 @@ function buscarVentasPorPeriodo() {
     fetch(`/api/Reporte/periodo?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('No se encontraron ventas para el perÌodo seleccionado');
+                throw new Error('No se encontraron ventas para el per√≠odo seleccionado');
             }
             return response.json();
         })
@@ -262,11 +262,11 @@ function buscarVentasPorPeriodo() {
             // Renderizar tabla y actualizar variables solo si hay ventas
             renderizarTablaVentas(ventas, 'fecha');
 
-            // Guardar las fechas de la b˙squeda exitosa
+            // Guardar las fechas de la b√∫squeda exitosa
             ultimaFechaInicioBusqueda = fechaInicio;
             ultimaFechaFinBusqueda = fechaFin;
 
-            // Habilitar botones de exportaciÛn solo si hay ventas
+            // Habilitar botones de exportaci√≥n solo si hay ventas
             if (btnExportar) btnExportar.disabled = false;
             if (btnExportarPDF) btnExportarPDF.disabled = false;
         })
@@ -288,7 +288,7 @@ function buscarVentasPorCliente() {
     const clienteId = document.getElementById('clienteSelect').value;
 
     if (!clienteId) {
-        // Limpiar tabla y deshabilitar botÛn de exportaciÛn
+        // Limpiar tabla y deshabilitar bot√≥n de exportaci√≥n
         document.getElementById('ventasTableBody').innerHTML = '';
         document.getElementById('btnExportarPorCliente').disabled = true;
         document.getElementById('btnExportarPorClientePDF').disabled = true;
@@ -309,13 +309,13 @@ function buscarVentasPorCliente() {
             ocultarCargando();
             renderizarTablaVentas(ventas, 'default');
 
-            // Habilitar botÛn de exportaciÛn
+            // Habilitar bot√≥n de exportaci√≥n
             const btnExportar = document.getElementById('btnExportarPorCliente');
             if (btnExportar) {
                 btnExportar.disabled = false;
             }
 
-            // Habilitar botÛn de exportaciÛn PDF
+            // Habilitar bot√≥n de exportaci√≥n PDF
             const btnExportarPDF = document.getElementById('btnExportarPorClientePDF');
             if (btnExportarPDF) {
                 btnExportarPDF.disabled = false;
@@ -332,7 +332,7 @@ function buscarVentasPorProducto() {
     const productoId = document.getElementById('productoSelect').value;
 
     if (!productoId) {
-        // Limpiar tabla y deshabilitar botÛn de exportaciÛn
+        // Limpiar tabla y deshabilitar bot√≥n de exportaci√≥n
         document.getElementById('ventasTableBody').innerHTML = '';
         document.getElementById('btnExportarPorProducto').disabled = true;
         document.getElementById('btnExportarPorProductoPDF').disabled = true;
@@ -345,7 +345,6 @@ function buscarVentasPorProducto() {
     fetch(`/api/Reporte/producto/${productoId}`)
         .then(response => {
             if (response.status === 404 || response.status === 204) {
-                // If no data, show friendly message instead of error
                 ocultarCargando();
                 document.getElementById('ventasTableBody').innerHTML = `
                     <tr>
@@ -373,7 +372,6 @@ function buscarVentasPorProducto() {
             ocultarCargando();
             renderizarTablaVentas(ventas, 'producto');
 
-            // Enable/disable export buttons based on data presence
             const hasData = ventas.length > 0;
 
             // Excel button
@@ -401,7 +399,7 @@ function buscarVentasPorProveedor() {
     const proveedorId = document.getElementById('proveedorSelect').value;
 
     if (!proveedorId) {
-        // Limpiar tabla y deshabilitar botÛn de exportaciÛn
+        // Limpiar tabla y deshabilitar bot√≥n de exportaci√≥n
         document.getElementById('ventasTableBody').innerHTML = '';
         document.getElementById('btnExportarPorProveedor').disabled = true;
         document.getElementById('btnExportarPorProveedorPDF').disabled = true;
@@ -468,9 +466,9 @@ function buscarVentasPorProveedor() {
 
 // Funciones para exportar a Excel
 function exportarVentasPorPeriodo() {
-    // Usar las fechas almacenadas de la ˙ltima b˙squeda exitosa
+    // Usar las fechas almacenadas de la √∫ltima b√∫squeda exitosa
     if (!ultimaFechaInicioBusqueda || !ultimaFechaFinBusqueda) {
-        mostrarError('Debe realizar una b˙squeda primero');
+        mostrarError('Debe realizar una b√∫squeda primero');
         return;
     }
 
@@ -487,7 +485,7 @@ function exportarVentasPorPeriodo() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte generado',
                 html: `El reporte ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar Excel</a>`,
@@ -502,11 +500,11 @@ function exportarVentasPorPeriodo() {
         });
 }
 
-// AÒadir la funciÛn para exportar a PDF por periodo
+// Funci√≥n para exportar a PDF por periodo
 function exportarVentasPorPeriodoPDF() {
-    // Usar las fechas almacenadas de la ˙ltima b˙squeda exitosa
+    // Usar las fechas almacenadas de la √∫ltima b√∫squeda exitosa
     if (!ultimaFechaInicioBusqueda || !ultimaFechaFinBusqueda) {
-        mostrarError('Debe realizar una b˙squeda primero');
+        mostrarError('Debe realizar una b√∫squeda primero');
         return;
     }
 
@@ -523,7 +521,7 @@ function exportarVentasPorPeriodoPDF() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte PDF generado',
                 html: `El reporte PDF ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar PDF</a>`,
@@ -559,7 +557,7 @@ function exportarVentasPorCliente() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte generado',
                 html: `El reporte ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar Excel</a>`,
@@ -574,7 +572,7 @@ function exportarVentasPorCliente() {
         });
 }
 
-// Agregar la funciÛn de exportaciÛn a PDF
+// Funci√≥n de exportaci√≥n a PDF
 function exportarVentasPorClientePDF() {
     const clienteId = document.getElementById('clienteSelect').value;
 
@@ -596,7 +594,7 @@ function exportarVentasPorClientePDF() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte PDF generado',
                 html: `El reporte PDF ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar PDF</a>`,
@@ -611,7 +609,6 @@ function exportarVentasPorClientePDF() {
         });
 }
 
-// Implementar funciones similares para exportar por producto y proveedor
 function exportarVentasPorProducto() {
     const productoId = document.getElementById('productoSelect').value;
 
@@ -633,7 +630,7 @@ function exportarVentasPorProducto() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte generado',
                 html: `El reporte ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar Excel</a>`,
@@ -669,7 +666,7 @@ function exportarVentasPorProductoPDF() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte PDF generado',
                 html: `El reporte PDF ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar PDF</a>`,
@@ -705,7 +702,7 @@ function exportarVentasPorProveedor() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte generado',
                 html: `El reporte ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar Excel</a>`,
@@ -741,7 +738,7 @@ function exportarVentasPorProveedorPDF() {
         .then(data => {
             ocultarCargando();
 
-            // Mostrar mensaje de Èxito con enlace de descarga
+            // Mostrar mensaje de √©xito con enlace de descarga
             Swal.fire({
                 title: 'Reporte PDF generado',
                 html: `El reporte PDF ha sido generado correctamente.<br><a href="${data.url}" target="_blank" class="btn btn-primary mt-3">Descargar PDF</a>`,
@@ -756,7 +753,7 @@ function exportarVentasPorProveedorPDF() {
         });
 }
 
-// FunciÛn para renderizar la tabla de ventas
+// Funci√≥n para renderizar la tabla de ventas
 function renderizarTablaVentas(ventas, caseTable = 'default') {
     const tableBody = document.getElementById('ventasTableBody');
 
@@ -773,7 +770,8 @@ function renderizarTablaVentas(ventas, caseTable = 'default') {
         return;
     }
 
-    if (caseTable === 'default') {
+    if (caseTable === 'default')
+    {
         ventas.forEach(venta => {
             // Formatear fecha
             const fechaFormateada = formatearFechaAmPm(venta.fechaDeRegistro);
@@ -794,16 +792,15 @@ function renderizarTablaVentas(ventas, caseTable = 'default') {
             tableBody.appendChild(row);
         });
     }
-    else if (caseTable === 'producto') {
+    else if (caseTable === 'producto')
+    {
         ventas.forEach(venta => {
-            // Find the first detail containing product info (should be filtered by the API to only contain the selected product)
             const productoDetalle = venta.detalles && venta.detalles.length > 0 ? venta.detalles[0] : null;
 
             // Formatear fecha
             const fechaFormateada = formatearFechaAmPm(venta.fechaDeRegistro);
 
-            // Extract category name if available
-            const categoria = productoDetalle?.nombreCategoria || 'Sin categorÌa';
+            const categoria = productoDetalle?.nombreCategoria || 'Sin categor√≠a';
 
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -833,7 +830,8 @@ function renderizarTablaVentas(ventas, caseTable = 'default') {
             tableBody.appendChild(row);
         });
     }
-    else if (caseTable === 'proveedor') {
+    else if (caseTable === 'proveedor')
+    {
         ventas.forEach(venta => {
             // Formatear fecha
             const fechaFormateada = formatearFechaAmPm(venta.fechaDeRegistro);
@@ -855,7 +853,8 @@ function renderizarTablaVentas(ventas, caseTable = 'default') {
             tableBody.appendChild(row);
         });
     }
-    else if (caseTable === 'fecha') {
+    else if (caseTable === 'fecha')
+    {
         ventas.forEach(venta => {
             // Formatear fecha
             const fechaFormateada = formatearFechaAmPm(venta.fechaDeRegistro);
@@ -877,7 +876,7 @@ function renderizarTablaVentas(ventas, caseTable = 'default') {
     }
 }
 
-// FunciÛn para mostrar detalles de venta
+// Funci√≥n para mostrar detalles de venta
 function mostrarDetallesVenta(ventaId) {
     // Mostrar cargando
     mostrarCargando('Cargando detalles...');
@@ -909,9 +908,9 @@ function mostrarDetallesVenta(ventaId) {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>CÛdigo</th>
+                            <th>C√≥digo</th>
                             <th>Producto</th>
-                            <th>CategorÌa</th>
+                            <th>Categor√≠a</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
                             <th>Subtotal</th>
@@ -920,7 +919,6 @@ function mostrarDetallesVenta(ventaId) {
                     <tbody>
             `;
 
-            // Check which property contains the details
             const detalles = venta.detalles || venta.detallesDeLaVenta || venta.DetallesDeLaVenta || [];
 
             if (detalles && detalles.length > 0) {
@@ -931,13 +929,13 @@ function mostrarDetallesVenta(ventaId) {
                             <td>
                                 ${detalle.nombreDelProducto || detalle.NombreDelProducto || detalle.producto?.nombre || 'Producto no disponible'}
                                 ${detalle.imagenDelProducto ?
-                            `<br><img src="${detalle.imagenDelProducto}" alt="${detalle.nombreDelProducto || 'Producto'}" class="img-thumbnail" style="max-width: 50px;">` :
-                            detalle.producto?.imagenUrl ?
-                                `<br><img src="${detalle.producto.imagenUrl}" alt="${detalle.producto.nombre || 'Producto'}" class="img-thumbnail" style="max-width: 50px;">` :
-                                ''
-                        }
+                        `<br><img src="${detalle.imagenDelProducto}" alt="${detalle.nombreDelProducto || 'Producto'}" class="img-thumbnail" style="max-width: 50px;">` :
+                        detalle.producto?.imagenUrl ?
+                            `<br><img src="${detalle.producto.imagenUrl}" alt="${detalle.producto.nombre || 'Producto'}" class="img-thumbnail" style="max-width: 50px;">` :
+                            ''
+                    }
                             </td>
-                            <td>${detalle.nombreCategoria || detalle.NombreCategoria || detalle.producto?.categoria?.nombre || 'Sin categorÌa'}</td>
+                            <td>${detalle.nombreCategoria || detalle.NombreCategoria || detalle.producto?.categoria?.nombre || 'Sin categor√≠a'}</td>
                             <td>Q ${(detalle.precioDeVenta || detalle.PrecioDeVenta || 0).toFixed(2)}</td>
                             <td>${detalle.cantidad || detalle.Cantidad || 0}</td>
                             <td>Q ${((detalle.precioDeVenta || detalle.PrecioDeVenta || 0) * (detalle.cantidad || detalle.Cantidad || 0)).toFixed(2)}</td>
@@ -988,22 +986,22 @@ function mostrarDetallesVenta(ventaId) {
 
 // Formatear fecha con formato AM/PM
 function formatearFechaAmPm(fechaStr) {
-    // Si no hay fecha, devolver cadena vacÌa
+    // Si no hay fecha, devolver cadena vac√≠a
     if (!fechaStr) return '';
 
     // Crear objeto Date a partir de la cadena
     const fecha = new Date(fechaStr);
 
-    // Verificar si la fecha es v·lida
-    if (isNaN(fecha.getTime())) return 'Fecha inv·lida';
+    // Verificar si la fecha es v√°lida
+    if (isNaN(fecha.getTime())) return 'Fecha inv√°lida';
 
-    // Ajustamos la fecha a la zona horaria local explÌcitamente
+    // Ajustamos la fecha a la zona horaria local expl√≠citamente
     const fechaLocal = new Date(fecha.getTime());
 
     // Formatear los componentes de la fecha
     const dia = fechaLocal.getDate().toString().padStart(2, '0');
     const mes = (fechaLocal.getMonth() + 1).toString().padStart(2, '0');
-    const anio = fechaLocal.getFullYear();
+    const a√±o = fechaLocal.getFullYear();
 
     // Formatear hora en formato 12 horas
     let horas = fechaLocal.getHours();
@@ -1013,7 +1011,7 @@ function formatearFechaAmPm(fechaStr) {
     horas = horas ? horas : 12; // La hora '0' debe mostrarse como '12'
     const horasStr = horas.toString().padStart(2, '0');
 
-    return `${dia}/${mes}/${anio} ${horasStr}:${minutos} ${ampm}`;
+    return `${dia}/${mes}/${a√±o} ${horasStr}:${minutos} ${ampm}`;
 }
 
 // Funciones auxiliares

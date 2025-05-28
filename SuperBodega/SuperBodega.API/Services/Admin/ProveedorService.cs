@@ -13,7 +13,7 @@ public class ProveedorService
         _proveedorRepository = proveedorRepository;
     }
 
-    public async Task<IEnumerable<ProveedorDTO>> GetAllAsync()
+    public async Task<IEnumerable<ProveedorDTO>> GetAllProveedoresAsync()
     {
         var proveedores = await _proveedorRepository.GetAllAsync();
         return proveedores.Select(p => new ProveedorDTO
@@ -28,7 +28,7 @@ public class ProveedorService
         });
     }
 
-    public async Task<ProveedorDTO> GetByIdAsync(int id)
+    public async Task<ProveedorDTO> GetProveedorByIdAsync(int id)
     {
         var proveedor = await _proveedorRepository.GetByIdAsync(id);
         if (proveedor == null)

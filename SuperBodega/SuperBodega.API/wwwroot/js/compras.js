@@ -75,9 +75,6 @@ function inicializarCompra() {
     if (fechaInput && fechaVisibleInput) {
         // Si no hay valor en el campo oculto, establecer la fecha actual
         if (!fechaInput.value) {
-            // Guardar fecha en formato ISO en el campo oculto
-            // fechaInput.value = now.toISOString();
-
             // Mostrar fecha formateada en el campo visible
             fechaVisibleInput.value = formatearFechaAmPm(now);
         } else {
@@ -567,7 +564,7 @@ function mostrarProductos(productos) {
             `<span class="badge bg-secondary">${producto.stock}</span>` :
             producto.stock;
 
-        // Todos los botones ahora son clicables (no se usa disabled)
+        // Todos los botones ahora son clicables
         const fila = `
             <tr class="${rowClass}">
                 <td>${producto.codigo}</td>
@@ -800,7 +797,7 @@ function procesarDetalle(id, codigo, nombre, precioCompra, precioVenta, cantidad
             precioDeVenta: precioVenta,
             cantidad: cantidad,
             subtotal: subtotal,
-            imagenUrl: imagenUrl 
+            imagenUrl: imagenUrl  // Incluir la URL de la imagen
         };
 
         // Resetear el estado del modal
@@ -809,7 +806,7 @@ function procesarDetalle(id, codigo, nombre, precioCompra, precioVenta, cantidad
         $('#btn-agregar-detalle').text('Agregar');
 
     } else {
-        // Es un nuevo detalle - verificar si ya existe
+        // Verificar si ya existe
         const indiceExistente = detallesCompra.findIndex(d => d.idProducto === id);
         if (indiceExistente >= 0) {
             Swal.fire({
@@ -842,7 +839,7 @@ function procesarDetalle(id, codigo, nombre, precioCompra, precioVenta, cantidad
             precioDeVenta: precioVenta,
             cantidad: cantidad,
             subtotal: subtotal,
-            imagenUrl: imagenUrl 
+            imagenUrl: imagenUrl  // Incluir la URL de la imagen
         };
 
         detallesCompra.push(detalle);
@@ -1210,7 +1207,7 @@ function editarCompra() {
                         idProveedor: parseInt(idProveedor),
                         // Añadimos los detalles de la compra para actualización
                         detallesDeLaCompra: detallesCompra.map(d => ({
-                            id: d.detalleId || 0,
+                            id: d.detalleId || 0, 
                             idProducto: d.idProducto,
                             precioDeCompra: d.precioDeCompra,
                             precioDeVenta: d.precioDeVenta,
@@ -1667,14 +1664,4 @@ function setupLinkInterception() {
             }
         });
     });
-
-    // Interceptar al cerrar la ventana o cambiar de página
-    // window.onbeforeunload = function (e) {
-    //     if (formularioModificado && !navegacionAprobada) {
-    //         // Mensaje estándar del navegador
-    //         const mensaje = 'Hay cambios sin guardar. ¿Está seguro que desea salir sin guardar los cambios?';
-    //         e.returnValue = mensaje;
-    //         return mensaje;
-    //     }
-    // };
 }

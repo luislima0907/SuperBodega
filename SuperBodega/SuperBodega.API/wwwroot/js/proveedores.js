@@ -60,7 +60,7 @@ function formatearFechaAmPm(fechaStr) {
     return `${dia}/${mes}/${año} ${horasStr}:${minutos} ${ampm}`;
 }
 
-// Ajustar la función cargarProveedores para que muestre los datos en la tabla
+// Función para que muestre los datos en la tabla
 function cargarProveedores() {
     // Mostrar indicador de carga en la tabla
     const tablaBody = document.querySelector('#proveedoresTable tbody');
@@ -77,44 +77,64 @@ function cargarProveedores() {
         })
         .then(data => {
             if (tablaBody) {
-                // Limpiar tabla y mostrar datos
-                tablaBody.innerHTML = '';
+                // Crear promesas para verificar dependencias de todos los proveedores
+                const verificacionPromesas = data.map(proveedor =>
+                    fetch(`/api/Validaciones/proveedor/${proveedor.id}/tieneVentasActivas`)
+                        .then(response => response.json())
+                        .then(resultado => ({ id: proveedor.id, tieneVentasActivas: resultado.tieneVentasActivas }))
+                        .catch(() => ({ id: proveedor.id, tieneVentasActivas: false }))
+                );
 
-                if (data.length === 0) {
-                    tablaBody.innerHTML = '<tr><td colspan="8" class="text-center">No se encontraron proveedores</td></tr>';
-                    return;
-                }
+                Promise.all(verificacionPromesas)
+                    .then(resultados => {
+                        // Crear un mapa para acceder rápidamente a los resultados
+                        const dependenciasMap = {};
+                        resultados.forEach(r => dependenciasMap[r.id] = r.tieneVentasActivas);
 
-                data.forEach(proveedor => {
-                    const fechaFormateada = formatearFechaAmPm(proveedor.fechaDeRegistro);
+                        // Limpiar tabla y mostrar datos
+                        tablaBody.innerHTML = '';
 
-                    tablaBody.innerHTML += `
-                        <tr>
-                            <td>${proveedor.id}</td>
-                            <td>${proveedor.nombre}</td>
-                            <td>${proveedor.email || '-'}</td>
-                            <td>${proveedor.telefono || '-'}</td>
-                            <td>${proveedor.direccion || '-'}</td>
-                            <td>
-                                <span class="badge ${proveedor.estado ? 'bg-success' : 'bg-danger'}">
-                                    ${proveedor.estado ? 'Activo' : 'Inactivo'}
-                                </span>
-                            </td>
-                            <td>${fechaFormateada}</td>
-                            <td>
-                                <a href="/Proveedores/Edit/${proveedor.id}" class="btn btn-sm btn-primary me-1">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <button class="btn btn-sm btn-danger btn-eliminar-proveedor" data-id="${proveedor.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
+                        if (data.length === 0) {
+                            tablaBody.innerHTML = '<tr><td colspan="8" class="text-center">No se encontraron proveedores</td></tr>';
+                            return;
+                        }
 
-                // Reconfigurar los botones de eliminar
-                configurarBotonesEliminar();
+                        data.forEach(proveedor => {
+                            const tieneVentasActivas = dependenciasMap[proveedor.id] || false;
+                            const fechaFormateada = formatearFechaAmPm(proveedor.fechaDeRegistro);
+
+                            tablaBody.innerHTML += `
+                                <tr>
+                                    <td>${proveedor.id}</td>
+                                    <td>${proveedor.nombre}</td>
+                                    <td>${proveedor.email || '-'}</td>
+                                    <td>${proveedor.telefono || '-'}</td>
+                                    <td>${proveedor.direccion || '-'}</td>
+                                    <td>
+                                        <span class="badge ${proveedor.estado ? 'bg-success' : 'bg-danger'}">
+                                            ${proveedor.estado ? 'Activo' : 'Inactivo'}
+                                        </span>
+                                    </td>
+                                    <td>${fechaFormateada}</td>
+                                    <td>
+                                        <a href="/Proveedores/Edit/${proveedor.id}" 
+                                          class="btn btn-sm btn-primary me-1 ${tieneVentasActivas ? 'disabled' : ''}" 
+                                          ${tieneVentasActivas ? 'title="No se puede editar mientras tenga productos en ventas activas"' : ''}>
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-danger btn-eliminar-proveedor" 
+                                                data-id="${proveedor.id}" 
+                                                ${tieneVentasActivas ? 'disabled title="No se puede eliminar mientras tenga productos en ventas activas"' : ''}>
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+
+                        // Reconfigurar los botones de eliminar
+                        configurarBotonesEliminar();
+                    });
             }
         })
         .catch(error => {
@@ -612,7 +632,7 @@ function enviarFormularioEdicion(id){
 
     // Crear objeto para enviar
     const proveedorDto = {
-        id: id, // Incluir el ID en el objeto
+        id: id,
         nombre: nombre,
         email: email,
         telefono: telefono,

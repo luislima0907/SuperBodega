@@ -5,15 +5,16 @@
     const pagoSection = document.querySelector('.card-body:last-of-type');
     if (pagoSection) {
         const preferenciasDiv = document.createElement('div');
-        preferenciasDiv.className = 'form-check mb-3';
+        preferenciasDiv.className = 'form-check form-switch mb-3';
         preferenciasDiv.innerHTML = `
             <input class="form-check-input" type="checkbox" id="notificacionSincronica" 
                    ${localStorage.getItem('preferNotificacionSincronica') === 'true' ? 'checked' : ''}>
             <label class="form-check-label" for="notificacionSincronica">
-                Recibir notificación inmediata por correo
+                Recibir notificaciones en modo sincrónico
             </label>
             <small class="form-text text-muted d-block">
-                Si está habilitado, recibirá el email inmediatamente. De lo contrario, se procesará en segundo plano.
+                Cuando está activado, los correos se envían al terminar procesarse. 
+                Cuando está desactivado, se procesan en segundo plano en modo asincróno.
             </small>
         `;
 
@@ -381,7 +382,7 @@
                 return response.json();
             })
             .then(data => {
-                // Proceder a limpiar el carrito SOLO si la venta se realizó correctamente
+                // Proceder a limpiar el carrito solo si la venta se realizó correctamente
                 return fetch(`/api/ecommerce/Carrito/clear/client/${clienteId}`,{ method:'DELETE' })
                     .then(() => data); // Pasar los datos de la venta al siguiente then
             })

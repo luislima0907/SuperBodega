@@ -171,12 +171,12 @@ function createCategoria(categoriaData) {
 // Cargar datos de categoría para edición
 function loadCategoriaData(id) {
     fetch(`/api/Categoria/${id}`)
-.then(response => {
-        if (!response.ok) {
-            throw new Error('Categoría no encontrada');
-        }
-        return response.json();
-    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Categoría no encontrada');
+            }
+            return response.json();
+        })
         .then(categoria => {
             // Guardar los datos originales
             categoriaOriginal = {...categoria};
@@ -316,17 +316,17 @@ function restaurarDatos() {
 function updateCategoria(id, categoriaData) {
     fetch(`/api/Categoria/Edit/${id}`, {
         method: 'PUT',
-            headers: {
+        headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(categoriaData)
     })
-.then(response => {
-        if (!response.ok) {
-            throw new Error('Error al actualizar categoría');
-        }
-        return response.json();
-    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar categoría');
+            }
+            return response.json();
+        })
         .then(data => {
             // Actualizar los datos originales con los nuevos
             categoriaOriginal = {...data};
@@ -338,10 +338,10 @@ function updateCategoria(id, categoriaData) {
         });
 }
 
-// Añadir esta nueva función para verificar duplicados en edición (excluye la categoría actual)
+// Verificar duplicados en edición (excluye la categoría actual)
 function verificarNombreDuplicadoParaEdicion(nombre, idActual) {
     return new Promise((resolve, reject) => {
-        fetch(`/api/Categoria`)
+        fetch('/api/Categoria')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error al cargar categorías');
@@ -391,20 +391,20 @@ function deleteCategoria(id) {
     fetch(`/api/Categoria/Delete/${id}`, {
         method: 'DELETE'
     })
-.then(response => {
-        if (!response.ok) {
-            throw new Error('Error al eliminar categoría');
-        }
-
-        mostrarModalExitoConAccion('Categoría eliminada con éxito', function() {
-            loadCategorias();
-            const modalExito = document.getElementById('modalExito');
-            const bootstrapModal = bootstrap.Modal.getInstance(modalExito);
-            if (bootstrapModal) {
-                bootstrapModal.hide();
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al eliminar categoría');
             }
-        });
-    })
+
+            mostrarModalExitoConAccion('Categoría eliminada con éxito', function() {
+                loadCategorias();
+                const modalExito = document.getElementById('modalExito');
+                const bootstrapModal = bootstrap.Modal.getInstance(modalExito);
+                if (bootstrapModal) {
+                    bootstrapModal.hide();
+                }
+            });
+        })
         .catch(error => {
             console.error('Error:', error);
             mostrarAlerta(`Error al eliminar categoría: ${error.message}`, 'danger');
@@ -729,32 +729,55 @@ function renderCategorias() {
         return;
     }
 
-    paginatedCategorias.forEach(categoria => {
-        const row = document.createElement('tr');
-        const fechaFormateada = formatearFechaAmPm(categoria.fechaDeRegistro);
+    // Crear promesas para verificar dependencias de todas las categorías
+    const verificacionPromesas = paginatedCategorias.map(categoria =>
+        fetch(`/api/Validaciones/categoria/${categoria.id}/tieneVentasActivas`)
+            .then(response => response.json())
+            .then(data => ({ id: categoria.id, tieneVentasActivas: data.tieneVentasActivas }))
+            .catch(() => ({ id: categoria.id, tieneVentasActivas: false })) 
+    );
 
-        row.innerHTML = `
-            <td>${categoria.id}</td>
-            <td>${categoria.nombre}</td>
-            <td>${categoria.descripcion || '-'}</td>
-            <td>
-                <span class="badge ${categoria.estado ? 'bg-success' : 'bg-danger'}">
-                    ${categoria.estado ? 'Activo' : 'Inactivo'}
-                </span>
-            </td>
-            <td>${fechaFormateada}</td>
-            <td>
-                <a href="/Categorias/Edit/${categoria.id}" class="btn btn-sm btn-primary me-1">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <button class="btn btn-sm btn-danger" onclick="confirmDelete(${categoria.id})">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        `;
+    // Esperar a que todas las verificaciones terminen
+    Promise.all(verificacionPromesas)
+        .then(resultados => {
+            // Crear un mapa para acceder rápidamente a los resultados
+            const dependenciasMap = {};
+            resultados.forEach(r => dependenciasMap[r.id] = r.tieneVentasActivas);
 
-        tableBody.appendChild(row);
-    });
+            paginatedCategorias.forEach(categoria => {
+                const row = document.createElement('tr');
+                const fechaFormateada = formatearFechaAmPm(categoria.fechaDeRegistro);
+
+                // Determinar si la categoría tiene productos en ventas activas
+                const tieneVentasActivas = dependenciasMap[categoria.id] || false;
+
+                row.innerHTML = `
+                    <td>${categoria.id}</td>
+                    <td>${categoria.nombre}</td>
+                    <td>${categoria.descripcion || '-'}</td>
+                    <td>
+                        <span class="badge ${categoria.estado ? 'bg-success' : 'bg-danger'}">
+                            ${categoria.estado ? 'Activo' : 'Inactivo'}
+                        </span>
+                    </td>
+                    <td>${fechaFormateada}</td>
+                    <td>
+                        <a href="/Categorias/Edit/${categoria.id}" 
+                           class="btn btn-sm btn-primary me-1 ${tieneVentasActivas ? 'disabled' : ''}" 
+                           ${tieneVentasActivas ? 'title="No se puede editar mientras tenga productos en ventas activas"' : ''}>
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button class="btn btn-sm btn-danger" 
+                                onclick="confirmDelete(${categoria.id})"
+                                ${tieneVentasActivas ? 'disabled title="No se puede eliminar mientras tenga productos en ventas activas"' : ''}>
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        });
 }
 
 // Renderizar paginación
@@ -798,7 +821,7 @@ function changePage(page) {
 // FUNCIONES DE FORMATO
 // -------------------
 
-// Función mejorada para formatear fechas en formato AM/PM con manejo explícito de zona horaria
+// Función para formatear fechas en formato AM/PM con manejo explícito de zona horaria
 function formatearFechaAmPm(fechaStr) {
     // Si no hay fecha, devolver cadena vacía
     if (!fechaStr) return '';
@@ -831,7 +854,7 @@ function formatearFechaAmPm(fechaStr) {
 // FUNCIONES UI
 // -----------
 
-// Función para mostrar alerta estilizada (mantenemos esta función para mensajes pequeños)
+// Función para mostrar alerta estilizada (para mensajes pequeños)
 function mostrarAlerta(mensaje, tipo, duracion = 5000) {
     // Mapear los tipos de alerta a los iconos de SweetAlert
     let icon;

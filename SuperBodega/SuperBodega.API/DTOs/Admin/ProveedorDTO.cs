@@ -1,62 +1,109 @@
-
-using System.ComponentModel.DataAnnotations;
-
 namespace SuperBodega.API.DTOs.Admin;
 
-
+/// <summary>
+/// DTO para visualizar datos completos de un proveedor
+/// </summary>
 public class ProveedorDTO
 {
+    /// <summary>
+    /// Identificador único del proveedor
+    /// </summary>
     public int Id { get; set; }
+    
+    /// <summary>
+    /// Nombre del proveedor
+    /// </summary>
     public string Nombre { get; set; }
+    
+    /// <summary>
+    /// Email del proveedor
+    /// </summary>
     public string Email { get; set; }
+    
+    /// <summary>
+    /// Teléfono del proveedor
+    /// </summary>
     public string Telefono { get; set; }
+    
+    /// <summary>
+    /// Dirección del proveedor
+    /// </summary>
     public string Direccion { get; set; }
+    
+    /// <summary>
+    /// Indica si el proveedor está activo o inactivo
+    /// </summary>
     public bool Estado { get; set; }
-    public DateTime FechaDeRegistro { get; set; }       
+    
+    /// <summary>
+    /// Fecha en que se registró el proveedor en el sistema
+    /// </summary>
+    public DateTime FechaDeRegistro { get; set; }
 }
 
+/// <summary>
+/// DTO para la creación de un nuevo proveedor
+/// </summary>
 public class CreateProveedorDTO
 {
-    [Required(ErrorMessage = "El nombre del proveedor es obligatorio")]
-    [StringLength(100, ErrorMessage = "El nombre del proveedor no puede exceder los  100 caracteres")]
+    /// <summary>
+    /// Nombre del proveedor
+    /// </summary>
     public string Nombre { get; set; }
 
-    [EmailAddress(ErrorMessage = "El email no es v�lido")]
-    [StringLength(50, ErrorMessage = "El email no puede exceder los 50 caracteres")]
+    /// <summary>
+    /// Email del proveedor
+    /// </summary>
     public string Email { get; set; }
-
-    [Phone(ErrorMessage = "El telefono no es v�lido")]
-    [StringLength(15, ErrorMessage = "El tel�fono  no puede exceder los 15 caracteres")]
+    
+    /// <summary>
+    /// Teléfono del proveedor
+    /// </summary>
     public string Telefono { get; set; }
-
-
-    [StringLength(200, ErrorMessage = "La direccion no puede exceder los 200 caracteres")]
+    
+    /// <summary>
+    /// Dirección del proveedor
+    /// </summary>
     public string Direccion { get; set; }
-
-    public bool Estado {get; set; } 
-
-    [Required(ErrorMessage = "La fecha de Registro es obligatoria")]
-    [DataType(DataType.Date, ErrorMessage = "La fecha de registro no es valida")]
+    
+    /// <summary>
+    /// Indica si el proveedor está activo o inactivo
+    /// </summary>
+    public bool Estado { get; set; }
+    
+    /// <summary>
+    /// Fecha en que se registró el proveedor en el sistema
+    /// </summary>
     public DateTime FechaDeRegistro { get; set; } = DateTime.UtcNow;
 }
 
+/// <summary>
+/// DTO para la actualización de un proveedor existente
+/// </summary>
 public class UpdateProveedorDTO
 {
-    [Required(ErrorMessage = "El nombre del proveedor es obligatorio")]
-    [StringLength(100, ErrorMessage = "El nombre del proveedor no puede exceder los  100 caracteres")]
+    /// <summary>
+    /// Nombre del proveedor
+    /// </summary>
     public string Nombre { get; set; }
-
-    [EmailAddress(ErrorMessage = "El email no es v�lido")]
-    [StringLength(50, ErrorMessage = "El email no puede exceder los 50 caracteres")]
+    
+    /// <summary>
+    /// Email del proveedor
+    /// </summary>
     public string Email { get; set; }
-
-    [Phone(ErrorMessage = "El telefono no es v�lido")]
-    [StringLength(15, ErrorMessage = "El tel�fono  no puede exceder los 15 caracteres")]
+    
+    /// <summary>
+    /// Teléfono del proveedor
+    /// </summary>
     public string Telefono { get; set; }
-
-
-    [StringLength(200, ErrorMessage = "La direccion no puede exceder los 200 caracteres")]
+    
+    /// <summary>
+    /// Dirección del proveedor
+    /// </summary>
     public string Direccion { get; set; }
-
-    public bool Estado {get; set; } 
+    
+    /// <summary>
+    /// Indica si el proveedor está activo o inactivo
+    /// </summary>
+    public bool Estado { get; set; }
 }

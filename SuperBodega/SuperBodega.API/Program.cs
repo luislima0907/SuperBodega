@@ -78,6 +78,18 @@ if (string.IsNullOrEmpty(connectionString))
 }
 Console.WriteLine($"Connection string: {connectionString}");
 
+// Configurar para leer variables de entorno con prefijo específico
+builder.Configuration.AddEnvironmentVariables(prefix: "EMAIL_");
+
+// Mapear las variables de entorno a la configuración de Email
+builder.Configuration["Email:SmtpHost"] = builder.Configuration["EMAIL_SMTP_HOST"] ?? builder.Configuration["Email:SmtpHost"];
+builder.Configuration["Email:SmtpPort"] = builder.Configuration["EMAIL_SMTP_PORT"] ?? builder.Configuration["Email:SmtpPort"];
+builder.Configuration["Email:SmtpUsername"] = builder.Configuration["EMAIL_SMTP_USERNAME"] ?? builder.Configuration["Email:SmtpUsername"];
+builder.Configuration["Email:SmtpPassword"] = builder.Configuration["EMAIL_SMTP_PASSWORD"] ?? builder.Configuration["Email:SmtpPassword"];
+builder.Configuration["Email:FromEmail"] = builder.Configuration["EMAIL_FROM_EMAIL"] ?? builder.Configuration["Email:FromEmail"];
+builder.Configuration["Email:FromName"] = builder.Configuration["EMAIL_FROM_NAME"] ?? builder.Configuration["Email:FromName"];
+
+
 // Agregar servicio para verificar la conexión a la base de datos
 builder.Services.AddHostedService<DatabaseConnectionCheckService>();
 
@@ -93,10 +105,7 @@ builder.Services.AddDbContext<SuperBodegaContext>(options =>
     });
 });
 
-// Agregar al inicio del método Main o configuración de servicios en Program.cs
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-// Add this near the beginning with your other using statements
-// Add this with your other service configurations
 QuestPDF.Settings.License = LicenseType.Community;
 
 // Registrar el servicio de inicialización de la base de datos
@@ -127,7 +136,6 @@ builder.Services.AddScoped<EstadoDeLaVentaService>();
 // Registrar servicios de ecommerce
 builder.Services.AddScoped<CarritoService>();
 
-// HttpClient para Resend
 builder.Services.AddHttpClient();
 
 // Configurar RabbitMQ
@@ -140,7 +148,7 @@ builder.Services.AddScoped<NotificacionService>();
 // Agregar CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
+    options.AddPolicy("AllowAll", 
         builder => builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
@@ -157,9 +165,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "SuperBodega API",
+    c.SwaggerDoc("v1", new OpenApiInfo 
+    { 
+        Title = "SuperBodega API", 
         Version = "v1",
         Description = "API para el sistema de gestión de SuperBodega",
         Contact = new OpenApiContact
@@ -168,41 +176,41 @@ builder.Services.AddSwaggerGen(c =>
             Email = "contacto@superbodega.com"
         }
     });
-
+    
     // Para incluir comentarios XML de documentación en Swagger
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-
+    
     // Imprime información de depuración
     Console.WriteLine($"Archivo XML: {xmlFile}");
     Console.WriteLine($"Ruta completa: {xmlPath}");
     Console.WriteLine($"El archivo existe: {File.Exists(xmlPath)}");
-
+    
     if (File.Exists(xmlPath))
     {
         c.IncludeXmlComments(xmlPath);
     }
-    else
+    else 
     {
         Console.WriteLine("¡ADVERTENCIA! No se encontró el archivo XML de documentación.");
     }
-
+    
     // Configuración para agrupar endpoints
     c.TagActionsBy(api => {
         if (api.GroupName != null)
         {
             return new[] { api.GroupName };
         }
-
+        
         var controllerName = api.ActionDescriptor.RouteValues["controller"];
         if (controllerName != null)
         {
             return new[] { controllerName };
         }
-
+        
         return new[] { "Otros" };
     });
-
+    
     c.DocInclusionPredicate((docName, apiDesc) => true);
 });
 
@@ -257,7 +265,7 @@ app.MapHealthChecks("/health", new HealthCheckOptions
     ResponseWriter = async (context, report) =>
     {
         context.Response.ContentType = MediaTypeNames.Application.Json;
-
+        
         var response = new
         {
             Status = report.Status.ToString(),
@@ -269,7 +277,7 @@ app.MapHealthChecks("/health", new HealthCheckOptions
             }),
             TotalDuration = report.TotalDuration
         };
-
+        
         await context.Response.WriteAsync(JsonSerializer.Serialize(response));
     }
 });
