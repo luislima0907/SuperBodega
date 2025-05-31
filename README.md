@@ -1,3 +1,6 @@
+# Dominio
+https://www.superbodega2025.somee.com/
+
 # SuperBodega - Sistema de Gestión de Inventario y Ventas
 
 ## Descripción General del Proyecto
